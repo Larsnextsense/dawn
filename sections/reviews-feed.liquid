@@ -1,0 +1,117 @@
+<section class="reviews-feed">
+  <div class="page-width">
+    <div class="reviews-feed__header">
+      {%- if section.settings.pretitle != blank -%}
+        <div class="reviews-feed__pretitle">{{ section.settings.pretitle }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.title != blank -%}
+        <h2 class="reviews-feed__title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.subtitle != blank -%}
+        <div class="reviews-feed__subtitle rte">{{ section.settings.subtitle }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_rating_badge -%}
+      <div class="reviews-feed__rating-badge" aria-label="Rating badge">
+        <div class="reviews-feed__stars" aria-hidden="true">
+          ★★★★★
+        </div>
+        <div class="reviews-feed__rating-text">
+          <span class="reviews-feed__rating-value">{{ section.settings.rating_value }}</span>
+          <span class="reviews-feed__rating-source">{{ section.settings.rating_source }}</span>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="reviews-feed__content">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            <div class="reviews-feed__app" {{ block.shopify_attributes }}>
+              {% render block %}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+
+      {%- if section.settings.custom_liquid != blank -%}
+        <div class="reviews-feed__embed">
+          {{ section.settings.custom_liquid }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.blocks.size == 0 and section.settings.custom_liquid == blank -%}
+        <div class="reviews-feed__placeholder">
+          <div class="reviews-feed__placeholder-card"></div>
+          <div class="reviews-feed__placeholder-card"></div>
+          <div class="reviews-feed__placeholder-card"></div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reviews Feed",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "pretitle",
+      "label": "Pretitle",
+      "default": "★ REVIEWS"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Wat onze klanten zeggen"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "<p>Meer dan 500 tevreden klanten gingen je voor</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating_badge",
+      "label": "Show rating badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "rating_value",
+      "label": "Rating value",
+      "default": "4.9"
+    },
+    {
+      "type": "text",
+      "id": "rating_source",
+      "label": "Rating source",
+      "default": "Google Reviews"
+    },
+    {
+      "type": "liquid",
+      "id": "custom_liquid",
+      "label": "Custom embed (optional)",
+      "info": "Gebruik dit als fallback als je reviews app geen app block ondersteunt."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews Feed"
+    }
+  ]
+}
+{% endschema %}

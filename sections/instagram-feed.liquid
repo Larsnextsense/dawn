@@ -1,0 +1,97 @@
+<section class="instagram-feed">
+  <div class="page-width">
+    <div class="instagram-feed__header">
+      <div class="instagram-feed__header-left">
+        {%- if section.settings.handle_text != blank -%}
+          <div class="instagram-feed__handle">{{ section.settings.handle_text }}</div>
+        {%- endif -%}
+        {%- if section.settings.title != blank -%}
+          <h2 class="instagram-feed__title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.link_label != blank and section.settings.link_url != blank -%}
+        <a class="instagram-feed__link" href="{{ section.settings.link_url }}">
+          {{ section.settings.link_label }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="instagram-feed__content">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            <div class="instagram-feed__app" {{ block.shopify_attributes }}>
+              {% render block %}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+
+      {%- if section.settings.custom_liquid != blank -%}
+        <div class="instagram-feed__embed">
+          {{ section.settings.custom_liquid }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.blocks.size == 0 and section.settings.custom_liquid == blank -%}
+        <div class="instagram-feed__placeholder" aria-hidden="true">
+          <div class="instagram-feed__placeholder-item"></div>
+          <div class="instagram-feed__placeholder-item"></div>
+          <div class="instagram-feed__placeholder-item"></div>
+          <div class="instagram-feed__placeholder-item"></div>
+          <div class="instagram-feed__placeholder-item"></div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Instagram Feed",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "handle_text",
+      "label": "Handle text",
+      "default": "@BARBEZORGD"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Volg onze feestjes"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "Volg ons op Instagram →"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "liquid",
+      "id": "custom_liquid",
+      "label": "Custom embed (optional)",
+      "info": "Gebruik dit als fallback als je Instagram app geen app block ondersteunt."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram Feed"
+    }
+  ]
+}
+{% endschema %}

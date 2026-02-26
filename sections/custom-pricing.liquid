@@ -1,0 +1,269 @@
+<section class="custom-pricing">
+  <div class="page-width">
+    <div class="custom-pricing__header">
+    {%- if section.settings.pretitle != blank -%}
+      <div class="custom-pricing__pretitle">{{ section.settings.pretitle }}</div>
+    {%- endif -%}
+
+    {%- if section.settings.title != blank -%}
+      <h2 class="custom-pricing__title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class="custom-pricing__subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+  </div>
+
+    <div class="custom-pricing__grid">
+    {%- for block in section.blocks -%}
+      <div class="custom-pricing__card {% if block.settings.is_popular %}custom-pricing__card--popular{% endif %}">
+        {%- if block.settings.is_popular -%}
+          <div class="custom-pricing__popular-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            {{ block.settings.popular_text }}
+          </div>
+        {%- endif -%}
+
+        <div class="custom-pricing__card-header">
+          <h3 class="custom-pricing__card-title">{{ block.settings.title }}</h3>
+          <p class="custom-pricing__card-desc">{{ block.settings.description }}</p>
+        </div>
+
+        <div class="custom-pricing__card-price-wrapper">
+          <span class="custom-pricing__card-currency">€</span>
+          <span class="custom-pricing__card-price">{{ block.settings.price }}</span>
+        </div>
+        <div class="custom-pricing__card-price-desc">
+          <span>per persoon</span>
+          <span class="custom-pricing__card-min">{{ block.settings.min_persons }}</span>
+        </div>
+
+        <ul class="custom-pricing__features">
+          {%- if block.settings.feature_1 != blank -%}
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              {{ block.settings.feature_1 }}
+            </li>
+          {%- endif -%}
+          {%- if block.settings.feature_2 != blank -%}
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              {{ block.settings.feature_2 }}
+            </li>
+          {%- endif -%}
+          {%- if block.settings.feature_3 != blank -%}
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              {{ block.settings.feature_3 }}
+            </li>
+          {%- endif -%}
+          {%- if block.settings.feature_4 != blank -%}
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              {{ block.settings.feature_4 }}
+            </li>
+          {%- endif -%}
+          {%- if block.settings.feature_5 != blank -%}
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              {{ block.settings.feature_5 }}
+            </li>
+          {%- endif -%}
+          {%- if block.settings.feature_6 != blank -%}
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              {{ block.settings.feature_6 }}
+            </li>
+          {%- endif -%}
+        </ul>
+
+        <a href="{{ block.settings.button_link | default: '#' }}" class="custom-pricing__btn">
+          {{ block.settings.button_label }}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Pricing",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pretitle",
+      "label": "Pretitle",
+      "default": "ONZE PAKKETTEN"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Kies jouw perfecte pakket"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Van intieme borrel tot groots feest. Wij hebben voor elk moment de perfecte oplossing."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "package",
+      "name": "Package",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "is_popular",
+          "label": "Highlight as Popular",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "popular_text",
+          "label": "Popular Badge Text",
+          "default": "Populair"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Basis"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Perfect voor kleine feestjes"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "17,50"
+        },
+        {
+          "type": "text",
+          "id": "min_persons",
+          "label": "Minimum Persons Text",
+          "default": "Minimaal 10 personen"
+        },
+        {
+          "type": "text",
+          "id": "feature_1",
+          "label": "Feature 1",
+          "default": "Premium pils van tap"
+        },
+        {
+          "type": "text",
+          "id": "feature_2",
+          "label": "Feature 2",
+          "default": "Professionele tapinstallatie"
+        },
+        {
+          "type": "text",
+          "id": "feature_3",
+          "label": "Feature 3",
+          "default": "Glazen inbegrepen"
+        },
+        {
+          "type": "text",
+          "id": "feature_4",
+          "label": "Feature 4",
+          "default": "Gratis bezorging & ophalen"
+        },
+        {
+          "type": "text",
+          "id": "feature_5",
+          "label": "Feature 5",
+          "default": "Koelunit Inbegrepen"
+        },
+        {
+          "type": "text",
+          "id": "feature_6",
+          "label": "Feature 6"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Selecteer"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Pricing",
+      "blocks": [
+        {
+          "type": "package",
+          "settings": {
+            "title": "Basis",
+            "description": "Perfect voor kleine feestjes",
+            "price": "17,50",
+            "min_persons": "Minimaal 10 personen",
+            "is_popular": false
+          }
+        },
+        {
+          "type": "package",
+          "settings": {
+            "title": "Speciaalbier",
+            "description": "Voor de echte bierliefhebber",
+            "price": "22,50",
+            "min_persons": "Minimaal 15 personen",
+            "is_popular": true
+          }
+        },
+        {
+          "type": "package",
+          "settings": {
+            "title": "Wijn & Bubbels",
+            "description": "Elegant & feestelijk",
+            "price": "24,50",
+            "min_persons": "Minimaal 20 personen",
+            "is_popular": false
+          }
+        },
+        {
+          "type": "package",
+          "settings": {
+            "title": "All-In",
+            "description": "Alles voor het ultieme feest",
+            "price": "32,50",
+            "min_persons": "Minimaal 25 personen",
+            "is_popular": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,58 @@
+<section class="homepage-cta">
+  <div class="page-width">
+    <div class="homepage-cta__inner">
+      <div class="homepage-cta__text">
+        {%- if section.settings.title != blank -%}
+          <h2 class="homepage-cta__title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <div class="homepage-cta__subtitle rte">{{ section.settings.subtitle }}</div>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+        <a class="homepage-cta__button" href="{{ section.settings.button_link }}">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage CTA",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Klaar om te feesten?"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "<p>Vraag vandaag nog een vrijblijvende offerte aan</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Start je aanvraag"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage CTA"
+    }
+  ]
+}
+{% endschema %}

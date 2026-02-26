@@ -1,0 +1,133 @@
+<div class="custom-hero">
+  <div class="custom-hero__bg">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 2000 | image_tag: class: 'custom-hero__image', loading: 'lazy' }}
+    {%- else -%}
+      <div class="placeholder-background">
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {%- endif -%}
+    <div class="custom-hero__overlay"></div>
+  </div>
+
+  <div class="custom-hero__content page-width">
+    {%- if section.settings.badge_text != blank -%}
+      <div class="custom-hero__badge">
+        <span class="custom-hero__badge-dot"></span>
+        {{ section.settings.badge_text }}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.title != blank -%}
+      <h1 class="custom-hero__title">
+        {{ section.settings.title }}
+      </h1>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle != blank -%}
+      <div class="custom-hero__subtitle rte">
+        {{ section.settings.subtitle }}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="custom-hero__stats page-width">
+    <div class="custom-hero__stats-inner">
+      {%- for block in section.blocks -%}
+        <div class="custom-hero__stat-item">
+          <div class="custom-hero__stat-value">{{ block.settings.value }}</div>
+          <div class="custom-hero__stat-label">{{ block.settings.label }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "#1 Mobiele Bar Service van Nederland"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Heading",
+      "default": "Jouw feestje,<br><span style='color: #F59E0B;'>koud geleverd.</span>"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "<p>Premium mobiele bar service voor elk moment. Van intieme borrels tot grote feesten — wij regelen alles. Jij geniet.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "€17,50"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "per persoon vanaf"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Hero",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "value": "€17,50",
+            "label": "per persoon vanaf"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "500+",
+            "label": "tevreden klanten"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "Gratis",
+            "label": "bezorging & ophalen"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "24u",
+            "label": "snelle levering"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

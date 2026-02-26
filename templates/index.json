@@ -1,210 +1,212 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "hero": {
+      "type": "custom-hero",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "stat_1": {
+          "type": "stat",
+          "settings": { "value": "€17,50", "label": "per persoon vanaf" }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": { "value": "500+", "label": "tevreden klanten" }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": { "value": "Gratis", "label": "bezorging & ophalen" }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": { "value": "24u", "label": "snelle levering" }
+        }
+      },
+      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"],
+      "settings": {
+        "image": "shopify://shop_images/hero-draft-beer.jpg",
+        "badge_text": "#1 Mobiele Bar Service van Nederland",
+        "title": "Jouw feestje,<br><span style='color: #F59E0B;'>koud geleverd.</span>",
+        "subtitle": "<p>Premium mobiele bar service voor elk moment. Van intieme borrels tot grote feesten — wij regelen alles. Jij geniet.</p>"
+      }
+    },
+    "reassurance": {
+      "type": "reassurance-bar",
+      "settings": {
+        "background_color": "#1A4F8B",
+        "text_color": "#FFFFFF"
+      },
+      "blocks": {
+        "item1": { "type": "feature", "settings": { "icon": "🚚", "text": "Gratis bezorgd door heel NL" } },
+        "item2": { "type": "feature", "settings": { "icon": "❄️", "text": "Gekoeld geleverd (direct klaar!)" } },
+        "item3": { "type": "feature", "settings": { "icon": "🧽", "text": "GEEN AFWAS (Wij spoelen de glazen)" } },
+        "item4": { "type": "feature", "settings": { "icon": "🍺", "text": "Inclusief bar & koolzuur" } }
+      },
+      "block_order": ["item1", "item2", "item3", "item4"]
+    },
+    "steps": {
+      "type": "custom-steps",
+      "blocks": {
+        "step1": {
+          "type": "step",
           "settings": {
-            "heading": "Image banner",
-            "heading_size": "h0"
+            "step_number": "01",
+            "icon_text": "📦",
+            "title": "Kies je pakket",
+            "text": "<p>Van intiem tot groots, wij hebben het perfecte pakket voor jouw feest.</p>"
           }
         },
-        "text": {
-          "type": "text",
+        "step2": {
+          "type": "step",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
+            "step_number": "02",
+            "icon_text": "🚚",
+            "title": "Gratis bezorgd",
+            "text": "<p>Wij bezorgen alles op jouw locatie, inclusief opstellen en instructies.</p>"
           }
         },
-        "button": {
-          "type": "buttons",
+        "step3": {
+          "type": "step",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "step_number": "03",
+            "icon_text": "🥂",
+            "title": "Tijd om te feesten",
+            "text": "<p>Geniet van ijskoude drankjes uit de tap. Wij regelen de rest!</p>"
+          }
+        },
+        "step4": {
+          "type": "step",
+          "settings": {
+            "step_number": "04",
+            "icon_text": "✨",
+            "title": "Wij halen alles op",
+            "text": "<p>Na het feest halen wij alles op, inclusief de vuile glazen.</p>"
           }
         }
       },
-      "block_order": [
-        "heading",
-        "text",
-        "button"
-      ],
+      "block_order": ["step1", "step2", "step3", "step4"],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "pretitle": "HOE WERKT HET",
+        "title": "In 4 simpele stappen",
+        "subtitle": "<p>Van bestelling tot opruimen — wij maken het makkelijk</p>"
       }
     },
-    "rich_text": {
-      "type": "rich-text",
+    "pricing": {
+      "type": "custom-pricing",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "pkg_1": {
+          "type": "package",
           "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
+            "is_popular": false,
+            "popular_text": "Populair",
+            "title": "Basis",
+            "description": "Perfect voor kleine feestjes",
+            "price": "17,50",
+            "min_persons": "Minimaal 10 personen",
+            "feature_1": "Premium pils van tap",
+            "feature_2": "Professionele tapinstallatie",
+            "feature_3": "Glazen inbegrepen",
+            "feature_4": "Gratis bezorging & ophalen",
+            "feature_5": "Koelunit inbegrepen",
+            "feature_6": "",
+            "button_label": "Selecteer",
+            "button_link": "/collections/bar-pakketten"
           }
         },
-        "text": {
-          "type": "text",
+        "pkg_2": {
+          "type": "package",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
+            "is_popular": true,
+            "popular_text": "Populair",
+            "title": "Speciaalbier",
+            "description": "Voor de echte bierliefhebber",
+            "price": "22,50",
+            "min_persons": "Minimaal 15 personen",
+            "feature_1": "Keuze uit 3 speciaalbieren",
+            "feature_2": "Premium pils beschikbaar",
+            "feature_3": "Professionele dubbele tap",
+            "feature_4": "Proefglazen & pils glazen",
+            "feature_5": "Gratis bezorging & ophalen",
+            "feature_6": "Persoonlijk advies",
+            "button_label": "Selecteer",
+            "button_link": "/collections/bar-pakketten"
+          }
+        },
+        "pkg_3": {
+          "type": "package",
+          "settings": {
+            "is_popular": false,
+            "popular_text": "Populair",
+            "title": "Wijn & Bubbels",
+            "description": "Elegant & feestelijk",
+            "price": "24,50",
+            "min_persons": "Minimaal 20 personen",
+            "feature_1": "Selectie kwaliteitswijnen",
+            "feature_2": "Champagne of Prosecco",
+            "feature_3": "Stijlvolle glazen",
+            "feature_4": "Wijnkoeler inbegrepen",
+            "feature_5": "Gratis bezorging & ophalen",
+            "feature_6": "Sommelier advies mogelijk",
+            "button_label": "Selecteer",
+            "button_link": "/collections/bar-pakketten"
+          }
+        },
+        "pkg_4": {
+          "type": "package",
+          "settings": {
+            "is_popular": false,
+            "popular_text": "Populair",
+            "title": "All-In",
+            "description": "Alles voor het ultieme feest",
+            "price": "32,50",
+            "min_persons": "Minimaal 25 personen",
+            "feature_1": "Premium tap & speciaalbier",
+            "feature_2": "Wijn & bubbels selectie",
+            "feature_3": "Frisdranken & sappen",
+            "feature_4": "Cocktail basis pakket",
+            "feature_5": "Complete glaswerk set",
+            "feature_6": "24/7 support & refill",
+            "button_label": "Selecteer",
+            "button_link": "/collections/bar-pakketten"
           }
         }
       },
-      "block_order": [
-        "heading",
-        "text"
-      ],
+      "block_order": ["pkg_1", "pkg_2", "pkg_3", "pkg_4"],
       "settings": {
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 0
+        "pretitle": "ONZE PAKKETTEN",
+        "title": "Kies jouw perfecte pakket",
+        "subtitle": "Van intieme borrel tot groots feest. Wij hebben voor elk moment de perfecte oplossing."
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "reviews": {
+      "type": "reviews-feed",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "show_view_all": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "columns_mobile": "2",
-        "padding_top": 28,
-        "padding_bottom": 36
+        "pretitle": "★ REVIEWS",
+        "title": "Wat onze klanten zeggen",
+        "subtitle": "<p>Meer dan 500 tevreden klanten gingen je voor</p>",
+        "show_rating_badge": true,
+        "rating_value": "4.9",
+        "rating_source": "Google Reviews",
+        "custom_liquid": ""
       }
     },
-    "collage": {
-      "type": "collage",
-      "blocks": {
-        "collection-0": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "product": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "second_image": false
-          }
-        },
-        "collection-1": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
-          }
-        }
-      },
-      "block_order": [
-        "collection-0",
-        "product",
-        "collection-1"
-      ],
+    "instagram": {
+      "type": "instagram-feed",
       "settings": {
-        "heading": "Multimedia collage",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "handle_text": "@BARBEZORGD",
+        "title": "Volg onze feestjes",
+        "link_label": "Volg ons op Instagram →",
+        "link_url": "",
+        "custom_liquid": ""
       }
     },
-    "video": {
-      "type": "video",
+    "cta": {
+      "type": "homepage-cta",
       "settings": {
-        "heading": "",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "heading_size": "h1",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn": {
-      "type": "multicolumn",
-      "blocks": {
-        "column1": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column2": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column3": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3"
-      ],
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "title": "Klaar om te feesten?",
+        "subtitle": "<p>Vraag vandaag nog een vrijblijvende offerte aan</p>",
+        "button_label": "Start je aanvraag",
+        "button_link": "/pages/contact"
       }
     }
   },
-  "order": [
-    "image_banner",
-    "rich_text",
-    "featured_collection",
-    "collage",
-    "video",
-    "multicolumn"
-  ]
+  "order": ["hero", "reassurance", "steps", "pricing", "reviews", "instagram", "cta"]
 }

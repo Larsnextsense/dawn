@@ -1,0 +1,173 @@
+<section class="custom-steps">
+  <div class="page-width">
+    <div class="custom-steps__header">
+      {%- if section.settings.pretitle != blank -%}
+        <div class="custom-steps__pretitle">{{ section.settings.pretitle }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.title != blank -%}
+        <h2 class="custom-steps__title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.subtitle != blank -%}
+        <div class="custom-steps__subtitle rte">{{ section.settings.subtitle }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="custom-steps__grid">
+      {%- for block in section.blocks -%}
+        <div class="custom-steps__card" {{ block.shopify_attributes }}>
+          <div class="custom-steps__card-top">
+            {%- if block.settings.step_number != blank -%}
+              <div class="custom-steps__badge">
+                <span class="custom-steps__badge-number">{{ block.settings.step_number }}</span>
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.icon_image != blank -%}
+              {{
+                block.settings.icon_image
+                | image_url: width: 96
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'custom-steps__icon',
+                  widths: '48,72,96',
+                  sizes: '48px'
+              }}
+            {%- elsif block.settings.icon_text != blank -%}
+              <div class="custom-steps__icon custom-steps__icon--text">{{ block.settings.icon_text }}</div>
+            {%- endif -%}
+          </div>
+
+          {%- if block.settings.title != blank -%}
+            <h3 class="custom-steps__card-title">{{ block.settings.title }}</h3>
+          {%- endif -%}
+
+          {%- if block.settings.text != blank -%}
+            <div class="custom-steps__card-text rte">{{ block.settings.text }}</div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+
+      {%- if section.blocks.size == 0 -%}
+        <div class="custom-steps__card">
+          <div class="custom-steps__card-top">
+            <div class="custom-steps__badge"><span class="custom-steps__badge-number">01</span></div>
+            <div class="custom-steps__icon custom-steps__icon--text">📦</div>
+          </div>
+          <h3 class="custom-steps__card-title">Kies je pakket</h3>
+          <div class="custom-steps__card-text rte"><p>Van intiem tot groots, wij hebben het perfecte pakket voor jouw feest.</p></div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Steps",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pretitle",
+      "label": "Pretitle",
+      "default": "HOE WERKT HET"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "In 4 simpele stappen"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "<p>Van bestelling tot opruimen — wij maken het makkelijk</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Step number",
+          "default": "01"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "icon_text",
+          "label": "Icon text (emoji) (optional)",
+          "default": "📦"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Kies je pakket"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Van intiem tot groots, wij hebben het perfecte pakket voor jouw feest.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Steps",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "01",
+            "icon_text": "📦",
+            "title": "Kies je pakket",
+            "text": "<p>Van intiem tot groots, wij hebben het perfecte pakket voor jouw feest.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "02",
+            "icon_text": "🚚",
+            "title": "Gratis bezorgd",
+            "text": "<p>Wij bezorgen alles op jouw locatie, inclusief opstellen en instructies.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "03",
+            "icon_text": "🥂",
+            "title": "Tijd om te feesten",
+            "text": "<p>Geniet van ijskoude drankjes uit de tap. Wij regelen de rest!</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "04",
+            "icon_text": "✨",
+            "title": "Wij halen alles op",
+            "text": "<p>Na het feest halen wij alles op, inclusief de vuile glazen.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
