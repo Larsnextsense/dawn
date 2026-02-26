@@ -49,6 +49,10 @@
   color: var(--white);
 }
 
+.section-header {
+  background-color: #ffffff;
+}
+
 @media screen and (max-width: 989px) {
   .header--custom-right {
     display: none;

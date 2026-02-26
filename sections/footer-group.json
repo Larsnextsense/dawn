@@ -5,45 +5,52 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "footer-0": {
+        "footer-brand": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": true
+          }
+        },
+        "footer-pakketten": {
           "type": "link_list",
           "settings": {
-            "heading": "Quick links",
+            "heading": "Pakketten",
             "menu": "footer"
           }
         },
-        "footer-1": {
+        "footer-info": {
           "type": "link_list",
           "settings": {
-            "heading": "Info",
+            "heading": "Informatie",
             "menu": "footer"
           }
         },
-        "footer-2": {
+        "footer-contact": {
           "type": "text",
           "settings": {
-            "heading": "Our mission",
-            "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
+            "heading": "Contact",
+            "subtext": "<p>06 1234 5678<br>info@barbezorgd.nl<br>Bezorging door heel Nederland<\/p>"
           }
         }
       },
       "block_order": [
-        "footer-0",
-        "footer-1",
-        "footer-2"
+        "footer-brand",
+        "footer-pakketten",
+        "footer-info",
+        "footer-contact"
       ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
+        "color_scheme": "scheme-4",
+        "newsletter_enable": false,
+        "newsletter_heading": "",
         "show_social": true,
         "enable_country_selector": false,
         "enable_language_selector": false,
-        "payment_enable": true,
-        "show_policy": false,
-        "margin_top": 48,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "payment_enable": false,
+        "show_policy": true,
+        "margin_top": 32,
+        "padding_top": 40,
+        "padding_bottom": 32
       }
     }
   },
