@@ -1,216 +1,76 @@
 {
   "sections": {
     "main": {
-      "type": "main-product",
+      "type": "main-product-barbezorgd",
       "blocks": {
-        "vendor": {
-          "type": "text",
+        "usp1": {
+          "type": "usp",
           "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
+            "text": "Inclusief Mobiele Bar & Tap"
           }
         },
-        "title": {
-          "type": "title"
+        "usp2": {
+            "type": "usp",
+            "settings": {
+              "text": "Ruim voldoende glaswerk"
+            }
         },
-        "caption": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.metafields.descriptors.subtitle.value }}",
-            "text_style": "subtitle"
-          }
+        "usp3": {
+            "type": "usp",
+            "settings": {
+              "text": "Gekoelde A-merk dranken"
+            }
         },
-        "price": {
-          "type": "price"
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button"
-          }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector"
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "description": {
-          "type": "description"
-        },
-        "collapsible-row-0": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Materials",
-            "icon": "leather",
-            "content": "",
-            "page": ""
-          }
-        },
-        "collapsible-row-1": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Shipping & Returns",
-            "icon": "truck",
-            "content": "",
-            "page": ""
-          }
-        },
-        "collapsible-row-2": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Dimensions",
-            "icon": "ruler",
-            "content": "",
-            "page": ""
-          }
-        },
-        "collapsible-row-3": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Care Instructions",
-            "icon": "heart",
-            "content": "",
-            "page": ""
-          }
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
+        "usp4": {
+            "type": "usp",
+            "settings": {
+              "text": "WIJ DOEN DE AFWAS!"
+            }
         }
       },
       "block_order": [
-        "vendor",
-        "title",
-        "caption",
-        "price",
-        "variant_picker",
-        "quantity_selector",
-        "buy_buttons",
-        "description",
-        "collapsible-row-0",
-        "collapsible-row-1",
-        "collapsible-row-2",
-        "collapsible-row-3",
-        "share"
+        "usp1", "usp2", "usp3", "usp4"
       ],
       "settings": {
-        "enable_sticky_info": true,
-        "gallery_layout": "stacked",
-        "media_size": "large",
-        "constrain_to_viewport": true,
-        "mobile_thumbnails": "hide",
-        "hide_variants": true,
-        "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 12
       }
     },
-    "image-with-text": {
-      "type": "image-with-text",
-      "blocks": {
-        "image-with-text-0": {
-          "type": "heading",
-          "settings": {
-            "heading": "Image with text",
-            "heading_size": "h1"
-          }
+    "reassurance": {
+        "type": "reassurance-bar",
+        "settings": {
+            "background_color": "#1A4F8B",
+            "text_color": "#FFFFFF"
         },
-        "image-with-text-1": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "text_style": "body"
-          }
-        }
-      },
-      "block_order": [
-        "image-with-text-0",
-        "image-with-text-1"
-      ],
-      "settings": {
-        "height": "small",
-        "desktop_image_width": "medium",
-        "layout": "text_first",
-        "desktop_content_position": "top",
-        "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
-        "color_scheme": "scheme-2",
-        "mobile_content_alignment": "left",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn": {
-      "type": "multicolumn",
-      "blocks": {
-        "column-0": {
-          "type": "column",
-          "settings": {
-            "title": "Free Shipping",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
+        "blocks": {
+            "item1": { "type": "feature", "settings": { "icon": "🚚", "text": "Gratis bezorgd door heel NL" }},
+            "item2": { "type": "feature", "settings": { "icon": "❄️", "text": "Gekoeld geleverd (direct klaar!)" }},
+            "item3": { "type": "feature", "settings": { "icon": "🧽", "text": "GEEN AFWAS (Wij spoelen de glazen)" }},
+            "item4": { "type": "feature", "settings": { "icon": "🍺", "text": "Inclusief bar & koolzuur" }}
         },
-        "column-1": {
-          "type": "column",
-          "settings": {
-            "title": "Hassle-Free Exchanges",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column-0",
-        "column-1"
-      ],
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "columns_desktop": 2,
-        "column_alignment": "left",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
+        "block_order": ["item1", "item2", "item3", "item4"]
     },
-    "related-products": {
-      "type": "related-products",
-      "settings": {
-        "heading": "You may also like",
-        "heading_size": "h2",
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "columns_mobile": "2",
-        "padding_top": 36,
-        "padding_bottom": 28
-      }
+    "tabs": {
+        "type": "product-tabs",
+        "blocks": {
+            "tab1": { "type": "tab", "settings": { "heading": "Dranken Assortiment", "content": "<p><strong>Bieren:</strong> Heineken, Affligem, 0.0%<br><strong>Wijnen:</strong> Sauvignon Blanc, Chardonnay, Merlot, Rosé<br><strong>Fris:</strong> Coca Cola, Fanta, Sprite, Water</p>" }},
+            "tab2": { "type": "tab", "settings": { "heading": "Hardware Specificaties", "content": "<p>Afmetingen bar: 200cm x 80cm<br>Stroom: 220V (gewoon stopcontact)<br>Ruimte nodig: ca. 6m2</p>" }},
+            "tab3": { "type": "tab", "settings": { "heading": "Wat zit erbij?", "content": "<p>Alles wat je nodig hebt: bierviltjes, glazen, openers, spoelborstel, handdoeken.</p>" }}
+        },
+        "block_order": ["tab1", "tab2", "tab3"]
+    },
+    "cross-sell": {
+        "type": "cross-sell-grid",
+        "settings": {
+            "heading": "Maak jouw bar compleet",
+            "products_to_show": 3
+        }
     }
   },
   "order": [
     "main",
-    "image-with-text",
-    "multicolumn",
-    "related-products"
+    "reassurance",
+    "tabs",
+    "cross-sell"
   ]
 }

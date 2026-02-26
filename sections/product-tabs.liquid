@@ -1,0 +1,143 @@
+{% schema %}
+{
+  "name": "Product Tabs",
+  "settings": [
+    {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Tab Heading",
+          "default": "More Info"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Tab Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Tabs",
+      "blocks": [
+        {
+            "type": "tab",
+            "settings": {
+                "heading": "Dranken Assortiment",
+                "content": "<p>Placeholder for drinks list...</p>"
+            }
+        },
+        {
+            "type": "tab",
+            "settings": {
+                "heading": "Hardware Specificaties",
+                "content": "<p>Placeholder for hardware specs...</p>"
+            }
+        },
+        {
+            "type": "tab",
+            "settings": {
+                "heading": "Wat zit erbij?",
+                "content": "<p>Placeholder for accessories...</p>"
+            }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div class="product-tabs-section" style="background-color: {{ section.settings.bg_color }}">
+  <div class="page-width">
+    <div class="product-tabs">
+        <div class="product-tabs__header">
+            {% for block in section.blocks %}
+            <button class="product-tab__button {% if forloop.first %}active{% endif %}" data-tab="tab-{{ block.id }}">
+                {{ block.settings.heading }}
+            </button>
+            {% endfor %}
+        </div>
+        <div class="product-tabs__content">
+            {% for block in section.blocks %}
+            <div id="tab-{{ block.id }}" class="product-tab__panel {% if forloop.first %}active{% endif %}">
+                <div class="rte">
+                    {{ block.settings.content }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.product-tabs-section {
+    padding: 50px 0;
+}
+.product-tabs__header {
+    display: flex;
+    border-bottom: 2px solid #e1e3e5;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+.product-tab__button {
+    background: none;
+    border: none;
+    padding: 15px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.3s ease;
+    font-family: var(--font-heading-family);
+}
+.product-tab__button.active {
+    color: #1A4F8B;
+    border-bottom: 2px solid #1A4F8B;
+}
+.product-tab__panel {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+.product-tab__panel.active {
+    display: block;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.product-tab__button');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-tab');
+            const container = this.closest('.product-tabs');
+            
+            // Remove active class from all tabs and panels in this container
+            container.querySelectorAll('.product-tab__button').forEach(t => t.classList.remove('active'));
+            container.querySelectorAll('.product-tab__panel').forEach(p => p.classList.remove('active'));
+            
+            // Add active class to clicked tab and target panel
+            this.classList.add('active');
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+});
+</script>

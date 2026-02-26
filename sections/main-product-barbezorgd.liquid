@@ -1,0 +1,504 @@
+{% comment %}
+  Barbezorgd Custom Product Template
+  Based on main-product.liquid but optimized for conversions and specific branding.
+{% endcomment %}
+
+<section id="MainProduct-{{ section.id }}" class="page-width section-{{ section.id }}-padding" data-section="{{ section.id }}">
+  {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+  {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+  {{ 'component-rating.css' | asset_url | stylesheet_tag }}
+  {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+    
+    /* Hero Section */
+    .product-hero-container {
+        width: 100%;
+        height: 70vh; /* Taller to fit content */
+        min-height: 500px;
+        position: relative;
+        overflow: hidden; /* Image stays in, content can overflow if needed but usually better contained */
+        border-radius: 0 0 20px 20px;
+        color: white; /* Default text color for hero */
+    }
+
+    .product-hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+    
+    .product-hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.8) 100%);
+        z-index: 2;
+    }
+    
+    .hero-content-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        display: flex;
+        align-items: center; /* Center vertically for text */
+    }
+    
+    .hero-inner-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 50px;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .hero-text-content {
+        padding-bottom: 40px; /* Space from bottom */
+    }
+
+    /* Layout Grid (For content below hero) */
+    .barbezorgd-product-container {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr; /* Keep same ratio as hero grid */
+        gap: 50px;
+        align-items: start;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 4; /* Above overlay */
+    }
+    
+    @media screen and (max-width: 990px) {
+        .barbezorgd-product-container, .hero-inner-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        .product-hero-container {
+            height: auto;
+            min-height: 400px;
+            padding-bottom: 40px;
+        }
+        .hero-text-content {
+            padding: 40px 20px;
+        }
+        .product__info-sticky {
+            margin-top: -30px !important; /* Less overlap on mobile */
+            position: relative;
+            top: 0;
+        }
+    }
+
+    /* Hero Text Styles */
+    .product-title--hero {
+        font-family: var(--font-heading-family);
+        color: #FFFFFF;
+        margin: 0 0 15px 0;
+        font-size: 3.5rem;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .product-subtitle--hero {
+        font-size: 1.1rem;
+        color: #f0f0f0;
+        margin-bottom: 0;
+        font-weight: 500;
+        line-height: 1.6;
+        max-width: 90%;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    /* Featured Content Box (Altijd Inclusief) */
+    .features-box {
+        background-color: #f4f1ea; /* Light beige */
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        margin-top: 30px; /* Space from simplified hero bottom */
+    }
+    
+    .features-title {
+        font-family: var(--font-heading-family);
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #333;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    .usp-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .usp-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 12px;
+        color: #333;
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+    
+    .check-circle {
+        background: #4CAF50; /* Green check */
+        color: white;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        flex-shrink: 0;
+        margin-top: 3px;
+    }
+
+    /* RIGHT COL: Sticky Calculation Card */
+    .product__info-sticky {
+        position: sticky;
+        top: 30px;
+        z-index: 10;
+        margin-top: -150px; /* Overlap the hero image significantly */
+    }
+
+    .calculation-card {
+        background: #dcfce7; /* Light green background */
+        padding: 35px;
+        border-radius: 16px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.15); /* Stronger shadow for lift effect */
+        border: 2px solid white; /* White border to separate from background */
+        position: relative;
+    }
+
+    .calc-header {
+        margin-bottom: 20px;
+    }
+
+    .calc-title {
+        font-family: var(--font-heading-family);
+        color: #15803d; /* Darker green text */
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
+    
+    .calc-label {
+        font-family: var(--font-heading-family);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        color: #15803d;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    /* Quantity Control */
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .qty-btn {
+        background: #15803d; /* Dark green button */
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s;
+        padding: 0;
+        line-height: 1;
+    }
+    
+    .qty-btn:hover {
+        background: #166534;
+    }
+    
+    .qty-input-display {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #333;
+        width: 60px;
+        text-align: center;
+        border: 2px solid #333;
+        border-radius: 50px;
+        padding: 5px 0;
+        background: white;
+    }
+
+    /* Price Display */
+    .total-price-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        font-weight: 700;
+        color: #333;
+        border-top: 1px solid rgba(0,0,0,0.05); /* Subtle separator */
+        padding-top: 15px;
+    }
+    
+    .total-price-amount {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: #15803d;
+    }
+
+    /* Action Button */
+    .button--barbezorgd {
+        background-color: #15803d; /* Green CTA */
+        color: #FFFFFF;
+        font-family: var(--font-heading-family);
+        font-weight: 800;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        border: none;
+        width: 100%;
+        padding: 18px;
+        border-radius: 50px;
+        letter-spacing: 0.05em;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 0px #14532d; /* Hard shadow */
+    }
+    
+    .button--barbezorgd:hover {
+        background-color: #166534;
+        transform: translateY(2px);
+        box-shadow: 0 2px 0px #14532d;
+    }
+
+    .stock-indicator {
+        font-size: 0.8rem;
+        text-align: center;
+        margin-top: 15px;
+        color: #166534;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        font-weight: 600;
+    }
+
+  {%- endstyle -%}
+
+  <!-- Hero Section -->
+  <div class="product-hero-container">
+    {% if product.featured_image %}
+        <img src="{{ product.featured_image | image_url: width: 2000 }}" 
+             alt="{{ product.title | escape }}"
+             class="product-hero-image"
+             loading="eager"
+             width="2000"
+             height="{{ 2000 | divided_by: product.featured_image.aspect_ratio | round }}">
+    {% endif %}
+    <div class="product-hero-overlay"></div>
+    
+    <div class="hero-content-layer">
+        <div class="page-width hero-inner-grid">
+            <!-- Hero Text Content (Left Side of Hero) -->
+            <div class="hero-text-content">
+                <h1 class="product-title--hero">{{ product.title }}</h1>
+                <div class="product-subtitle--hero">
+                    {% if product.metafields.descriptors.subtitle %}
+                       {{ product.metafields.descriptors.subtitle }}
+                    {% else %}
+                       <!-- Fallback description excerpt if no subtitle -->
+                       {{ product.description | strip_html | truncatewords: 25 }}
+                    {% endif %}
+                </div>
+                <div style="margin-top: 15px; color: #FFC107; font-weight: 700; font-size: 1.2rem;">
+                     {{ product.price | money }} p.p.
+                </div>
+            </div>
+            <!-- Right side is empty in hero layer to let sticky card overlap from below, OR we can use grid spacing -->
+        </div>
+    </div>
+  </div>
+
+  <div class="barbezorgd-product-container page-width">
+    <!-- Left Column: Altijd Inclusief & Details -->
+    <div class="product__left-col">
+        
+        <!-- Info Section -->
+        <div class="product-info-block">
+            <!-- Title moved to hero, removing from here -->
+
+            <!-- Altijd Inclusief Column -->
+            <div class="features-box">
+                <h3 class="features-title">ALTIJD INCLUSIEF</h3>
+                <ul class="usp-list">
+                    {% for block in section.blocks %}
+                        {% if block.type == 'usp' %}
+                        <li class="usp-item">
+                            <span class="check-circle">✓</span>
+                            {{ block.settings.text }}
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if section.blocks.size == 0 %}
+                        <li class="usp-item"><span class="check-circle">✓</span> Gratis breng- en haalservice</li>
+                        <li class="usp-item"><span class="check-circle">✓</span> Borden, bestek en servetten</li>
+                        <li class="usp-item"><span class="check-circle">✓</span> Gratis wijzigen van jouw bestelling</li>
+                        <li class="usp-item"><span class="check-circle">✓</span> Tangen en opscheplepels</li>
+                        <li class="usp-item"><span class="check-circle">✓</span> Geleverd in thermoboxen</li>
+                    {% endif %}
+                </ul>
+            </div>
+            
+            <div class="product-description rte">
+                {{ product.description }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column: Sticky Calculation Card (Overlapping Hero) -->
+    <div class="product__info-wrapper">
+      <div class="product__info-sticky">
+        
+        <div class="calculation-card">
+            
+            {%- assign product_form_id = 'product-form-' | append: section.id -%}
+            {%- form 'product', product, id: product_form_id, class: 'product-form' -%}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                
+                <div class="calc-section">
+                    <div class="calc-header">
+                        <div class="calc-title">AANTAL PERSONEN</div>
+                    </div>
+                    
+                    <div class="quantity-control">
+                        <button class="qty-btn" name="minus" type="button" onclick="this.nextElementSibling.stepDown()">-</button>
+                        <input class="qty-input-display"
+                            type="number"
+                            name="quantity"
+                            id="Quantity-{{ section.id }}"
+                            min="1"
+                            value="5"
+                            form="{{ product_form_id }}"
+                        >
+                        <button class="qty-btn" name="plus" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                    </div>
+                </div>
+
+                <div class="total-price-row">
+                    <span>Totaalprijs <span style="font-weight:400; font-size:0.9rem;">(5 personen)</span></span>
+                    <span class="total-price-amount">{{ product.price | times: 5 | money }}</span>
+                </div>
+
+                <button
+                    type="submit"
+                    name="add"
+                    class="product-form__submit button button--barbezorgd"
+                    {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+                >
+                    <span>
+                        {%- if product.selected_or_first_available_variant.available -%}
+                           Voeg toe aan je bestelling
+                        {%- else -%}
+                            UITVERKOCHT
+                        {%- endif -%}
+                    </span>
+                </button>
+                
+                <div class="stock-indicator">
+                    <span class="svg-wrapper" style="width:12px;">{{ 'icon-success.svg' | inline_asset_content }}</span>
+                    <span>Bekijk beschikbaarheid</span>
+                    <div style="font-size: 0.75rem; color: #666; margin-top: 5px;">Check onze beschikbare bezorgdatums</div>
+                </div>
+
+            {%- endform -%}
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Barbezorgd Product",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "usp",
+      "name": "USP Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "USP Text",
+          "default": "Inclusief Mobiele Bar & Tap"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Barbezorgd Product"
+    }
+  ]
+}
+{% endschema %}

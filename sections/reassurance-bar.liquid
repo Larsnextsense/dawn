@@ -1,0 +1,104 @@
+{% schema %}
+{
+  "name": "Reassurance Bar",
+  "settings": [
+    {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#1A4F8B"
+    },
+    {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (Emoji or SVG)",
+          "default": "🚚"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Gratis bezorgd door heel NL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reassurance Bar",
+      "blocks": [
+        { "type": "feature", "settings": { "icon": "🚚", "text": "Gratis bezorgd door heel NL" } },
+        { "type": "feature", "settings": { "icon": "❄️", "text": "Gekoeld geleverd (direct klaar!)" } },
+        { "type": "feature", "settings": { "icon": "🧽", "text": "GEEN AFWAS (Wij spoelen de glazen)" } },
+        { "type": "feature", "settings": { "icon": "🍺", "text": "Inclusief bar & koolzuur" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div class="reassurance-bar" style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};">
+  <div class="page-width">
+    <div class="reassurance-bar__content">
+        {% for block in section.blocks %}
+        <div class="reassurance-item">
+            <span class="reassurance-icon">{{ block.settings.icon }}</span>
+            <span class="reassurance-text">{{ block.settings.text }}</span>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.reassurance-bar {
+    padding: 20px 0;
+    font-family: var(--font-body-family);
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10;
+}
+.reassurance-bar__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+.reassurance-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+}
+.reassurance-icon {
+    font-size: 20px;
+}
+@media screen and (max-width: 900px) {
+    .reassurance-bar__content {
+        gap: 20px;
+    }
+}
+@media screen and (max-width: 750px) {
+    .reassurance-bar__content {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        text-align: center;
+    }
+}
+</style>
