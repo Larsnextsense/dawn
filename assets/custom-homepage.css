@@ -3151,3 +3151,32 @@ cart-items .cart-item__name:hover {
   line-height: 1.7;
   color: var(--text-light);
 }
+
+/* ==========================================================================
+   Winkelwagen — aantal personen duidelijk labelen
+   ========================================================================== */
+
+.cart-item__quantity-label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+.cart-item .product-option dt {
+  font-weight: 600;
+}
+
+.cart-item .product-option dd strong {
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+@media screen and (max-width: 749px) {
+  .cart-item__quantity-label {
+    font-size: 1.1rem;
+  }
+}

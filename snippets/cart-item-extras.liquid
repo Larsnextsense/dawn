@@ -1,0 +1,50 @@
+{% comment %}
+  Toont optionele extra's voor een pakketproduct in de cart.
+  Verwacht: product (item.product)
+  Gebruikt product.metafields.custom.extras (zelfde formaat als op productpagina).
+{% endcomment %}
+{% assign extras_metafield = product.metafields.custom.extras | default: product.metafields.descriptors.extras %}
+{% assign show_extras = false %}
+{% if extras_metafield != blank and extras_metafield.value != blank and extras_metafield.list? == false %}
+  {% assign extras_text = extras_metafield.value | strip %}
+  {% if extras_text != blank %}
+    {% assign show_extras = true %}
+  {% endif %}
+{% endif %}
+
+{% if show_extras %}
+  {% assign extras_lines = extras_text | newline_to_br | split: '<br />' %}
+  <div class="cart-item__extras">
+    <p class="cart-item__extras-title">Optionele extra's voor {{ product.title }}:</p>
+    <ul class="cart-item__extras-list">
+      {% for line in extras_lines %}
+        {% assign line_stripped = line | strip | strip_html %}
+        {% if line_stripped != blank %}
+          {% assign parts = line_stripped | split: '|' %}
+          {% assign extra_title = parts[0] | strip %}
+          {% assign extra_price = parts[1] | strip %}
+          {% assign extra_handle = parts[2] | strip %}
+          {% assign extra_product = null %}
+          {% if extra_handle != blank %}{% assign extra_product = all_products[extra_handle] %}{% endif %}
+          {% if extra_title != blank %}
+            <li class="cart-item__extras-item">
+              <span class="cart-item__extras-item-name">{{ extra_title }}</span>
+              <span class="cart-item__extras-item-price">{% if extra_product != blank %}{{ extra_product.selected_or_first_available_variant.price | money }}{% else %}{{ extra_price }}{% endif %}</span>
+              {% if extra_product != blank and extra_product.available %}
+                <button
+                  type="button"
+                  class="cart-item__extras-add-btn js-add-variant-cart"
+                  data-variant-id="{{ extra_product.selected_or_first_available_variant.id }}"
+                  aria-label="{{ extra_title | escape }} toevoegen"
+                >
+                  <span>Toevoegen</span>
+                  {% render 'loading-spinner' %}
+                </button>
+              {% endif %}
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}

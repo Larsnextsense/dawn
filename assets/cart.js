@@ -275,6 +275,113 @@ class CartItems extends HTMLElement {
 
 customElements.define('cart-items', CartItems);
 
+// Zorgt dat de checkout-knop nooit blijft hangen op een oude validatiemelding.
+// Dawn zet via setCustomValidity() een foutmelding op het aantal-veld zodra een
+// bezoeker onder het minimum aantal personen komt. Die melding wordt nooit
+// gewist, waardoor het formulier ongeldig blijft en op "Naar checkout" klikken
+// stilletjes niets meer doet. Hier wissen we de melding weer zodra het veld
+// wordt aangepast, en vlak voor het versturen van het winkelwagenformulier.
+document.addEventListener('input', function (e) {
+  const input = e.target;
+  if (!input.matches || !input.matches('.quantity__input')) return;
+  if (typeof input.setCustomValidity === 'function') input.setCustomValidity('');
+});
+
+document.addEventListener(
+  'click',
+  function (e) {
+    const checkoutButton = e.target.closest('[name="checkout"]');
+    if (!checkoutButton) return;
+
+    const formId = checkoutButton.getAttribute('form');
+    const form = formId ? document.getElementById(formId) : checkoutButton.closest('form');
+    const scope = form || document;
+
+    scope.querySelectorAll('.quantity__input').forEach((input) => {
+      if (typeof input.setCustomValidity === 'function') input.setCustomValidity('');
+    });
+  },
+  true
+);
+
+// Extra's "Toevoegen"-knop in cart (drawer en cart-pagina)
+document.addEventListener('click', function (e) {
+  const btn = e.target.closest('.js-add-variant-cart');
+  if (!btn) return;
+  e.preventDefault();
+  const variantId = btn.dataset.variantId;
+  if (!variantId) return;
+
+  const inDrawer = btn.closest('cart-drawer-items');
+  const cart = inDrawer ? document.querySelector('cart-drawer') : null;
+  const cartItems = !inDrawer ? document.querySelector('cart-items') : null;
+
+  const config = fetchConfig('javascript');
+  config.headers['X-Requested-With'] = 'XMLHttpRequest';
+  delete config.headers['Content-Type'];
+  const formData = new FormData();
+  formData.append('id', variantId);
+  formData.append('quantity', 1);
+
+  let sectionsToRender = [];
+  if (cart && cart.getSectionsToRender) {
+    sectionsToRender = cart.getSectionsToRender();
+  } else if (cartItems && cartItems.getSectionsToRender) {
+    sectionsToRender = cartItems.getSectionsToRender();
+  }
+  if (sectionsToRender.length) {
+    formData.append(
+      'sections',
+      sectionsToRender.map((s) => s.section || s.id).join(',')
+    );
+    formData.append('sections_url', window.location.pathname);
+    if (cart && cart.setActiveElement) cart.setActiveElement(document.activeElement);
+  }
+  config.body = formData;
+
+  btn.disabled = true;
+  btn.classList.add('loading');
+
+  fetch(routes.cart_add_url, config)
+    .then((res) => res.json())
+    .then((response) => {
+      if (response.status) {
+        if (response.description) {
+          const errors = document.getElementById('cart-errors') || document.getElementById('CartDrawer-CartErrors');
+          if (errors) errors.textContent = response.description;
+        }
+        return;
+      }
+      if (cart && cart.renderContents) {
+        cart.renderContents(response);
+      } else if (cartItems && response.sections) {
+        cartItems.getSectionsToRender().forEach((section) => {
+          const sectionId = section.section || section.id;
+          const html = response.sections[sectionId];
+          if (!html) return;
+          const target =
+            document.getElementById(section.id)?.querySelector(section.selector) || document.getElementById(section.id);
+          if (target) {
+            target.innerHTML = cartItems.getSectionInnerHTML(html, section.selector);
+          }
+        });
+        cartItems.classList.toggle('is-empty', response.item_count === 0);
+        const cartDrawerWrapper = document.querySelector('cart-drawer');
+        const cartFooter = document.getElementById('main-cart-footer');
+        if (cartFooter) cartFooter.classList.toggle('is-empty', response.item_count === 0);
+        if (cartDrawerWrapper) cartDrawerWrapper.classList.toggle('is-empty', response.item_count === 0);
+        publish(PUB_SUB_EVENTS.cartUpdate, { source: 'cart-items', cartData: response });
+      } else {
+        window.location = window.routes?.cart_url || routes.cart_url;
+      }
+    })
+    .catch((err) => console.error(err))
+    .finally(() => {
+      btn.disabled = false;
+      btn.classList.remove('loading');
+    });
+});
+
 if (!customElements.get('cart-note')) {
   customElements.define(
     'cart-note',

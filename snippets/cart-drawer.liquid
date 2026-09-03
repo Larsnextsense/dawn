@@ -172,6 +172,7 @@
                           {%- else -%}
                             <div class="product-option">
                               {{ item.original_price | money }}
+                              {%- if item.properties['Aantal personen'] != blank %} per persoon{% endif -%}
                             </div>
                           {%- endif -%}
 
@@ -196,21 +197,26 @@
                                 {%- assign property_first_char = property.first | slice: 0 -%}
                                 {%- if property.last != blank and property_first_char != '_' -%}
                                   <div class="product-option">
-                                    <dt>{{ property.first }}:</dt>
-                                    <dd>
-                                      {%- if property.last contains '/uploads/' -%}
-                                        <a
-                                          href="{{ property.last }}"
-                                          class="link"
-                                          target="_blank"
-                                          aria-describedby="a11y-new-window-message"
-                                        >
-                                          {{ property.last | split: '/' | last }}
-                                        </a>
-                                      {%- else -%}
-                                        {{ property.last }}
-                                      {%- endif -%}
-                                    </dd>
+                                    {%- if property.first == 'Aantal personen' -%}
+                                      <dt>{{ property.first }}:</dt>
+                                      <dd><strong>{{ item.quantity }}</strong></dd>
+                                    {%- else -%}
+                                      <dt>{{ property.first }}:</dt>
+                                      <dd>
+                                        {%- if property.last contains '/uploads/' -%}
+                                          <a
+                                            href="{{ property.last }}"
+                                            class="link"
+                                            target="_blank"
+                                            aria-describedby="a11y-new-window-message"
+                                          >
+                                            {{ property.last | split: '/' | last }}
+                                          </a>
+                                        {%- else -%}
+                                          {{ property.last }}
+                                        {%- endif -%}
+                                      </dd>
+                                    {%- endif -%}
                                   </div>
                                 {%- endif -%}
                               {%- endfor -%}
@@ -272,6 +278,19 @@
                           if item.variant.quantity_price_breaks.size > 0
                             assign has_vol_pricing = true
                           endif
+
+                          assign cart_item_min_qty = item.variant.quantity_rule.min
+                          assign cart_item_is_person_based = false
+                          for property in item.properties
+                            if property.first == 'Aantal personen'
+                              assign cart_item_is_person_based = true
+                              assign cart_item_min_qty = property.last | plus: 0
+                              if cart_item_min_qty < 1
+                                assign cart_item_min_qty = 1
+                              endif
+                              break
+                            endif
+                          endfor
                         -%}
                         <td
                           class="cart-item__quantity {% if has_qty_rules or has_vol_pricing %} cart-item__quantity--info{% endif %}"
@@ -280,6 +299,9 @@
                         >
                           <quantity-popover>
                             <div class="cart-item__quantity-wrapper quantity-popover-wrapper">
+                              <label class="cart-item__quantity-label" for="Drawer-quantity-{{ item.index | plus: 1 }}">
+                                {%- if cart_item_is_person_based -%}Aantal personen{%- else -%}Aantal{%- endif -%}
+                              </label>
                               <div class="quantity-popover-container{% if has_qty_rules or has_vol_pricing %} quantity-popover-container--hover{% endif %}">
                                 <quantity-input class="quantity cart-quantity">
                                   <button
@@ -310,7 +332,8 @@
                                     {% # theme-check-disable %}
                                     data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
                                     min="0"
-                                    data-min="{{ item.variant.quantity_rule.min }}"
+                                    data-min="{{ cart_item_min_qty }}"
+                                    data-person-based="{{ cart_item_is_person_based }}"
                                     {% if item.variant.quantity_rule.max != null %}
                                       max="{{ item.variant.quantity_rule.max }}"
                                     {% endif %}
@@ -461,6 +484,13 @@
                           </quantity-popover>
                         </td>
                       </tr>
+                      {%- if item.product.metafields.custom.extras.value != blank or item.product.metafields.descriptors.extras.value != blank -%}
+                        <tr class="cart-item__extras-row" id="CartDrawer-Item-Extras-{{ item.index | plus: 1 }}">
+                          <td colspan="4" class="cart-item__extras-cell" role="cell">
+                            {% render 'cart-item-extras', product: item.product %}
+                          </td>
+                        </tr>
+                      {%- endif -%}
                     {%- endfor -%}
                   </tbody>
                 </table>
