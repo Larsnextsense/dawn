@@ -288,24 +288,26 @@ document.addEventListener(
 
     const min = parseInt(input.dataset.min, 10);
     const value = parseInt(input.value, 10);
-    const errors = input.closest('cart-drawer')
-      ? document.getElementById('CartDrawer-CartErrors')
-      : document.getElementById('cart-errors');
-
-    if (!min || min <= 1 || isNaN(value) || value <= 0 || value >= min) {
-      if (errors) errors.textContent = '';
-      return;
-    }
+    if (!min || min <= 1 || isNaN(value) || value <= 0 || value >= min) return;
 
     input.value = min;
     if (typeof input.setCustomValidity === 'function') input.setCustomValidity('');
-    if (errors) {
-      errors.textContent =
-        'Voor dit pakket geldt een minimum van ' + min + ' personen. Het aantal is aangepast naar ' + min + '.';
-    }
+    // De winkelwagensecties worden na de update opnieuw opgebouwd, dus de melding
+    // wordt pas daarna geplaatst. Anders is hij meteen weer weg.
+    window.__minPersonenMelding =
+      'Voor dit pakket geldt een minimum van ' + min + ' personen. Het aantal is aangepast naar ' + min + '.';
   },
   true
 );
+
+if (typeof subscribe === 'function' && typeof PUB_SUB_EVENTS !== 'undefined') {
+  subscribe(PUB_SUB_EVENTS.cartUpdate, function () {
+    if (!window.__minPersonenMelding) return;
+    const target = document.getElementById('CartDrawer-CartErrors') || document.getElementById('cart-errors');
+    if (target) target.textContent = window.__minPersonenMelding;
+    window.__minPersonenMelding = '';
+  });
+}
 
 // Zorgt dat de checkout-knop nooit blijft hangen op een oude validatiemelding.
 // Dawn zet via setCustomValidity() een foutmelding op het aantal-veld zodra een
