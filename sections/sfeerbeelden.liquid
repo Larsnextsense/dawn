@@ -1,0 +1,165 @@
+{%- comment -%}
+  Sfeerbeelden — galerij met "in het moment"-foto's.
+  Zonder foto's toont de sectie nette placeholders, zodat de pagina alvast
+  ingericht kan worden en de beelden er later ingezet kunnen worden.
+{%- endcomment -%}
+
+{%- assign image_blocks = section.blocks | where: 'type', 'image' -%}
+
+<section class="sfeerbeelden" aria-label="{{ section.settings.title | default: 'Sfeerbeelden' | escape }}">
+  <div class="page-width">
+    <div class="sfeerbeelden__header">
+      {%- if section.settings.pretitle != blank -%}
+        <div class="sfeerbeelden__pretitle">{{ section.settings.pretitle }}</div>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h2 class="sfeerbeelden__title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <div class="sfeerbeelden__subtitle rte">{{ section.settings.subtitle }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="sfeerbeelden__grid sfeerbeelden__grid--{{ section.settings.columns }}">
+      {%- for block in image_blocks -%}
+        <figure
+          class="sfeerbeelden__item{% if block.settings.wide %} sfeerbeelden__item--wide{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.image != blank -%}
+            {{
+              block.settings.image
+              | image_url: width: 1400
+              | image_tag:
+                loading: 'lazy',
+                class: 'sfeerbeelden__img',
+                widths: '400,600,800,1000,1400',
+                sizes: '(min-width: 990px) 33vw, 100vw',
+                alt: block.settings.caption | default: section.settings.title
+            }}
+          {%- else -%}
+            <div class="sfeerbeelden__placeholder">
+              {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+              <span class="sfeerbeelden__placeholder-label">Foto volgt</span>
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.caption != blank -%}
+            <figcaption class="sfeerbeelden__caption">{{ block.settings.caption }}</figcaption>
+          {%- endif -%}
+        </figure>
+      {%- endfor -%}
+
+      {%- if image_blocks.size == 0 -%}
+        {%- for i in (1..6) -%}
+          <figure class="sfeerbeelden__item">
+            <div class="sfeerbeelden__placeholder">
+              {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+              <span class="sfeerbeelden__placeholder-label">Foto volgt</span>
+            </div>
+          </figure>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+      <div class="sfeerbeelden__footer">
+        <a class="sfeerbeelden__cta" href="{{ section.settings.cta_link }}">
+          {{ section.settings.cta_label }}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sfeerbeelden",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pretitle",
+      "label": "Pretitle",
+      "default": "IN HET MOMENT"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel",
+      "default": "Zo ziet het eruit bij jou op het feest"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Introtekst",
+      "default": "<p>Geen studiofoto's van kratten, maar echte feesten. Dit is wat je krijgt als wij de bar bezorgen.</p>"
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Aantal kolommen (desktop)",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "header",
+      "content": "Knop onderaan"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Knoptekst",
+      "default": "Bekijk pakketten"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Knop link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Sfeerfoto",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Foto"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Bijschrift (optioneel)"
+        },
+        {
+          "type": "checkbox",
+          "id": "wide",
+          "label": "Dubbele breedte",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sfeerbeelden",
+      "blocks": [
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}

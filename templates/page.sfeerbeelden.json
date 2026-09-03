@@ -1,0 +1,91 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "sfeerbeelden": {
+      "type": "sfeerbeelden",
+      "blocks": {
+        "foto_1": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "wide": true
+          }
+        },
+        "foto_2": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "wide": false
+          }
+        },
+        "foto_3": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "wide": false
+          }
+        },
+        "foto_4": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "wide": false
+          }
+        },
+        "foto_5": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "wide": false
+          }
+        },
+        "foto_6": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "wide": false
+          }
+        }
+      },
+      "block_order": [
+        "foto_1",
+        "foto_2",
+        "foto_3",
+        "foto_4",
+        "foto_5",
+        "foto_6"
+      ],
+      "settings": {
+        "pretitle": "IN HET MOMENT",
+        "title": "Zo ziet het eruit bij jou op het feest",
+        "subtitle": "<p>Geen studiofoto's van kratten, maar echte feesten. Dit is wat je krijgt als wij de bar bezorgen.</p>",
+        "columns": "3",
+        "cta_label": "Bekijk pakketten",
+        "cta_link": "shopify://collections/all"
+      }
+    },
+    "cta": {
+      "type": "homepage-cta",
+      "settings": {
+        "title": "Klaar om te feesten?",
+        "subtitle": "<p>Kies je pakket en bestel direct. Vragen? Bel 0341 700 260</p>",
+        "trust_line": "Direct bestellen · Bel 0341 700 260",
+        "button_label": "Bekijk pakketten",
+        "button_link": "shopify://collections/all",
+        "button_2_label": "Bel 0341 700 260",
+        "button_2_link": "tel:+31341700260"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "sfeerbeelden",
+    "cta"
+  ]
+}
