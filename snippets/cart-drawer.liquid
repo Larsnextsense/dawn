@@ -302,7 +302,12 @@
                           <quantity-popover>
                             <div class="cart-item__quantity-wrapper quantity-popover-wrapper">
                               <label class="cart-item__quantity-label" for="Drawer-quantity-{{ item.index | plus: 1 }}">
-                                {%- if cart_item_is_person_based -%}Aantal personen{%- else -%}Aantal{%- endif -%}
+                                {%- if cart_item_is_person_based -%}
+                                  Aantal personen
+                                  <span class="cart-item__quantity-min">Minimaal {{ cart_item_min_qty }}</span>
+                                {%- else -%}
+                                  Aantal
+                                {%- endif -%}
                               </label>
                               <div class="quantity-popover-container{% if has_qty_rules or has_vol_pricing %} quantity-popover-container--hover{% endif %}">
                                 <quantity-input class="quantity cart-quantity">

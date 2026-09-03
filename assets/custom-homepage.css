@@ -3778,6 +3778,15 @@ cart-items .cart-item__name:hover {
    Winkelwagen: melding over het minimum aantal personen
    ========================================================================== */
 
+.cart-item__quantity-min {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--primary-orange);
+  white-space: nowrap;
+}
+
 #cart-errors:not(:empty),
 #CartDrawer-CartErrors:not(:empty) {
   display: block;

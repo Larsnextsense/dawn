@@ -292,33 +292,11 @@ document.addEventListener(
 
     input.value = min;
     if (typeof input.setCustomValidity === 'function') input.setCustomValidity('');
-    // De winkelwagensecties worden na de update opnieuw opgebouwd en wissen de
-    // melding. Hem een paar seconden opnieuw plaatsen is hier betrouwbaarder dan
-    // meeliften op het cartUpdate-event, dat niet altijd vuurt.
-    toonMinimumMelding(
-      'Voor dit pakket geldt een minimum van ' + min + ' personen. Het aantal is aangepast naar ' + min + '.'
-    );
+    // Waarom het aantal terugspringt staat vast onder het veld ("Minimaal N
+    // personen"), zodat de bezoeker de regel al kent voordat hij hem raakt.
   },
   true
 );
-
-let minimumMeldingTimer = null;
-function toonMinimumMelding(bericht) {
-  if (minimumMeldingTimer) clearInterval(minimumMeldingTimer);
-  let pogingen = 0;
-  const plaats = () => {
-    const target = document.getElementById('CartDrawer-CartErrors') || document.getElementById('cart-errors');
-    if (target) target.textContent = bericht;
-  };
-  plaats();
-  minimumMeldingTimer = setInterval(() => {
-    plaats();
-    if (++pogingen >= 8) {
-      clearInterval(minimumMeldingTimer);
-      minimumMeldingTimer = null;
-    }
-  }, 500);
-}
 
 // Zorgt dat de checkout-knop nooit blijft hangen op een oude validatiemelding.
 // Dawn zet via setCustomValidity() een foutmelding op het aantal-veld zodra een

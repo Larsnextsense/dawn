@@ -246,6 +246,7 @@
                           {%- if cart_item_is_person_based -%}
                             <label class="cart-item__quantity-label" for="Quantity-{{ item.index | plus: 1 }}">
                               Aantal personen
+                              <span class="cart-item__quantity-min">Minimaal {{ cart_item_min_qty }}</span>
                             </label>
                           {%- else -%}
                             <label class="cart-item__quantity-label" for="Quantity-{{ item.index | plus: 1 }}">
