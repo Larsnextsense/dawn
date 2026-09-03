@@ -116,6 +116,20 @@
         </div>
       </div>
     {%- endif -%}
+    {%- if section.settings.cta_heading != blank -%}
+      <div class="bb-page-cta">
+        <h2 class="bb-page-cta__title">{{ section.settings.cta_heading }}</h2>
+        {%- if section.settings.cta_subtitle != blank -%}
+          <p class="bb-page-cta__subtitle">{{ section.settings.cta_subtitle }}</p>
+        {%- endif -%}
+        {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+          <a href="{{ section.settings.cta_link }}" class="bb-page-cta__btn">
+            {{ section.settings.cta_label }}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
   </div>
   </div>
 </section>
@@ -181,6 +195,34 @@
       "id": "values_subtitle",
       "label": "Ondertitel",
       "default": "Vier kernwaarden die alles wat wij doen bepalen."
+    },
+    {
+      "type": "header",
+      "content": "Afsluitende CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA titel",
+      "info": "Laat leeg om het CTA-blok te verbergen.",
+      "default": "Klaar om te bestellen?"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_subtitle",
+      "label": "CTA ondertitel",
+      "default": "Bekijk onze pakketten en maak van jouw feest een onvergetelijk moment."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA knoptekst",
+      "default": "Bekijk pakketten"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link"
     },
     {
       "type": "header",

@@ -17,85 +17,95 @@
 
   <div class="how-it-works-page__body">
     <div class="page-width">
-    {%- for block in section.blocks -%}
-      {%- assign is_even = forloop.index | modulo: 2 | round -%}
-      <div class="how-it-works-page__step how-it-works-page__step--{% if is_even == 0 %}right{% else %}left{% endif %}" {{ block.shopify_attributes }}>
-        <div class="how-it-works-page__step-inner">
-          <div class="how-it-works-page__icon-wrap{% if block.settings.photo != blank %} how-it-works-page__icon-wrap--photo{% endif %}">
-            <span class="how-it-works-page__step-num">{{ block.settings.step_number }}</span>
-            {%- if block.settings.photo != blank -%}
-              <div class="how-it-works-page__photo">
-                {{
-                  block.settings.photo
-                  | image_url: width: 1200
-                  | image_tag:
-                    loading: 'lazy',
-                    class: 'how-it-works-page__photo-img',
-                    widths: '400,600,800,1200',
-                    sizes: '(min-width: 990px) 42vw, 100vw',
-                    alt: block.settings.heading
-                }}
+      <ol class="hiw-timeline">
+        {%- for block in section.blocks -%}
+          <li class="hiw-step" {{ block.shopify_attributes }}>
+            <div class="hiw-step__marker" aria-hidden="true">
+              <span class="hiw-step__num">{{ block.settings.step_number | default: forloop.index }}</span>
+            </div>
+
+            <div class="hiw-step__card{% if block.settings.photo != blank %} hiw-step__card--photo{% endif %}">
+              <div class="hiw-step__body">
+                {%- if block.settings.heading != blank -%}
+                  <h2 class="hiw-step__title">{{ block.settings.heading }}</h2>
+                {%- endif -%}
+
+                {%- if block.settings.description != blank -%}
+                  <div class="hiw-step__desc rte">{{ block.settings.description }}</div>
+                {%- endif -%}
+
+                {%- if section.settings.show_checklists -%}
+                  {%- assign items = block.settings.item_1 | append: '~|~' | append: block.settings.item_2 | append: '~|~' | append: block.settings.item_3 | split: '~|~' -%}
+                  {%- assign heeft_items = false -%}
+                  {%- for item in items -%}
+                    {%- if item != blank -%}{%- assign heeft_items = true -%}{%- endif -%}
+                  {%- endfor -%}
+
+                  {%- if heeft_items -%}
+                    <ul class="hiw-step__list">
+                      {%- for item in items -%}
+                        {%- if item != blank -%}
+                          <li>
+                            <span class="hiw-step__check" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" width="12" height="12">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                              </svg>
+                            </span>
+                            {{ item }}
+                          </li>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                {%- endif -%}
               </div>
-            {%- else -%}
-            <div class="how-it-works-page__icon">
-              {%- if block.settings.icon_image != blank -%}
-                {{
-                  block.settings.icon_image
-                  | image_url: width: 400
-                  | image_tag:
-                    loading: 'lazy',
-                    class: 'how-it-works-page__icon-img',
-                    widths: '200,300,400',
-                    sizes: '(min-width: 990px) 200px, 100vw',
-                    alt: block.settings.heading
-                }}
-              {%- else -%}
-                <span class="how-it-works-page__icon--emoji">
-                  {%- case forloop.index -%}
-                    {%- when 1 -%}📦
-                    {%- when 2 -%}🚚
-                    {%- when 3 -%}🥂
-                    {%- when 4 -%}✨
-                    {%- else -%}<span class="how-it-works-page__icon-placeholder">{{ forloop.index }}</span>
-                  {%- endcase -%}
-                </span>
+
+              {%- if block.settings.photo != blank -%}
+                <div class="hiw-step__media">
+                  {{
+                    block.settings.photo
+                    | image_url: width: 1000
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'hiw-step__photo',
+                      widths: '400,600,800,1000',
+                      sizes: '(min-width: 990px) 34vw, 100vw',
+                      alt: block.settings.heading
+                  }}
+                </div>
+              {%- elsif block.settings.icon_image != blank -%}
+                <div class="hiw-step__media hiw-step__media--icon">
+                  {{
+                    block.settings.icon_image
+                    | image_url: width: 240
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'hiw-step__icon',
+                      widths: '120,180,240',
+                      sizes: '120px',
+                      alt: ''
+                  }}
+                </div>
               {%- endif -%}
             </div>
-            {%- endif -%}
-          </div>
-          <div class="how-it-works-page__content">
-            {%- if block.settings.heading != blank -%}
-              <h2 class="how-it-works-page__step-title">{{ block.settings.heading }}</h2>
-            {%- endif -%}
-            {%- if block.settings.description != blank -%}
-              <div class="how-it-works-page__step-desc rte">{{ block.settings.description }}</div>
-            {%- endif -%}
-            {%- if section.settings.show_checklists -%}
-            <ul class="how-it-works-page__checklist">
-              {%- if block.settings.item_1 != blank -%}<li><span class="how-it-works-page__check" aria-hidden="true">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>{{ block.settings.item_1 }}</li>{%- endif -%}
-              {%- if block.settings.item_2 != blank -%}<li><span class="how-it-works-page__check" aria-hidden="true">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>{{ block.settings.item_2 }}</li>{%- endif -%}
-              {%- if block.settings.item_3 != blank -%}<li><span class="how-it-works-page__check" aria-hidden="true">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>{{ block.settings.item_3 }}</li>{%- endif -%}
-            </ul>
-            {%- endif -%}
-          </div>
-        </div>
-      </div>
-    {%- endfor -%}
+          </li>
+        {%- endfor -%}
+      </ol>
 
-    <div class="how-it-works-page__cta">
-      {%- if section.settings.cta_heading != blank -%}
-        <h2 class="how-it-works-page__cta-title">{{ section.settings.cta_heading }}</h2>
-      {%- endif -%}
-      {%- if section.settings.cta_subtitle != blank -%}
-        <p class="how-it-works-page__cta-subtitle">{{ section.settings.cta_subtitle }}</p>
-      {%- endif -%}
-      {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
-        <a href="{{ section.settings.cta_link }}" class="how-it-works-page__cta-btn">
-          {{ section.settings.cta_label }}
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      {%- endif -%}
-    </div>
+      <div class="bb-page-cta">
+        {%- if section.settings.cta_heading != blank -%}
+          <h2 class="bb-page-cta__title">{{ section.settings.cta_heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.cta_subtitle != blank -%}
+          <p class="bb-page-cta__subtitle">{{ section.settings.cta_subtitle }}</p>
+        {%- endif -%}
+        {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+          <a href="{{ section.settings.cta_link }}" class="bb-page-cta__btn">
+            {{ section.settings.cta_label }}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        {%- endif -%}
+      </div>
     </div>
   </div>
 </section>

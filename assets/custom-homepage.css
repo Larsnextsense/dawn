@@ -2075,200 +2075,6 @@ cart-items .cart-item__name:hover {
   stroke: #1b130b;
 }
 
-/* ========== Hoe werkt het (pagina) ========== */
-.how-it-works-page__body {
-  background-color: #fbf8f4;
-  padding: 5rem 0 6rem;
-}
-
-.how-it-works-page__step {
-  margin-bottom: 4rem;
-}
-
-.how-it-works-page__step:last-of-type {
-  margin-bottom: 5rem;
-}
-
-.how-it-works-page__step-inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  align-items: start;
-  max-width: 56rem;
-  margin: 0 auto;
-}
-
-@media screen and (min-width: 990px) {
-  .how-it-works-page__step-inner {
-    grid-template-columns: 1fr 1.2fr;
-    gap: 3rem;
-    max-width: 100%;
-  }
-
-  .how-it-works-page__step--right .how-it-works-page__icon-wrap {
-    order: 2;
-  }
-
-  .how-it-works-page__step--right .how-it-works-page__content {
-    order: 1;
-  }
-
-  .how-it-works-page__step--right .how-it-works-page__icon {
-    margin-left: auto;
-  }
-}
-
-.how-it-works-page__icon-wrap {
-  position: relative;
-  flex-shrink: 0;
-}
-
-.how-it-works-page__icon {
-  width: 100%;
-  max-width: 200px;
-  aspect-ratio: 1;
-  background: #f5ecd6;
-  border: 2px solid rgba(245, 158, 11, 0.4);
-  border-radius: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary-orange);
-  overflow: hidden;
-}
-
-.how-it-works-page__icon svg {
-  width: 56%;
-  height: 56%;
-}
-
-.how-it-works-page__icon--emoji {
-  font-size: 4rem;
-  line-height: 1;
-}
-
-.how-it-works-page__icon-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
-  display: block;
-}
-
-.how-it-works-page__step-num {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  width: 2.4rem;
-  height: 2.4rem;
-  background: var(--primary-orange);
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: 800;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.how-it-works-page__step-title {
-  margin: 0 0 1rem;
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--text-dark);
-}
-
-.how-it-works-page__step-desc {
-  margin: 0 0 1.4rem;
-  font-size: 1.45rem;
-  color: var(--text-dark);
-  line-height: 1.6;
-}
-
-.how-it-works-page__step-desc p {
-  margin: 0 0 0.5rem;
-}
-
-.how-it-works-page__checklist {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.how-it-works-page__checklist li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.8rem;
-  margin-bottom: 0.8rem;
-  font-size: 1.4rem;
-  color: var(--text-dark);
-  line-height: 1.5;
-}
-
-.how-it-works-page__checklist li:last-child {
-  margin-bottom: 0;
-}
-
-.how-it-works-page__check {
-  flex-shrink: 0;
-  width: 1.6rem;
-  height: 1.6rem;
-  border-radius: 50%;
-  background: #e5e7eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.2rem;
-  color: var(--primary-orange);
-}
-
-.how-it-works-page__check svg,
-.how-it-works-page__check .icon {
-  width: 1rem;
-  height: 1rem;
-}
-
-.how-it-works-page__cta {
-  text-align: center;
-  padding: 4rem 2rem 0;
-  max-width: 40rem;
-  margin: 0 auto;
-}
-
-.how-it-works-page__cta-title {
-  margin: 0 0 0.6rem;
-  font-size: clamp(2rem, 4vw, 2.6rem);
-  font-weight: 800;
-  color: var(--text-dark);
-}
-
-.how-it-works-page__cta-subtitle {
-  margin: 0 0 2rem;
-  font-size: 1.5rem;
-  color: var(--text-dark);
-  line-height: 1.5;
-}
-
-.how-it-works-page__cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  color: #fff;
-  padding: 1.2rem 2.4rem;
-  border-radius: 9999px;
-  font-weight: 800;
-  font-size: 1.4rem;
-  text-decoration: none;
-  transition: opacity 0.2s ease, transform 0.1s ease;
-}
-
-.how-it-works-page__cta-btn:hover {
-  color: #fff;
-  opacity: 0.95;
-  transform: translateY(1px);
-}
-
 /* ========== Over ons (pagina) ========== */
 .about-us-page__body {
   background-color: #fbf8f4;
@@ -2457,6 +2263,241 @@ cart-items .cart-item__name:hover {
   font-size: 1.4rem;
   color: var(--text-light);
   line-height: 1.6;
+}
+
+/* ========== Hoe werkt het (pagina) — tijdlijn ========== */
+.how-it-works-page__body {
+  background-color: #fbf8f4;
+  padding: 6.4rem 0 7.2rem;
+}
+
+.hiw-timeline {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 92rem;
+}
+
+.hiw-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4.8rem minmax(0, 1fr);
+  gap: 2.4rem;
+  padding-bottom: 3.2rem;
+}
+
+.hiw-step:last-child {
+  padding-bottom: 0;
+}
+
+/* Doorlopende lijn die de stappen aan elkaar rijgt. */
+.hiw-step::before {
+  content: '';
+  position: absolute;
+  top: 4.8rem;
+  bottom: 0;
+  left: 2.35rem;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(245, 158, 11, 0.45), rgba(245, 158, 11, 0.15));
+}
+
+.hiw-step:last-child::before {
+  display: none;
+}
+
+.hiw-step__marker {
+  position: relative;
+  z-index: 1;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-orange);
+  color: #1b130b;
+  box-shadow: 0 0 0 6px #fbf8f4;
+}
+
+.hiw-step__num {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.hiw-step__card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.4rem;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 1.6rem;
+  padding: 2.8rem 3.2rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+@media screen and (min-width: 750px) {
+  .hiw-step__card {
+    grid-template-columns: minmax(0, 1fr) 16rem;
+  }
+
+  .hiw-step__card--photo {
+    grid-template-columns: minmax(0, 1fr) 26rem;
+  }
+}
+
+.hiw-step__title {
+  margin: 0 0 0.8rem;
+  font-size: clamp(1.9rem, 2.4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text-dark);
+}
+
+.hiw-step__desc {
+  font-size: 1.5rem;
+  line-height: 1.65;
+  color: var(--text-light);
+}
+
+.hiw-step__desc p {
+  margin: 0;
+}
+
+.hiw-step__list {
+  list-style: none;
+  margin: 1.6rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.hiw-step__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: var(--text-dark);
+}
+
+.hiw-step__check {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.15rem;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--primary-orange);
+}
+
+.hiw-step__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hiw-step__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 1.2rem;
+}
+
+.hiw-step__media--icon {
+  background: #fdf6e7;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 1.2rem;
+  padding: 1.6rem;
+}
+
+.hiw-step__icon {
+  display: block;
+  width: 100%;
+  max-width: 9.6rem;
+  height: auto;
+}
+
+@media screen and (max-width: 749px) {
+  .hiw-step {
+    grid-template-columns: 3.6rem minmax(0, 1fr);
+    gap: 1.6rem;
+    padding-bottom: 2.4rem;
+  }
+
+  .hiw-step::before {
+    top: 3.6rem;
+    left: 1.75rem;
+  }
+
+  .hiw-step__marker {
+    width: 3.6rem;
+    height: 3.6rem;
+    box-shadow: 0 0 0 4px #fbf8f4;
+  }
+
+  .hiw-step__num {
+    font-size: 1.3rem;
+  }
+
+  .hiw-step__card {
+    padding: 2rem;
+  }
+
+  .hiw-step__media--icon {
+    max-width: 12rem;
+    margin: 0 auto;
+  }
+}
+
+/* Gedeelde afsluitende CTA (hoe werkt het, over ons) */
+.bb-page-cta {
+  margin-top: 5.6rem;
+  padding: 4rem 3.2rem;
+  border-radius: 2.4rem;
+  background: var(--dark-bg);
+  color: var(--white);
+  text-align: center;
+}
+
+.bb-page-cta__title {
+  margin: 0 0 1.2rem;
+  font-size: clamp(2.2rem, 3vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+
+.bb-page-cta__subtitle {
+  margin: 0 auto 2.8rem;
+  max-width: 52rem;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.bb-page-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.4rem 2.8rem;
+  border-radius: 9999px;
+  background: var(--primary-orange);
+  color: #1b130b;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.bb-page-cta__btn:hover {
+  background: var(--primary-orange-hover);
+  color: #1b130b;
 }
 
 /* ========== FAQ-pagina ========== */
@@ -3798,4 +3839,61 @@ cart-items .cart-item__name:hover {
   font-size: 1.3rem;
   line-height: 1.5;
   color: var(--text-dark);
+}
+
+/* ==========================================================================
+   Over ons — cijfers en kernwaarden in dezelfde taal als de rest van de site
+   ========================================================================== */
+
+/* Losse cijfers in de lucht las rommelig; nu hetzelfde donkere blok als in
+   de hero op de homepage. */
+.about-us-page__stats {
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.96) 0%, rgba(10, 10, 10, 0.98) 100%);
+  border-radius: 2rem;
+  padding: 3.2rem 4rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+  gap: 2.4rem;
+}
+
+.about-us-page__stat-value {
+  color: var(--primary-orange);
+}
+
+.about-us-page__stat-label {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Kernwaarde-iconen waren klein en grijzig; nu een duidelijke oranje cirkel. */
+.about-us-page__value-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.8rem;
+  height: 4.8rem;
+  margin-bottom: 1.6rem;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.14);
+  color: var(--primary-orange);
+}
+
+.about-us-page__value-card {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-us-page__value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09);
+}
+
+.about-us-page__team,
+.about-us-page__values {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 749px) {
+  .about-us-page__stats {
+    padding: 2.4rem 2rem;
+  }
 }
