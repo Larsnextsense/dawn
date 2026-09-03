@@ -1,0 +1,61 @@
+<section class="packages-custom-cta">
+  <div class="page-width">
+    <div class="packages-custom-cta__card">
+      <div class="packages-custom-cta__text">
+        {%- if section.settings.title != blank -%}
+          <h2 class="packages-custom-cta__title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <p class="packages-custom-cta__subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.button_label != blank -%}
+        {%- if section.settings.button_link != blank -%}
+          <a class="packages-custom-cta__button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+        {%- else -%}
+          <a class="packages-custom-cta__button" href="tel:+31341700260">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pakketten maatwerk CTA",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel",
+      "default": "Niet gevonden wat je zoekt?"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitel",
+      "default": "Wij maken ook maatwerk pakketten. Bel 0341 700 260 of bestel direct een pakket."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Knoptekst",
+      "default": "Bel 0341 700 260"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Knop link",
+      "info": "Laat leeg voor tel: 0341 700 260"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pakketten maatwerk CTA"
+    }
+  ]
+}
+{% endschema %}
+

@@ -10,8 +10,17 @@
         {%- endif -%}
       </div>
 
-      {%- if section.settings.link_label != blank and section.settings.link_url != blank -%}
-        <a class="instagram-feed__link" href="{{ section.settings.link_url }}">
+      {%- liquid
+        assign insta_url = section.settings.link_url
+        if insta_url == blank and section.settings.handle_text != blank
+          assign handle_clean = section.settings.handle_text | remove: '@' | strip
+          if handle_clean != blank
+            assign insta_url = 'https://www.instagram.com/' | append: handle_clean
+          endif
+        endif
+      -%}
+      {%- if section.settings.link_label != blank and insta_url != blank -%}
+        <a class="instagram-feed__link" href="{{ insta_url }}" target="_blank" rel="noopener noreferrer">
           {{ section.settings.link_label }}
         </a>
       {%- endif -%}
@@ -74,13 +83,22 @@
     {
       "type": "url",
       "id": "link_url",
-      "label": "Link URL"
+      "label": "Link URL",
+      "info": "Laat leeg om automatisch te linken naar je Instagram (afgeleid van handle hierboven)."
+    },
+    {
+      "type": "header",
+      "content": "Instagram feed widget"
+    },
+    {
+      "type": "paragraph",
+      "content": "Kies één optie: (1) Installeer een Instagram feed app uit de Shopify App Store en voeg hieronder een app block toe, of (2) Plak hieronder de embed-code van een widget (bijv. SnapWidget, EmbedSocial, Curator)."
     },
     {
       "type": "liquid",
       "id": "custom_liquid",
-      "label": "Custom embed (optional)",
-      "info": "Gebruik dit als fallback als je Instagram app geen app block ondersteunt."
+      "label": "Embed code (iframe/script)",
+      "info": "Plak de volledige embed code van je Instagram feed widget."
     }
   ],
   "blocks": [

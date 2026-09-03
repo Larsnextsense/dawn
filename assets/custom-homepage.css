@@ -3574,3 +3574,121 @@ cart-items .cart-item__name:hover {
     padding: 5.6rem 0;
   }
 }
+
+
+/* ==========================================================================
+   Pakketten: populair-subtekst, twijfelregel en optelijst "Bij elk pakket
+   inbegrepen" (onder de pakketten op home + collectiepagina)
+   ========================================================================== */
+
+.custom-pricing__popular-note {
+  margin: 0 0 1.6rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--primary-orange);
+  text-align: center;
+}
+
+.custom-pricing__doubt {
+  max-width: 62rem;
+  margin: 4rem auto 0;
+  padding: 1.6rem 2.4rem;
+  border-radius: 9999px;
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--text-dark);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.custom-pricing__assurances {
+  margin: 4rem auto 0;
+  max-width: 96rem;
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 2.4rem;
+  padding: 3.2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.custom-pricing__assurances-title {
+  margin: 0 0 2.4rem;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text-dark);
+  text-align: center;
+}
+
+.custom-pricing__assurances-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.6rem 3.2rem;
+}
+
+.custom-pricing__assurance {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+
+.custom-pricing__assurance-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  margin-top: 0.1rem;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--primary-orange);
+}
+
+.custom-pricing__assurance-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.custom-pricing__assurance-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.35;
+}
+
+.custom-pricing__assurance-text {
+  font-size: 1.35rem;
+  color: var(--text-light);
+  line-height: 1.55;
+}
+
+.custom-pricing__assurances-note {
+  margin: 2.4rem 0 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 1.3rem;
+  color: var(--text-light);
+  text-align: center;
+}
+
+@media screen and (max-width: 989px) {
+  .custom-pricing__assurances-list {
+    grid-template-columns: 1fr;
+  }
+
+  .custom-pricing__assurances {
+    padding: 2.4rem;
+  }
+
+  .custom-pricing__doubt {
+    border-radius: 1.6rem;
+    font-size: 1.4rem;
+  }
+}

@@ -29,6 +29,26 @@
         {{ section.settings.subtitle }}
       </div>
     {%- endif -%}
+
+    {%- if section.settings.trust_line != blank -%}
+      <p class="custom-hero__trust-line">{{ section.settings.trust_line }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+      <div class="custom-hero__actions">
+        <a class="custom-hero__cta" href="{{ section.settings.cta_link }}">
+          {{ section.settings.cta_label }}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+
+        {%- if section.settings.show_scroll_hint and section.settings.scroll_hint_text != blank -%}
+          <a class="custom-hero__scroll-hint" href="{{ section.settings.scroll_hint_link | default: '#home-pricing' }}">
+            {{ section.settings.scroll_hint_text }}
+            <svg class="custom-hero__scroll-hint-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
   </div>
 
   <div class="custom-hero__stats page-width">
@@ -71,6 +91,45 @@
       "id": "subtitle",
       "label": "Subheading",
       "default": "<p>Premium mobiele bar service voor elk moment. Van intieme borrels tot grote feesten — wij regelen alles. Jij geniet.</p>"
+    },
+    {
+      "type": "text",
+      "id": "trust_line",
+      "label": "Trust line (onder de subtitel)",
+      "default": "Gratis bezorging in vrijwel heel NL · Geen verborgen kosten · Bestel makkelijk online"
+    },
+    {
+      "type": "header",
+      "content": "Knoppen"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Knoptekst",
+      "default": "Bekijk pakketten"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Knop link",
+      "info": "Bijv. #home-pricing om naar de pakketten te scrollen"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_hint",
+      "label": "Toon tweede link (Zo werkt het)",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "scroll_hint_text",
+      "label": "Tekst tweede link",
+      "default": "Zo werkt het"
+    },
+    {
+      "type": "url",
+      "id": "scroll_hint_link",
+      "label": "Link tweede link"
     }
   ],
   "blocks": [
@@ -116,7 +175,7 @@
           "type": "stat",
           "settings": {
             "value": "Gratis",
-            "label": "bezorging & ophalen"
+            "label": "bezorging vrijwel heel NL"
           }
         },
         {

@@ -12,18 +12,26 @@
       {%- if section.settings.subtitle != blank -%}
         <div class="reviews-feed__subtitle rte">{{ section.settings.subtitle }}</div>
       {%- endif -%}
+      {%- if section.settings.trust_line != blank -%}
+        <p class="reviews-feed__trust-line">{{ section.settings.trust_line }}</p>
+      {%- endif -%}
     </div>
 
     {%- if section.settings.show_rating_badge -%}
-      <div class="reviews-feed__rating-badge" aria-label="Rating badge">
-        <div class="reviews-feed__stars" aria-hidden="true">
-          ★★★★★
-        </div>
+      {%- liquid
+        assign rating_url = section.settings.google_reviews_url | default: ''
+      -%}
+      {%- if rating_url != blank -%}
+        <a href="{{ rating_url }}" class="reviews-feed__rating-badge" target="_blank" rel="noopener noreferrer" aria-label="Bekijk onze {{ section.settings.rating_value }} sterren op {{ section.settings.rating_source }}">
+      {%- else -%}
+        <div class="reviews-feed__rating-badge" aria-label="Rating badge">
+      {%- endif -%}
+        <div class="reviews-feed__stars" aria-hidden="true">★★★★★</div>
         <div class="reviews-feed__rating-text">
           <span class="reviews-feed__rating-value">{{ section.settings.rating_value }}</span>
           <span class="reviews-feed__rating-source">{{ section.settings.rating_source }}</span>
         </div>
-      </div>
+      {%- if rating_url != blank -%}</a>{%- else -%}</div>{%- endif -%}
     {%- endif -%}
 
     <div class="reviews-feed__content">
@@ -43,10 +51,72 @@
       {%- endif -%}
 
       {%- if section.blocks.size == 0 and section.settings.custom_liquid == blank -%}
-        <div class="reviews-feed__placeholder">
-          <div class="reviews-feed__placeholder-card"></div>
-          <div class="reviews-feed__placeholder-card"></div>
-          <div class="reviews-feed__placeholder-card"></div>
+        <div class="reviews-feed__cards">
+          <article class="reviews-feed__card">
+            <div class="reviews-feed__card-header">
+              <div class="reviews-feed__card-avatar" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <strong class="reviews-feed__card-name">Jan van de Bunt</strong>
+            </div>
+            <div class="reviews-feed__card-rating">★★★★★</div>
+            <p class="reviews-feed__card-text">Netjes geleverd op tijd en weer opgehaald</p>
+          </article>
+
+          <article class="reviews-feed__card">
+            <div class="reviews-feed__card-header">
+              <div class="reviews-feed__card-avatar" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <strong class="reviews-feed__card-name">Tamara Pluim</strong>
+            </div>
+            <div class="reviews-feed__card-rating">★★★★★</div>
+            <p class="reviews-feed__card-text">Leuke, gezellige en mooie bar gehuurd. Geen minpunt te noemen. Maakte ons feestje helemaal af!! Snelle communicatie, goede levering en ook weer soepel met het inleveren, ophalen. Bedankt!</p>
+          </article>
+
+          <article class="reviews-feed__card">
+            <div class="reviews-feed__card-header">
+              <div class="reviews-feed__card-avatar" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <strong class="reviews-feed__card-name">Bas Sterk</strong>
+            </div>
+            <div class="reviews-feed__card-rating">★★★★★</div>
+            <p class="reviews-feed__card-text">Afgelopen weekend 2 koelkasten gehuurd voor een verjaardags feestje..! Groot succes echte eyecatchers, en iedereen pakte lekker zelf. Makkelijk te verplaatsen en keurig volgens afspraak geleverd! Goede ervaringen met het personeel en klantvriendelijkheid.</p>
+          </article>
+
+          <article class="reviews-feed__card">
+            <div class="reviews-feed__card-header">
+              <div class="reviews-feed__card-avatar" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <strong class="reviews-feed__card-name">Suuz B</strong>
+            </div>
+            <div class="reviews-feed__card-rating">★★★★★</div>
+            <p class="reviews-feed__card-text">Goede service. Duidelijke communicatie. Genoeg keus en veel mogelijkheden. Helemaal top!</p>
+          </article>
+
+          <article class="reviews-feed__card">
+            <div class="reviews-feed__card-header">
+              <div class="reviews-feed__card-avatar" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <strong class="reviews-feed__card-name">Maricella Leeuwin</strong>
+            </div>
+            <div class="reviews-feed__card-rating">★★★★★</div>
+            <p class="reviews-feed__card-text">Lieve en behulpzame mensen Super snel geholpen !! Had verkeerde afmeting genomen en kon zonder problemen alles veranderen ! Zeker een aanrader zal zeker nog een keer bij jullie huren !!</p>
+          </article>
+
+          <article class="reviews-feed__card">
+            <div class="reviews-feed__card-header">
+              <div class="reviews-feed__card-avatar" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <strong class="reviews-feed__card-name">Jep Marketing</strong>
+            </div>
+            <div class="reviews-feed__card-rating">★★★★★</div>
+            <p class="reviews-feed__card-text">Barbezorgd heeft ons geholpen bij de opening van ons kantoor. Vanaf het begin zaten ze er bovenop en dachten ze in alles mee. Hierdoor kwamen we op de avond zelf niet voor verrassingen te staan. Alles was op tijd opgebouwd, er was genoeg drinken en de aankleding was top! Door dit alles hebben we gewoon een super avond gehad! Bij ons volgende feest gaan we zeker weer bij Barbezorgd aankloppen!</p>
+          </article>
         </div>
       {%- endif -%}
     </div>
@@ -79,6 +149,12 @@
       "default": "<p>Meer dan 500 tevreden klanten gingen je voor</p>"
     },
     {
+      "type": "text",
+      "id": "trust_line",
+      "label": "Trust line (onder subtitle)",
+      "default": "500+ beoordelingen · 4,9 sterren op Google"
+    },
+    {
       "type": "checkbox",
       "id": "show_rating_badge",
       "label": "Show rating badge",
@@ -97,10 +173,24 @@
       "default": "Google Reviews"
     },
     {
+      "type": "url",
+      "id": "google_reviews_url",
+      "label": "Link naar Google Reviews",
+      "info": "Vul de URL in van je Google Bedrijfsprofiel of Google Reviews-pagina. De rating-badge wordt dan klikbaar."
+    },
+    {
+      "type": "header",
+      "content": "Reviews widget"
+    },
+    {
+      "type": "paragraph",
+      "content": "Kies één optie: (1) Installeer een Google Reviews app uit de Shopify App Store en voeg hieronder een app block toe, of (2) Plak hieronder de embed-code van een widget (bijv. Trustindex, Elfsight, Stamped.io)."
+    },
+    {
       "type": "liquid",
       "id": "custom_liquid",
-      "label": "Custom embed (optional)",
-      "info": "Gebruik dit als fallback als je reviews app geen app block ondersteunt."
+      "label": "Embed code (iframe/script)",
+      "info": "Plak de volledige embed code van je reviews widget. Werkt met de meeste diensten die een HTML-snippet geven."
     }
   ],
   "blocks": [

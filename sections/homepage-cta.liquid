@@ -8,13 +8,24 @@
         {%- if section.settings.subtitle != blank -%}
           <div class="homepage-cta__subtitle rte">{{ section.settings.subtitle }}</div>
         {%- endif -%}
+        {%- if section.settings.trust_line != blank -%}
+          <p class="homepage-cta__trust-line">{{ section.settings.trust_line }}</p>
+        {%- endif -%}
       </div>
 
-      {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
-        <a class="homepage-cta__button" href="{{ section.settings.button_link }}">
-          {{ section.settings.button_label }}
-        </a>
-      {%- endif -%}
+      <div class="homepage-cta__actions">
+        {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+          <a class="homepage-cta__button homepage-cta__button--primary" href="{{ section.settings.button_link }}">
+            {{ section.settings.button_label }}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.button_2_label != blank and section.settings.button_2_link != blank -%}
+          <a class="homepage-cta__button homepage-cta__button--secondary" href="{{ section.settings.button_2_link }}">
+            {{ section.settings.button_2_label }}
+          </a>
+        {%- endif -%}
+      </div>
     </div>
   </div>
 </section>
@@ -35,18 +46,35 @@
       "type": "richtext",
       "id": "subtitle",
       "label": "Subheading",
-      "default": "<p>Vraag vandaag nog een vrijblijvende offerte aan</p>"
+      "default": "<p>Kies je pakket en bestel direct. Vragen? Bel 0341 700 260</p>"
+    },
+    {
+      "type": "text",
+      "id": "trust_line",
+      "label": "Trust line",
+      "default": "Direct bestellen · Bel 0341 700 260"
     },
     {
       "type": "text",
       "id": "button_label",
-      "label": "Button label",
-      "default": "Start je aanvraag"
+      "label": "Primaire knop tekst",
+      "default": "Bekijk pakketten"
     },
     {
       "type": "url",
       "id": "button_link",
-      "label": "Button link"
+      "label": "Primaire knop link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_label",
+      "label": "Tweede knop tekst (optioneel)",
+      "default": "Bekijk pakketten"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Tweede knop link"
     }
   ],
   "presets": [

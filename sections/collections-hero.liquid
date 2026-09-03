@@ -1,0 +1,49 @@
+<section class="collections-hero">
+  <div class="page-width">
+    {%- if section.settings.pretitle != blank -%}
+      <p class="collections-hero__pretitle">{{ section.settings.pretitle }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.title != blank -%}
+      <h1 class="collections-hero__title">{{ section.settings.title }}</h1>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class="collections-hero__subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collections Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pretitle",
+      "label": "Pretitle",
+      "default": "ONZE PAKKETTEN"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel",
+      "default": "Kies jouw perfecte pakket"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitel",
+      "default": "Van intieme borrel tot groots feest. Wij hebben voor elk moment de perfecte oplossing."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collections Hero"
+    }
+  ]
+}
+{% endschema %}
+

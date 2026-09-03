@@ -12,6 +12,9 @@
       {%- if section.settings.subtitle != blank -%}
         <div class="custom-steps__subtitle rte">{{ section.settings.subtitle }}</div>
       {%- endif -%}
+      {%- if section.settings.trust_line != blank -%}
+        <p class="custom-steps__trust-line">{{ section.settings.trust_line }}</p>
+      {%- endif -%}
     </div>
 
     <div class="custom-steps__grid">
@@ -60,6 +63,15 @@
         </div>
       {%- endif -%}
     </div>
+
+    {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+      <div class="custom-steps__footer">
+        <a href="{{ section.settings.cta_link }}" class="custom-steps__cta">
+          {{ section.settings.cta_label }}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -86,6 +98,24 @@
       "id": "subtitle",
       "label": "Subheading",
       "default": "<p>Van bestelling tot opruimen — wij maken het makkelijk</p>"
+    },
+    {
+      "type": "text",
+      "id": "trust_line",
+      "label": "Trust line",
+      "default": "Gratis bezorging in vrijwel heel NL · Alles inbegrepen · Afwaskosten gedekt"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA knop tekst (onder stappen)",
+      "default": "Bekijk onze pakketten"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA knop link",
+      "info": "Bijv. #home-pricing of /collections/all"
     }
   ],
   "blocks": [
@@ -145,7 +175,7 @@
             "step_number": "02",
             "icon_text": "🚚",
             "title": "Gratis bezorgd",
-            "text": "<p>Wij bezorgen alles op jouw locatie, inclusief opstellen en instructies.</p>"
+            "text": "<p>Wij bezorgen gratis in vrijwel heel Nederland, inclusief opstellen en instructies.</p>"
           }
         },
         {

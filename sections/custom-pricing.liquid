@@ -1,4 +1,4 @@
-<section class="custom-pricing">
+<section class="custom-pricing" id="home-pricing" aria-label="Onze pakketten">
   <div class="page-width">
     <div class="custom-pricing__header">
     {%- if section.settings.pretitle != blank -%}
@@ -12,11 +12,17 @@
     {%- if section.settings.subtitle != blank -%}
       <p class="custom-pricing__subtitle">{{ section.settings.subtitle }}</p>
     {%- endif -%}
+    {%- if section.settings.trust_line != blank -%}
+      <p class="custom-pricing__trust-line">{{ section.settings.trust_line }}</p>
+    {%- endif -%}
   </div>
 
+    {%- assign package_blocks = section.blocks | where: 'type', 'package' -%}
+    {%- assign assurance_blocks = section.blocks | where: 'type', 'assurance' -%}
+
     <div class="custom-pricing__grid">
-    {%- for block in section.blocks -%}
-      <div class="custom-pricing__card {% if block.settings.is_popular %}custom-pricing__card--popular{% endif %}">
+    {%- for block in package_blocks -%}
+      <div class="custom-pricing__card {% if block.settings.is_popular %}custom-pricing__card--popular{% endif %}" {{ block.shopify_attributes }}>
         {%- if block.settings.is_popular -%}
           <div class="custom-pricing__popular-badge">
             <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
@@ -24,11 +30,20 @@
             </svg>
             {{ block.settings.popular_text }}
           </div>
+          {%- if block.settings.popular_subtext != blank -%}
+            <p class="custom-pricing__popular-note">{{ block.settings.popular_subtext }}</p>
+          {%- endif -%}
         {%- endif -%}
 
         <div class="custom-pricing__card-header">
           <h3 class="custom-pricing__card-title">{{ block.settings.title }}</h3>
           <p class="custom-pricing__card-desc">{{ block.settings.description }}</p>
+          {%- if block.settings.short_description != blank -%}
+            <p class="custom-pricing__card-short-desc">{{ block.settings.short_description }}</p>
+          {%- endif -%}
+          {%- if block.settings.good_to_know != blank -%}
+            <p class="custom-pricing__card-note">{{ block.settings.good_to_know }}</p>
+          {%- endif -%}
         </div>
 
         <div class="custom-pricing__card-price-wrapper">
@@ -100,6 +115,40 @@
       </div>
     {%- endfor -%}
     </div>
+
+    {%- if section.settings.doubt_line != blank -%}
+      <p class="custom-pricing__doubt">{{ section.settings.doubt_line }}</p>
+    {%- endif -%}
+
+    {%- if assurance_blocks.size > 0 -%}
+      <div class="custom-pricing__assurances">
+        {%- if section.settings.assurances_heading != blank -%}
+          <h3 class="custom-pricing__assurances-title">{{ section.settings.assurances_heading }}</h3>
+        {%- endif -%}
+
+        <ul class="custom-pricing__assurances-list">
+          {%- for block in assurance_blocks -%}
+            <li class="custom-pricing__assurance" {{ block.shopify_attributes }}>
+              <span class="custom-pricing__assurance-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <span class="custom-pricing__assurance-body">
+                <span class="custom-pricing__assurance-title">{{ block.settings.title }}</span>
+                {%- if block.settings.text != blank -%}
+                  <span class="custom-pricing__assurance-text">{{ block.settings.text }}</span>
+                {%- endif -%}
+              </span>
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        {%- if section.settings.assurances_note != blank -%}
+          <p class="custom-pricing__assurances-note">{{ section.settings.assurances_note }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -126,6 +175,34 @@
       "id": "subtitle",
       "label": "Subheading",
       "default": "Van intieme borrel tot groots feest. Wij hebben voor elk moment de perfecte oplossing."
+    },
+    {
+      "type": "text",
+      "id": "trust_line",
+      "label": "Trust line (onder subtitle)",
+      "default": "Gratis bezorging in vrijwel heel NL · Afwaskosten inbegrepen · Geen borg"
+    },
+    {
+      "type": "header",
+      "content": "Onder de pakketten"
+    },
+    {
+      "type": "text",
+      "id": "doubt_line",
+      "label": "Twijfelregel (direct onder de pakketten)",
+      "default": "Zijn er nog twijfels? Voor de meeste mensen is Goed geregeld perfect."
+    },
+    {
+      "type": "text",
+      "id": "assurances_heading",
+      "label": "Titel boven de optelijst",
+      "default": "Bij elk pakket inbegrepen"
+    },
+    {
+      "type": "text",
+      "id": "assurances_note",
+      "label": "Notitie onder de optelijst",
+      "default": "Twijfel je of jouw locatie binnen ons bezorggebied valt? Bel even: 0341 700 260."
     }
   ],
   "blocks": [
@@ -147,6 +224,12 @@
         },
         {
           "type": "text",
+          "id": "popular_subtext",
+          "label": "Extra tekst onder de Populair-badge",
+          "default": "Voor de meeste feesten is dit de beste keuze"
+        },
+        {
+          "type": "text",
           "id": "title",
           "label": "Title",
           "default": "Basis"
@@ -154,8 +237,13 @@
         {
           "type": "text",
           "id": "description",
-          "label": "Description",
+          "label": "Slogan",
           "default": "Perfect voor kleine feestjes"
+        },
+        {
+          "type": "textarea",
+          "id": "short_description",
+          "label": "Korte omschrijving"
         },
         {
           "type": "text",
@@ -166,8 +254,13 @@
         {
           "type": "text",
           "id": "min_persons",
-          "label": "Minimum Persons Text",
+          "label": "Minimum personen",
           "default": "Minimaal 10 personen"
+        },
+        {
+          "type": "text",
+          "id": "good_to_know",
+          "label": "Goed om te weten"
         },
         {
           "type": "text",
@@ -191,7 +284,7 @@
           "type": "text",
           "id": "feature_4",
           "label": "Feature 4",
-          "default": "Gratis bezorging & ophalen"
+          "default": "Gratis bezorgd in vrijwel heel NL"
         },
         {
           "type": "text",
@@ -208,12 +301,29 @@
           "type": "text",
           "id": "button_label",
           "label": "Button Label",
-          "default": "Selecteer"
+          "default": "Dit pakket kiezen"
         },
         {
           "type": "url",
           "id": "button_link",
           "label": "Button Link"
+        }
+      ]
+    },
+    {
+      "type": "assurance",
+      "name": "Inbegrepen-punt (optelijst)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel",
+          "default": "Gratis bezorgd en opgehaald"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Toelichting"
         }
       ]
     }
@@ -260,6 +370,41 @@
             "price": "32,50",
             "min_persons": "Minimaal 25 personen",
             "is_popular": false
+          }
+        },
+        {
+          "type": "assurance",
+          "settings": {
+            "title": "Gratis bezorgd en opgehaald",
+            "text": "In vrijwel heel Nederland. 1 werkdag vóór je feest gebracht, 1 werkdag erna opgehaald."
+          }
+        },
+        {
+          "type": "assurance",
+          "settings": {
+            "title": "Vuile glazen? Geen probleem",
+            "text": "Alles mag ongewassen terug in de krat. Wij nemen het gewoon mee."
+          }
+        },
+        {
+          "type": "assurance",
+          "settings": {
+            "title": "Geen borg",
+            "text": "Je betaalt vooraf alleen je pakket. Geen borgsom, geen verrassingen achteraf."
+          }
+        },
+        {
+          "type": "assurance",
+          "settings": {
+            "title": "Drank over? Geld terug",
+            "text": "Ongeopende flessen en kratten nemen wij retour en krijg je terugbetaald."
+          }
+        },
+        {
+          "type": "assurance",
+          "settings": {
+            "title": "De afwas doen wij",
+            "text": "Afwaskosten zitten bij de prijs in. Jij hoeft geen glas aan te raken."
           }
         }
       ]
