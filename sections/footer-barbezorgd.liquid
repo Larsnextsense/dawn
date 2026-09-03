@@ -1,0 +1,223 @@
+{%- comment -%} Barbezorgd footer: donkerbruin, 4 kolommen, geen social/nieuwsbrief {%- endcomment -%}
+<footer class="footer-barbezorgd">
+  <div class="footer-barbezorgd__top page-width">
+    <div class="footer-barbezorgd__grid">
+      {%- comment -%} Kolom 1: Brand {%- endcomment -%}
+      <div class="footer-barbezorgd__col footer-barbezorgd__brand">
+        <div class="footer-barbezorgd__brand-inner">
+          {%- if settings.logo != blank -%}
+            <div class="footer-barbezorgd__logo-wrap{% if section.settings.logo_white %} footer-barbezorgd__logo-wrap--white{% endif %}">
+              {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+              {{ settings.logo | image_url: width: 240 | image_tag: class: 'footer-barbezorgd__logo', loading: 'lazy', alt: logo_alt }}
+            </div>
+          {%- endif -%}
+          {%- if section.settings.show_brand_name and section.settings.brand_name != blank -%}
+            <h2 class="footer-barbezorgd__brand-name">{{ section.settings.brand_name }}</h2>
+          {%- endif -%}
+        </div>
+        {%- if section.settings.brand_description != blank -%}
+          <div class="footer-barbezorgd__brand-desc rte">{{ section.settings.brand_description }}</div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Kolom 2 & 3: Link lists {%- endcomment -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'link_list' and block.settings.menu != blank -%}
+          <div class="footer-barbezorgd__col" {{ block.shopify_attributes }}>
+            {%- if block.settings.heading != blank -%}
+              <h3 class="footer-barbezorgd__heading">{{ block.settings.heading }}</h3>
+            {%- endif -%}
+            <ul class="footer-barbezorgd__links list-unstyled">
+              {%- for link in block.settings.menu.links -%}
+                <li>
+                  <a href="{{ link.url }}" class="footer-barbezorgd__link">{{ link.title | escape }}</a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- comment -%} Kolom 4: Contact {%- endcomment -%}
+      <div class="footer-barbezorgd__col footer-barbezorgd__contact">
+        <h3 class="footer-barbezorgd__heading">{{ section.settings.contact_heading | default: 'Contact' }}</h3>
+        <ul class="footer-barbezorgd__contact-list list-unstyled">
+          {%- if section.settings.phone != blank -%}
+            <li>
+              <span class="footer-barbezorgd__contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              <a href="tel:{{ section.settings.phone | replace: ' ', '' }}" class="footer-barbezorgd__link">{{ section.settings.phone }}</a>
+            </li>
+          {%- endif -%}
+          {%- if section.settings.email != blank -%}
+            <li>
+              <span class="footer-barbezorgd__contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <a href="mailto:{{ section.settings.email }}" class="footer-barbezorgd__link">{{ section.settings.email }}</a>
+            </li>
+          {%- endif -%}
+          {%- if section.settings.address != blank -%}
+            <li>
+              <span class="footer-barbezorgd__contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <span class="footer-barbezorgd__contact-text">{{ section.settings.address }}</span>
+            </li>
+          {%- endif -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-barbezorgd__bottom">
+    <div class="footer-barbezorgd__bottom-inner page-width">
+      <div class="footer-barbezorgd__copyright">
+        <small>© {{ 'now' | date: '%Y' }} {{ section.settings.brand_name | default: shop.name }}. Alle rechten voorbehouden.</small>
+      </div>
+      {%- if section.settings.show_policy -%}
+        <div class="footer-barbezorgd__policies">
+          {%- if shop.privacy_policy -%}
+            <a href="{{ shop.privacy_policy.url }}" class="footer-barbezorgd__policy-link">Privacybeleid</a>
+          {%- endif -%}
+          {%- if shop.privacy_policy or section.settings.terms_page_url != blank -%}
+            <span class="footer-barbezorgd__policy-sep"> </span>
+          {%- endif -%}
+          {%- if section.settings.terms_page_url != blank -%}
+            <a href="{{ section.settings.terms_page_url }}" class="footer-barbezorgd__policy-link">Algemene voorwaarden</a>
+          {%- elsif shop.terms_of_service -%}
+            <a href="{{ shop.terms_of_service.url }}" class="footer-barbezorgd__policy-link">Algemene voorwaarden</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer Barbezorgd",
+  "tag": "section",
+  "class": "section",
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "Menu",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Kop",
+          "default": "Pakketten"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand (eerste kolom)"
+    },
+    {
+      "type": "paragraph",
+      "content": "Het logo komt uit Theme settings → Logo."
+    },
+    {
+      "type": "checkbox",
+      "id": "logo_white",
+      "label": "Logo wit tonen (voor donkere achtergrond)",
+      "default": true,
+      "info": "Aan = logo wordt wit weergegeven. Uit = originele kleuren."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_brand_name",
+      "label": "Merknaam naast logo tonen",
+      "default": false,
+      "info": "Aan om merknaam naast het logo te tonen."
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Merknaam",
+      "default": "Barbezorgd"
+    },
+    {
+      "type": "richtext",
+      "id": "brand_description",
+      "label": "Korte omschrijving",
+      "default": "<p>Premium mobiele bar service voor elk moment. Van bruiloften tot bedrijfsfeesten — wij maken jouw feest onvergetelijk.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Contact (vierde kolom)"
+    },
+    {
+      "type": "text",
+      "id": "contact_heading",
+      "label": "Kop contactkolom",
+      "default": "Contact"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Telefoonnummer",
+      "default": "0341 700 260"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "E-mailadres",
+      "default": "info@barbezorgd.nl"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Adres / bezorggebied",
+      "default": "Gratis bezorging in vrijwel heel Nederland"
+    },
+    {
+      "type": "header",
+      "content": "Onderbalk"
+    },
+    {
+      "type": "text",
+      "id": "terms_page_url",
+      "label": "Link Algemene voorwaarden",
+      "default": "/pages/algemene-voorwaarden",
+      "info": "Bijv. /pages/algemene-voorwaarden. Leeg = gebruik standaard Shopify voorwaarden."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policy",
+      "label": "Toon Privacybeleid en Algemene voorwaarden",
+      "default": true
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "link_list",
+        "settings": {
+          "heading": "Pakketten",
+          "menu": "pakketten-menu"
+        }
+      },
+      {
+        "type": "link_list",
+        "settings": {
+          "heading": "Informatie",
+          "menu": "footer"
+        }
+      }
+    ]
+  }
+}
+{% endschema %}

@@ -1,21 +1,24 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
     "footer": {
-      "type": "footer",
+      "type": "footer-barbezorgd",
       "blocks": {
-        "footer-brand": {
-          "type": "brand_information",
-          "settings": {
-            "show_social": true
-          }
-        },
         "footer-pakketten": {
           "type": "link_list",
           "settings": {
             "heading": "Pakketten",
-            "menu": "footer"
+            "menu": "pakketen-menu"
           }
         },
         "footer-info": {
@@ -24,33 +27,20 @@
             "heading": "Informatie",
             "menu": "footer"
           }
-        },
-        "footer-contact": {
-          "type": "text",
-          "settings": {
-            "heading": "Contact",
-            "subtext": "<p>06 1234 5678<br>info@barbezorgd.nl<br>Bezorging door heel Nederland<\/p>"
-          }
         }
       },
       "block_order": [
-        "footer-brand",
         "footer-pakketten",
-        "footer-info",
-        "footer-contact"
+        "footer-info"
       ],
       "settings": {
-        "color_scheme": "scheme-4",
-        "newsletter_enable": false,
-        "newsletter_heading": "",
-        "show_social": true,
-        "enable_country_selector": false,
-        "enable_language_selector": false,
-        "payment_enable": false,
-        "show_policy": true,
-        "margin_top": 32,
-        "padding_top": 40,
-        "padding_bottom": 32
+        "brand_name": "Barbezorgd",
+        "brand_description": "<p>Premium mobiele bar service voor elk moment. Van bruiloften tot bedrijfsfeesten — wij maken jouw feest onvergetelijk.</p>",
+        "contact_heading": "Contact",
+        "phone": "0341 700 260",
+        "email": "info@barbezorgd.nl",
+        "address": "Gratis bezorging in vrijwel heel Nederland",
+        "show_policy": true
       }
     }
   },
