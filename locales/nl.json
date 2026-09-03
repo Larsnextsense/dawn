@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "general": {
     "password_page": {
@@ -28,7 +37,7 @@
         "tiktok": "TikTok"
       }
     },
-    "continue_shopping": "Terugkeren naar winkel",
+    "continue_shopping": "Verder winkelen",
     "pagination": {
       "label": "Paginering",
       "page": "Pagina {{ number }}",
@@ -280,7 +289,7 @@
       "caption": "Artikelen in winkelwagen",
       "remove_title": "{{ title }} verwijderen",
       "note": "Speciale instructies voor bestelling",
-      "checkout": "Afrekenen",
+      "checkout": "Naar checkout →",
       "empty": "Je winkelwagen is leeg",
       "cart_error": "Er is een fout opgetreden bij het bijwerken van je winkelwagen. Probeer het opnieuw.",
       "cart_quantity_error_html": "Je kunt maar {{ quantity }} van dit artikel toevoegen aan je winkelwagen.",
@@ -288,7 +297,7 @@
         "product": "Product",
         "price": "Prijs",
         "total": "Totaal",
-        "quantity": "Aantal",
+        "quantity": "Aantal personen",
         "image": "Productafbeelding"
       },
       "update": "Bijwerken",
@@ -296,7 +305,7 @@
         "title": "Heb je een account?",
         "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Log in</a> om sneller af te rekenen."
       },
-      "estimated_total": "Geschat totaal",
+      "estimated_total": "Totaal",
       "new_estimated_total": "Nieuw geschat totaal",
       "duties_and_taxes_included_shipping_at_checkout_with_policy_html": "Douanerechten en belastingen inbegrepen. Kortingen en <a href=\"{{ link }}\">verzending</a> worden bij de checkout berekend.",
       "duties_and_taxes_included_shipping_at_checkout_without_policy": "Douanerechten en belastingen inbegrepen. Kortingen en verzending worden bij de checkout berekend.",
@@ -525,6 +534,34 @@
       "send_on_label": "Verzenden op (optioneel)",
       "expanded": "Formulier voor ontvanger cadeaubon uitgevouwen",
       "collapsed": "Formulier voor ontvanger cadeaubon ingeklapt"
+    }
+  },
+  "shopify": {
+    "links": {
+      "powered_by_shopify": "is een onderdeel van <a href=\"https://www.partyhuren.nl\">Partyhuren</a>"
+    },
+    "checkout": {
+      "general": {
+        "choose_shipping_method": "Transport"
+      },
+      "thank_you": {
+        "shipping_method_title": "Transport"
+      },
+      "review": {
+        "blocks": {
+          "shipping_method_title": "Transport"
+        }
+      },
+      "shipping": {
+        "shipping_method_title": "Transport"
+      }
+    }
+  },
+  "customer_accounts": {
+    "order_details": {
+      "shipping": {
+        "method": "Transport"
+      }
     }
   }
 }
