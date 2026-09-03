@@ -1,0 +1,289 @@
+{%- comment -%}
+  Pakketvergelijking — overzichtstabel in "Excel-stijl".
+  Kolommen = pakketten (bloktype 'column'), rijen = kenmerken (bloktype 'row').
+  Per rij vul je value_1 t/m value_4 in, in dezelfde volgorde als de kolommen.
+  Waarden: "ja" → vinkje, "nee" of leeg → streepje, alle andere tekst wordt letterlijk getoond.
+{%- endcomment -%}
+
+{%- assign columns = section.blocks | where: 'type', 'column' -%}
+{%- assign rows = section.blocks | where: 'type', 'row' -%}
+
+{%- if columns.size > 0 and rows.size > 0 -%}
+  <section class="package-comparison" id="pakket-vergelijking" aria-label="Pakketten vergelijken">
+    <div class="page-width">
+      <div class="package-comparison__header">
+        {%- if section.settings.pretitle != blank -%}
+          <div class="package-comparison__pretitle">{{ section.settings.pretitle }}</div>
+        {%- endif -%}
+        {%- if section.settings.title != blank -%}
+          <h2 class="package-comparison__title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <p class="package-comparison__subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="package-comparison__scroller" tabindex="0" role="region" aria-label="Vergelijkingstabel, horizontaal scrollbaar">
+        <table class="package-comparison__table">
+          <caption class="visually-hidden">
+            {{ section.settings.title | default: 'Pakketten vergelijken' }}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col" class="package-comparison__corner">
+                {{ section.settings.row_header | default: 'Wat krijg je?' }}
+              </th>
+              {%- for column in columns -%}
+                <th
+                  scope="col"
+                  class="package-comparison__col-head{% if column.settings.is_popular %} package-comparison__col-head--popular{% endif %}"
+                  {{ column.shopify_attributes }}
+                >
+                  {%- if column.settings.is_popular and column.settings.popular_text != blank -%}
+                    <span class="package-comparison__flag">{{ column.settings.popular_text }}</span>
+                  {%- endif -%}
+                  <span class="package-comparison__col-title">{{ column.settings.title }}</span>
+                  {%- if column.settings.price != blank -%}
+                    <span class="package-comparison__col-price">
+                      €{{ column.settings.price }}
+                      <span class="package-comparison__col-price-unit">p.p.</span>
+                    </span>
+                  {%- endif -%}
+                </th>
+              {%- endfor -%}
+            </tr>
+          </thead>
+
+          <tbody>
+            {%- for row in rows -%}
+              <tr {{ row.shopify_attributes }}>
+                <th scope="row" class="package-comparison__row-head">
+                  {{ row.settings.label }}
+                  {%- if row.settings.hint != blank -%}
+                    <span class="package-comparison__row-hint">{{ row.settings.hint }}</span>
+                  {%- endif -%}
+                </th>
+
+                {%- for column in columns -%}
+                  {%- liquid
+                    case forloop.index
+                      when 1
+                        assign value = row.settings.value_1
+                      when 2
+                        assign value = row.settings.value_2
+                      when 3
+                        assign value = row.settings.value_3
+                      when 4
+                        assign value = row.settings.value_4
+                      else
+                        assign value = blank
+                    endcase
+
+                    assign normalized = value | strip | downcase
+                  -%}
+                  <td class="package-comparison__cell{% if column.settings.is_popular %} package-comparison__cell--popular{% endif %}">
+                    {%- if normalized == 'ja' or normalized == 'yes' or normalized == 'x' -%}
+                      <span class="package-comparison__yes" role="img" aria-label="Inbegrepen">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" width="16" height="16" aria-hidden="true">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                      </span>
+                    {%- elsif normalized == blank or normalized == 'nee' or normalized == '-' or normalized == 'no' -%}
+                      <span class="package-comparison__no" role="img" aria-label="Niet inbegrepen">–</span>
+                    {%- else -%}
+                      <span class="package-comparison__value">{{ value }}</span>
+                    {%- endif -%}
+                  </td>
+                {%- endfor -%}
+              </tr>
+            {%- endfor -%}
+          </tbody>
+
+          {%- assign has_buttons = false -%}
+          {%- for column in columns -%}
+            {%- if column.settings.link != blank -%}
+              {%- assign has_buttons = true -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if has_buttons -%}
+            <tfoot>
+              <tr>
+                <th scope="row" class="package-comparison__row-head package-comparison__row-head--cta">
+                  <span class="visually-hidden">Kies een pakket</span>
+                </th>
+                {%- for column in columns -%}
+                  <td class="package-comparison__cell package-comparison__cell--cta{% if column.settings.is_popular %} package-comparison__cell--popular{% endif %}">
+                    {%- if column.settings.link != blank -%}
+                      <a class="package-comparison__btn" href="{{ column.settings.link }}">
+                        {{ column.settings.button_label | default: 'Kiezen' }}
+                        <span class="visually-hidden">— {{ column.settings.title }}</span>
+                      </a>
+                    {%- endif -%}
+                  </td>
+                {%- endfor -%}
+              </tr>
+            </tfoot>
+          {%- endif -%}
+        </table>
+      </div>
+
+      <p class="package-comparison__swipe-hint" aria-hidden="true">Veeg opzij om alle pakketten te zien →</p>
+
+      {%- if section.settings.note != blank -%}
+        <p class="package-comparison__note">{{ section.settings.note }}</p>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Pakketten vergelijken",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pretitle",
+      "label": "Pretitle",
+      "default": "VERGELIJKEN"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel",
+      "default": "Wat zit er in welk pakket?"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Ondertitel",
+      "default": "Alle verschillen op een rij, zodat je in één oogopslag ziet wat bij jouw feest past."
+    },
+    {
+      "type": "text",
+      "id": "row_header",
+      "label": "Kop van de eerste kolom",
+      "default": "Wat krijg je?"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Notitie onder de tabel",
+      "default": "Bij elk pakket: gratis bezorging in vrijwel heel NL, glazen, koeling, afwas en geen borg."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Pakket (kolom)",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Pakketnaam",
+          "default": "Instap"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Prijs per persoon (zonder €)",
+          "default": "19,50"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_popular",
+          "label": "Uitlichten als populair",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "popular_text",
+          "label": "Label bij uitlichten",
+          "default": "Populair"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link naar het product"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Knoptekst",
+          "default": "Dit pakket kiezen"
+        }
+      ]
+    },
+    {
+      "type": "row",
+      "name": "Kenmerk (rij)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Kenmerk",
+          "default": "Bier"
+        },
+        {
+          "type": "text",
+          "id": "hint",
+          "label": "Toelichting (klein, optioneel)"
+        },
+        {
+          "type": "header",
+          "content": "Waarde per kolom",
+          "info": "Vul 'ja' in voor een vinkje, 'nee' of leeg voor een streepje. Andere tekst wordt letterlijk getoond (bijv. 'Van de tap')."
+        },
+        { "type": "text", "id": "value_1", "label": "Kolom 1" },
+        { "type": "text", "id": "value_2", "label": "Kolom 2" },
+        { "type": "text", "id": "value_3", "label": "Kolom 3" },
+        { "type": "text", "id": "value_4", "label": "Kolom 4" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pakketten vergelijken",
+      "blocks": [
+        { "type": "column", "settings": { "title": "Instap", "price": "19,50" } },
+        { "type": "column", "settings": { "title": "Goed geregeld", "price": "24,50", "is_popular": true } },
+        { "type": "column", "settings": { "title": "All-in", "price": "29,50" } },
+        { "type": "column", "settings": { "title": "Zero", "price": "17,50" } },
+        {
+          "type": "row",
+          "settings": {
+            "label": "Minimaal aantal personen",
+            "value_1": "10",
+            "value_2": "20",
+            "value_3": "20",
+            "value_4": "10"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "label": "Bier",
+            "value_1": "Uit fles",
+            "value_2": "Van de tap",
+            "value_3": "Van de tap",
+            "value_4": "nee"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "label": "Professionele tapinstallatie",
+            "value_1": "nee",
+            "value_2": "ja",
+            "value_3": "ja",
+            "value_4": "nee"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

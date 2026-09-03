@@ -3180,3 +3180,258 @@ cart-items .cart-item__name:hover {
     font-size: 1.1rem;
   }
 }
+
+/* ==========================================================================
+   Pakketten vergelijken — overzichtstabel (sections/package-comparison.liquid)
+   ========================================================================== */
+
+.package-comparison {
+  padding: 8rem 0;
+  background-color: var(--white);
+}
+
+.package-comparison__header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.package-comparison__pretitle {
+  color: var(--primary-orange);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+}
+
+.package-comparison__title {
+  font-size: clamp(2.6rem, 4vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-dark);
+  margin: 0 0 1.6rem;
+}
+
+.package-comparison__subtitle {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: var(--text-light);
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.package-comparison__scroller {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 1.6rem;
+  background: var(--white);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.package-comparison__scroller:focus-visible {
+  outline: 3px solid var(--primary-orange);
+  outline-offset: 2px;
+}
+
+.package-comparison__table {
+  width: 100%;
+  min-width: 72rem;
+  border-collapse: collapse;
+  font-size: 1.4rem;
+}
+
+.package-comparison__corner,
+.package-comparison__col-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #faf7f2;
+  padding: 2rem 1.6rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  vertical-align: bottom;
+}
+
+.package-comparison__corner {
+  left: 0;
+  z-index: 3;
+  text-align: left;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  min-width: 22rem;
+}
+
+.package-comparison__col-head {
+  text-align: center;
+  min-width: 13rem;
+}
+
+.package-comparison__col-head--popular {
+  background: var(--dark-bg);
+  color: var(--white);
+}
+
+.package-comparison__flag {
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  padding: 0.3rem 1rem;
+  border-radius: 9999px;
+  background: var(--primary-orange);
+  color: var(--dark-bg);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.package-comparison__col-title {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: inherit;
+}
+
+.package-comparison__col-price {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary-orange);
+}
+
+.package-comparison__col-price-unit {
+  font-weight: 500;
+  color: inherit;
+  opacity: 0.75;
+}
+
+.package-comparison__row-head {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--white);
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-dark);
+  padding: 1.4rem 1.6rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.package-comparison__row-hint {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--text-light);
+}
+
+.package-comparison__table tbody tr:nth-child(even) .package-comparison__row-head,
+.package-comparison__table tbody tr:nth-child(even) .package-comparison__cell {
+  background-color: #fcfbf9;
+}
+
+.package-comparison__cell {
+  padding: 1.4rem 1.6rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--text-dark);
+  background: var(--white);
+}
+
+.package-comparison__cell--popular,
+.package-comparison__table tbody tr:nth-child(even) .package-comparison__cell--popular {
+  background-color: rgba(245, 158, 11, 0.07);
+}
+
+.package-comparison__yes {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--primary-orange);
+}
+
+.package-comparison__no {
+  color: #c4c8ce;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.package-comparison__value {
+  font-weight: 600;
+}
+
+.package-comparison__cell--cta {
+  padding: 2rem 1.6rem;
+  border-bottom: 0;
+}
+
+.package-comparison__row-head--cta {
+  border-bottom: 0;
+}
+
+.package-comparison__btn {
+  display: inline-block;
+  padding: 1rem 1.8rem;
+  border-radius: 9999px;
+  background: var(--primary-orange);
+  color: var(--dark-bg);
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.package-comparison__btn:hover {
+  background: var(--primary-orange-hover);
+  color: var(--dark-bg);
+}
+
+.package-comparison__btn:focus-visible {
+  outline: 3px solid var(--dark-bg);
+  outline-offset: 2px;
+}
+
+.package-comparison__swipe-hint {
+  display: none;
+  margin: 1.2rem 0 0;
+  font-size: 1.2rem;
+  color: var(--text-light);
+  text-align: center;
+}
+
+.package-comparison__note {
+  margin: 2.4rem auto 0;
+  max-width: 62rem;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--text-light);
+  text-align: center;
+}
+
+@media screen and (max-width: 989px) {
+  .package-comparison {
+    padding: 5.6rem 0;
+  }
+
+  .package-comparison__swipe-hint {
+    display: block;
+  }
+
+  .package-comparison__corner {
+    min-width: 16rem;
+  }
+
+  .package-comparison__table {
+    min-width: 60rem;
+    font-size: 1.3rem;
+  }
+}
