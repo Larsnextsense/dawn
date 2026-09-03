@@ -3897,3 +3897,48 @@ cart-items .cart-item__name:hover {
     padding: 2.4rem 2rem;
   }
 }
+
+/* ==========================================================================
+   FAQ — duidelijker onderscheid tussen de categorieën
+   ========================================================================== */
+
+/* De categoriekoppen waren nauwelijks zwaarder dan de vragen eronder,
+   waardoor de groepen in elkaar overliepen. */
+.faq-page__group-title {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 5.6rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0;
+  border-bottom: 0;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.faq-page__group-title::before {
+  content: '';
+  flex-shrink: 0;
+  width: 0.4rem;
+  height: 2.4rem;
+  border-radius: 9999px;
+  background: var(--primary-orange);
+}
+
+.faq-page__question {
+  font-size: 1.6rem;
+}
+
+.faq-page__cta {
+  max-width: 76rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 749px) {
+  .faq-page__group-title {
+    margin-top: 4rem;
+    font-size: 1.9rem;
+  }
+}

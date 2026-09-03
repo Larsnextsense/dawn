@@ -48,7 +48,22 @@
       {%- endfor -%}
     </div>
   </div>
-  </div>
+  
+    {%- if section.settings.cta_heading != blank -%}
+      <div class="bb-page-cta faq-page__cta">
+        <h2 class="bb-page-cta__title">{{ section.settings.cta_heading }}</h2>
+        {%- if section.settings.cta_subtitle != blank -%}
+          <p class="bb-page-cta__subtitle">{{ section.settings.cta_subtitle }}</p>
+        {%- endif -%}
+        {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+          <a href="{{ section.settings.cta_link }}" class="bb-page-cta__btn">
+            {{ section.settings.cta_label }}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+</div>
 </section>
 {%- endif -%}
 
@@ -58,6 +73,35 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Afsluitende CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA titel",
+      "info": "Laat leeg om het CTA-blok te verbergen.",
+      "default": "Staat je vraag er niet bij?"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_subtitle",
+      "label": "CTA ondertitel",
+      "default": "Bel 0341 700 260 of stuur ons een bericht. We denken graag met je mee."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA knoptekst",
+      "default": "Neem contact op"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link",
+      "default": "/pages/contact"
+    },
     {
       "type": "text",
       "id": "pretitle",
