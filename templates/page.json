@@ -302,7 +302,11 @@
       "settings": {
         "pretitle": "FAQ",
         "title": "Veelgestelde vragen",
-        "subtitle": "<p>Alles wat je wilt weten over onze service, pakketten en bezorging.</p>"
+        "subtitle": "<p>Alles wat je wilt weten over onze service, pakketten en bezorging.</p>",
+        "cta_heading": "Staat je vraag er niet bij?",
+        "cta_subtitle": "Bel 0341 700 260 of stuur ons een bericht. We denken graag met je mee.",
+        "cta_label": "Neem contact op",
+        "cta_link": "shopify://pages/contact"
       }
     }
   },
