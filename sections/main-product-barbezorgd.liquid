@@ -249,6 +249,10 @@
       padding: 2.8rem 2.4rem 2.6rem;
       box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
       border: 1px solid rgba(0, 0, 0, 0.04);
+      /* De linkerkolom is een stuk langer dan de rechter; zo blijft het
+         bestelformulier in beeld terwijl je de informatie doorleest. */
+      position: sticky;
+      top: 2rem;
     }
 
     .bp-order-title {
@@ -531,21 +535,22 @@
     }
 
     .bp-sidebar-product-image {
-      margin-top: 2rem;
-      border-radius: 1.2rem;
+      margin-bottom: 2rem;
+      border-radius: 1.6rem;
       overflow: hidden;
       background: #f5f0ea;
-      aspect-ratio: 1 / 1;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      aspect-ratio: 4 / 3;
       max-width: 100%;
     }
     .bp-sidebar-product-image__img {
       width: 100%;
       height: 100%;
       display: block;
-      object-fit: contain;
+      object-fit: cover;
     }
     .bp-sidebar-product-image__placeholder {
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 4 / 3;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -574,6 +579,12 @@
         grid-template-columns: minmax(0, 1fr);
       }
 
+      /* Op één kolom eerst de foto en het bestelformulier, daarna pas de
+         uitleg. Anders sta je op mobiel drie schermen ver van de knop. */
+      .barbezorgd-product__right {
+        order: -1;
+      }
+
       .bp-order-card {
         position: static;
         margin-top: 0.4rem;
@@ -586,7 +597,20 @@
       }
     }
 
-    /* --- Specificaties -------------------------------------------------- */
+    /* --- Specificaties (binnen de 'wat je krijgt'-kaart) ---------------- */
+    .bp-specs {
+      margin-top: 2.4rem;
+      padding-top: 2.4rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .bp-specs__heading {
+      margin: 0 0 1.6rem;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
     .bp-specs-list {
       margin: 0;
       display: grid;
@@ -813,7 +837,6 @@
               {% endunless %}
             {% endif %}
           </ul>
-        </section>
 
         {%- comment -%}
           Specificaties: per product te overschrijven met metafield custom.specs
@@ -823,13 +846,12 @@
         {%- assign specs_metafield = product.metafields.custom.specs | default: product.metafields.descriptors.specs -%}
         {%- assign spec_blocks = section.blocks | where: 'type', 'spec' -%}
 
-        <section class="bp-section bp-specs">
-          <h2 class="bp-section__heading">
-            <span>SPECIFICATIES</span>
-            {{ section.settings.specs_heading | default: 'Dit staat er straks bij je' }}
-          </h2>
+          <div class="bp-specs">
+            <h3 class="bp-specs__heading">
+              {{ section.settings.specs_heading | default: 'Dit staat er straks bij je' }}
+            </h3>
 
-          <dl class="bp-specs-list">
+            <dl class="bp-specs-list">
             {%- if specs_metafield != blank and specs_metafield.value != blank and specs_metafield.list? == false -%}
               {%- assign spec_lines = specs_metafield.value | strip | newline_to_br | split: '<br />' -%}
               {%- for line in spec_lines -%}
@@ -866,11 +888,12 @@
                 {%- endif -%}
               {%- endfor -%}
             {%- endif -%}
-          </dl>
+            </dl>
 
-          {%- if section.settings.specs_note != blank -%}
-            <p class="bp-specs__note">{{ section.settings.specs_note }}</p>
-          {%- endif -%}
+            {%- if section.settings.specs_note != blank -%}
+              <p class="bp-specs__note">{{ section.settings.specs_note }}</p>
+            {%- endif -%}
+          </div>
         </section>
 
         {%- unless section.settings.extras_display == 'hidden' -%}
@@ -997,6 +1020,30 @@
       </div>
 
       <div class="barbezorgd-product__right">
+        {%- comment -%}
+          Foto boven de bestelkaart: je wilt eerst zien wat je koopt. Eerder
+          stond hij onder de kaart, ruim 700px onder de vouw.
+        {%- endcomment -%}
+        <div class="bp-sidebar-product-image">
+          {%- if product.featured_image != blank -%}
+            {{
+              product.featured_image
+              | image_url: width: 900
+              | image_tag:
+                class: 'bp-sidebar-product-image__img',
+                loading: 'eager',
+                fetchpriority: 'high',
+                widths: '400,600,750,900',
+                sizes: '(min-width: 990px) 34vw, 100vw',
+                alt: product.featured_image.alt | default: product.title
+            }}
+          {%- else -%}
+            <div class="bp-sidebar-product-image__placeholder">
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {%- endif -%}
+        </div>
+
         <aside class="bp-order-card" aria-label="Bestelformulier">
           <h2 class="bp-order-title">Direct bestellen</h2>
           <p class="bp-order-meta">Gratis bezorging in vrijwel heel NL · Alles inbegrepen</p>
@@ -1137,19 +1184,6 @@
           </p>
         </aside>
 
-        <div class="bp-sidebar-product-image">
-          {%- if product.featured_image != blank -%}
-            {{
-              product.featured_image
-              | image_url: width: 600
-              | image_tag: class: 'bp-sidebar-product-image__img', loading: 'lazy', widths: '300,400,500,600', sizes: '(min-width: 990px) 28vw, 100vw', alt: product.featured_image.alt | default: product.title
-            }}
-          {%- else -%}
-            <div class="bp-sidebar-product-image__placeholder">
-              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-            </div>
-          {%- endif -%}
-        </div>
       </div>
     </div>
   </div>
