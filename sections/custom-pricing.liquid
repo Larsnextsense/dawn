@@ -30,9 +30,10 @@
             </svg>
             {{ block.settings.popular_text }}
           </div>
-          {%- if block.settings.popular_subtext != blank -%}
-            <p class="custom-pricing__popular-note">{{ block.settings.popular_subtext }}</p>
-          {%- endif -%}
+        {%- endif -%}
+
+        {%- if block.settings.is_popular and block.settings.popular_subtext != blank -%}
+          <p class="custom-pricing__popular-note">{{ block.settings.popular_subtext }}</p>
         {%- endif -%}
 
         <div class="custom-pricing__card-header">

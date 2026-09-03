@@ -275,6 +275,38 @@ class CartItems extends HTMLElement {
 
 customElements.define('cart-items', CartItems);
 
+// Minimum aantal personen afdwingen door te corrigeren, niet door te blokkeren.
+// Dawn hield een te laag aantal tegen met een validatiemelding op het veld,
+// waardoor de checkout-knop stilviel. Nu wordt het aantal opgehoogd naar het
+// minimum en krijgt de bezoeker te zien waarom. Een 0 blijft toegestaan, want
+// daarmee verwijder je de regel.
+document.addEventListener(
+  'change',
+  function (e) {
+    const input = e.target;
+    if (!input.matches || !input.matches('.quantity__input')) return;
+
+    const min = parseInt(input.dataset.min, 10);
+    const value = parseInt(input.value, 10);
+    const errors = input.closest('cart-drawer')
+      ? document.getElementById('CartDrawer-CartErrors')
+      : document.getElementById('cart-errors');
+
+    if (!min || min <= 1 || isNaN(value) || value <= 0 || value >= min) {
+      if (errors) errors.textContent = '';
+      return;
+    }
+
+    input.value = min;
+    if (typeof input.setCustomValidity === 'function') input.setCustomValidity('');
+    if (errors) {
+      errors.textContent =
+        'Voor dit pakket geldt een minimum van ' + min + ' personen. Het aantal is aangepast naar ' + min + '.';
+    }
+  },
+  true
+);
+
 // Zorgt dat de checkout-knop nooit blijft hangen op een oude validatiemelding.
 // Dawn zet via setCustomValidity() een foutmelding op het aantal-veld zodra een
 // bezoeker onder het minimum aantal personen komt. Die melding wordt nooit

@@ -71,6 +71,9 @@
 /* Custom Hero Section */
 .custom-hero {
   position: relative;
+  /* Vaste donkere ondergrond: de titel is wit, dus zonder deze kleur is de tekst
+     onleesbaar zolang de achtergrondfoto nog niet geladen is. */
+  background-color: #2a2118;
   min-height: 80vh;
   display: flex;
   flex-direction: column;
@@ -169,8 +172,9 @@
   margin: 2rem auto 2.4rem;
   font-size: 1.35rem;
   color: rgba(255, 255, 255, 0.85);
-  max-width: 56rem;
+  max-width: 64rem;
   line-height: 1.5;
+  text-wrap: balance;
 }
 
 .custom-hero__actions {
@@ -3581,11 +3585,18 @@ cart-items .cart-item__name:hover {
    inbegrepen" (onder de pakketten op home + collectiepagina)
    ========================================================================== */
 
+/* Buiten de kaartflow gepositioneerd: anders schuift alle inhoud van de
+   populaire kaart omlaag en lopen prijzen en features uit de pas met de
+   andere kaarten. */
 .custom-pricing__popular-note {
-  margin: 0 0 1.6rem;
+  position: absolute;
+  top: 2rem;
+  left: 2.4rem;
+  right: 2.4rem;
+  margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.3;
   color: var(--primary-orange);
   text-align: center;
 }
@@ -3691,4 +3702,74 @@ cart-items .cart-item__name:hover {
     border-radius: 1.6rem;
     font-size: 1.4rem;
   }
+}
+
+/* ==========================================================================
+   Pakketkaarten: rijen over alle kaarten uitlijnen
+   ========================================================================== */
+
+/* Alle kaarten dezelfde kop-ruimte, zodat de badge en de populair-tekst
+   nergens de inhoud omlaag duwen. */
+.custom-pricing__card,
+.custom-pricing__card--popular {
+  padding-top: 6.4rem;
+}
+
+/* Titel, prijs, features en knop op dezelfde hoogte in elke kaart. */
+@supports (grid-template-rows: subgrid) {
+  .custom-pricing__grid {
+    grid-template-rows: auto auto auto auto auto;
+  }
+
+  .custom-pricing__card {
+    display: grid;
+    grid-row: span 5;
+    grid-template-rows: subgrid;
+  }
+}
+
+/* Knoptekst op één regel houden; de kaarten zijn te smal voor een afbreking. */
+.custom-pricing__btn {
+  align-items: center;
+  white-space: nowrap;
+  font-size: 1.4rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .custom-pricing__btn {
+    font-size: 1.3rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+}
+
+/* ==========================================================================
+   Reviews: geen gapende lege kaarten meer
+   ========================================================================== */
+
+/* Kaarten kregen allemaal de hoogte van de langste review in hun rij, waardoor
+   korte reviews eindigden in een groot leeg vlak. Elke kaart krijgt nu zijn
+   eigen hoogte. */
+.reviews-feed__cards {
+  align-items: start;
+}
+
+/* Gecentreerde lopende tekst leest slecht bij langere reviews. */
+.reviews-feed__card-text {
+  text-align: left;
+  flex-grow: 0;
+}
+
+/* ==========================================================================
+   Zo-werkt-het knop: dezelfde primaire stijl als de rest van de site
+   ========================================================================== */
+
+.custom-steps__cta {
+  background: var(--primary-orange);
+  color: var(--dark-bg);
+}
+
+.custom-steps__cta:hover {
+  background: var(--primary-orange-hover);
+  color: var(--dark-bg);
 }

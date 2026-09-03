@@ -328,77 +328,11 @@
             "value_4": "ja"
           }
         },
-        "row_glazen": {
-          "type": "row",
-          "settings": {
-            "label": "Glazen inbegrepen",
-            "hint": "",
-            "value_1": "ja",
-            "value_2": "ja",
-            "value_3": "ja",
-            "value_4": "ja"
-          }
-        },
-        "row_koeling": {
-          "type": "row",
-          "settings": {
-            "label": "Koeling inbegrepen",
-            "hint": "",
-            "value_1": "ja",
-            "value_2": "ja",
-            "value_3": "ja",
-            "value_4": "ja"
-          }
-        },
         "row_tafel": {
           "type": "row",
           "settings": {
             "label": "Bartafel 180 × 80 cm",
             "hint": "Inclusief afrok",
-            "value_1": "ja",
-            "value_2": "ja",
-            "value_3": "ja",
-            "value_4": "ja"
-          }
-        },
-        "row_bezorging": {
-          "type": "row",
-          "settings": {
-            "label": "Gratis bezorgd en opgehaald",
-            "hint": "In vrijwel heel NL",
-            "value_1": "ja",
-            "value_2": "ja",
-            "value_3": "ja",
-            "value_4": "ja"
-          }
-        },
-        "row_afwas": {
-          "type": "row",
-          "settings": {
-            "label": "Afwas inbegrepen",
-            "hint": "Vuile glazen mogen zo terug",
-            "value_1": "ja",
-            "value_2": "ja",
-            "value_3": "ja",
-            "value_4": "ja"
-          }
-        },
-        "row_borg": {
-          "type": "row",
-          "settings": {
-            "label": "Geen borg",
-            "hint": "",
-            "value_1": "ja",
-            "value_2": "ja",
-            "value_3": "ja",
-            "value_4": "ja"
-          }
-        },
-        "row_retour": {
-          "type": "row",
-          "settings": {
-            "label": "Drank over? Geld terug",
-            "hint": "Ongeopend retour",
             "value_1": "ja",
             "value_2": "ja",
             "value_3": "ja",
@@ -420,13 +354,7 @@
         "row_rose",
         "row_bubbels",
         "row_fris",
-        "row_glazen",
-        "row_koeling",
-        "row_tafel",
-        "row_bezorging",
-        "row_afwas",
-        "row_borg",
-        "row_retour"
+        "row_tafel"
       ],
       "settings": {
         "pretitle": "VERGELIJKEN",

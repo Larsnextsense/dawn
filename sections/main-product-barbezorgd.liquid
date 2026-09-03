@@ -741,7 +741,7 @@
         <section class="bp-section">
           <h2 class="bp-section__heading">
             <span>OVER DIT PAKKET</span>
-            {{ product.title }}
+            {{ section.settings.about_heading | default: 'In het kort' }}
           </h2>
           <div class="bp-copy rte">
             {{ product.description }}
@@ -850,22 +850,21 @@
                 </div>
               {%- endfor -%}
             {%- else -%}
-              <div class="bp-spec">
-                <dt class="bp-spec__title">{{ section.settings.spec_table_title }}</dt>
-                <dd class="bp-spec__text">{{ section.settings.spec_table_text }}</dd>
-              </div>
-              <div class="bp-spec">
-                <dt class="bp-spec__title">{{ section.settings.spec_bar_title }}</dt>
-                <dd class="bp-spec__text">{{ section.settings.spec_bar_text }}</dd>
-              </div>
-              <div class="bp-spec">
-                <dt class="bp-spec__title">{{ section.settings.spec_drinks_title }}</dt>
-                <dd class="bp-spec__text">{{ section.settings.spec_drinks_text }}</dd>
-              </div>
-              <div class="bp-spec">
-                <dt class="bp-spec__title">{{ section.settings.spec_glasses_title }}</dt>
-                <dd class="bp-spec__text">{{ section.settings.spec_glasses_text }}</dd>
-              </div>
+              {%- comment -%}
+                Alleen tonen wat echt is ingevuld. Standaard staat hier alleen de
+                bartafel: de rest staat al in de productomschrijving en zou zich
+                anders herhalen.
+              {%- endcomment -%}
+              {%- assign spec_titles = section.settings.spec_table_title | append: '|' | append: section.settings.spec_bar_title | append: '|' | append: section.settings.spec_drinks_title | append: '|' | append: section.settings.spec_glasses_title | split: '|' -%}
+              {%- assign spec_texts = section.settings.spec_table_text | append: '~|~' | append: section.settings.spec_bar_text | append: '~|~' | append: section.settings.spec_drinks_text | append: '~|~' | append: section.settings.spec_glasses_text | split: '~|~' -%}
+              {%- for spec_text in spec_texts -%}
+                {%- if spec_text != blank -%}
+                  <div class="bp-spec">
+                    <dt class="bp-spec__title">{{ spec_titles[forloop.index0] }}</dt>
+                    <dd class="bp-spec__text">{{ spec_text }}</dd>
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
             {%- endif -%}
           </dl>
 
@@ -1321,6 +1320,13 @@
       "default": 100
     },
     {
+      "type": "text",
+      "id": "about_heading",
+      "label": "Kop boven de productomschrijving",
+      "info": "De productnaam staat al als titel bovenaan; hier herhalen leest dubbel.",
+      "default": "In het kort"
+    },
+    {
       "type": "header",
       "content": "Specificaties"
     },
@@ -1352,8 +1358,7 @@
       "type": "textarea",
       "id": "spec_bar_text",
       "label": "2. Tekst",
-      "info": "Zet hier per pakket het juiste type bar/tap. Per product te overschrijven met metafield custom.specs.",
-      "default": "Professionele tapinstallatie, door ons aangesloten en klaargezet voor gebruik."
+      "info": "Zet hier per pakket het juiste type bar/tap. Per product te overschrijven met metafield custom.specs."
     },
     {
       "type": "text",
@@ -1365,8 +1370,7 @@
       "type": "textarea",
       "id": "spec_drinks_text",
       "label": "3. Tekst",
-      "info": "Vul hier het aantal consumpties per persoon in dat jullie hanteren.",
-      "default": "Je bestelt per persoon en wij leveren ruim. Drank die ongeopend overblijft nemen wij retour en betalen we terug."
+      "info": "Vul hier het aantal consumpties per persoon in dat jullie hanteren."
     },
     {
       "type": "text",
@@ -1377,8 +1381,7 @@
     {
       "type": "textarea",
       "id": "spec_glasses_text",
-      "label": "4. Tekst",
-      "default": "Glazen en koeling zitten bij de prijs in. Vuile glazen mogen ongewassen terug in de krat."
+      "label": "4. Tekst"
     },
     {
       "type": "text",

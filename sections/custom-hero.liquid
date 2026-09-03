@@ -1,7 +1,16 @@
 <div class="custom-hero">
   <div class="custom-hero__bg">
     {%- if section.settings.image != blank -%}
-      {{ section.settings.image | image_url: width: 2000 | image_tag: class: 'custom-hero__image', loading: 'lazy' }}
+      {{
+        section.settings.image
+        | image_url: width: 2000
+        | image_tag:
+          class: 'custom-hero__image',
+          loading: 'eager',
+          fetchpriority: 'high',
+          widths: '600,900,1200,1600,2000',
+          sizes: '100vw'
+      }}
     {%- else -%}
       <div class="placeholder-background">
         {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}

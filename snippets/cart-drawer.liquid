@@ -197,9 +197,11 @@
                                 {%- assign property_first_char = property.first | slice: 0 -%}
                                 {%- if property.last != blank and property_first_char != '_' -%}
                                   <div class="product-option">
+                                    {%- comment -%}
+                                      'Aantal personen' niet als eigenschap tonen: het staat
+                                      al als label bij het aantalveld.
+                                    {%- endcomment -%}
                                     {%- if property.first == 'Aantal personen' -%}
-                                      <dt>{{ property.first }}:</dt>
-                                      <dd><strong>{{ item.quantity }}</strong></dd>
                                     {%- else -%}
                                       <dt>{{ property.first }}:</dt>
                                       <dd>
