@@ -1,9 +1,11 @@
 {% comment %}
   Barbezorgd Custom Product Template
-  Based on main-product.liquid but optimized for conversions and specific branding.
+  Per pakket:
+  - custom.usps / custom.extras: "Wat zit er in?" en "Optionele extra's" (Tekst meerdere regels).
+  - custom.min_persons, custom.max_persons: minimaal/maximaal aantal personen (Geheel getal).
 {% endcomment %}
 
-<section id="MainProduct-{{ section.id }}" class="page-width section-{{ section.id }}-padding" data-section="{{ section.id }}">
+<section id="MainProduct-{{ section.id }}" class="section-{{ section.id }}-padding" data-section="{{ section.id }}">
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
@@ -14,6 +16,7 @@
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+      background-color: #faf7f2;
     }
 
     @media screen and (min-width: 750px) {
@@ -22,434 +25,1253 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
-    
-    /* Hero Section */
-    .product-hero-container {
-        width: 100%;
-        height: 70vh; /* Taller to fit content */
-        min-height: 500px;
-        position: relative;
-        overflow: hidden; /* Image stays in, content can overflow if needed but usually better contained */
-        border-radius: 0 0 20px 20px;
-        color: white; /* Default text color for hero */
+
+    .barbezorgd-product {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3.2rem 1.6rem 4.8rem;
     }
 
-    .product-hero-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 1;
-    }
-    
-    .product-hero-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.8) 100%);
-        z-index: 2;
-    }
-    
-    .hero-content-layer {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 3;
-        display: flex;
-        align-items: center; /* Center vertically for text */
-    }
-    
-    .hero-inner-grid {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 50px;
-        align-items: center;
-        width: 100%;
-    }
-    
-    .hero-text-content {
-        padding-bottom: 40px; /* Space from bottom */
+    .barbezorgd-product__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 3.2rem;
+      margin-bottom: 3.6rem;
     }
 
-    /* Layout Grid (For content below hero) */
-    .barbezorgd-product-container {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr; /* Keep same ratio as hero grid */
-        gap: 50px;
-        align-items: start;
-        max-width: 1200px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 4; /* Above overlay */
-    }
-    
-    @media screen and (max-width: 990px) {
-        .barbezorgd-product-container, .hero-inner-grid {
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-        .product-hero-container {
-            height: auto;
-            min-height: 400px;
-            padding-bottom: 40px;
-        }
-        .hero-text-content {
-            padding: 40px 20px;
-        }
-        .product__info-sticky {
-            margin-top: -30px !important; /* Less overlap on mobile */
-            position: relative;
-            top: 0;
-        }
+    .bp-back-link {
+      display: inline-block;
+      margin-bottom: 1.6rem;
+      font-size: 1.3rem;
+      color: var(--text-light);
+      text-decoration: none;
     }
 
-    /* Hero Text Styles */
-    .product-title--hero {
-        font-family: var(--font-heading-family);
-        color: #FFFFFF;
-        margin: 0 0 15px 0;
-        font-size: 3.5rem;
-        line-height: 1;
-        text-transform: uppercase;
-        letter-spacing: -0.01em;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-    
-    .product-subtitle--hero {
-        font-size: 1.1rem;
-        color: #f0f0f0;
-        margin-bottom: 0;
-        font-weight: 500;
-        line-height: 1.6;
-        max-width: 90%;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    .bp-back-link:hover {
+      text-decoration: underline;
     }
 
-    /* Featured Content Box (Altijd Inclusief) */
-    .features-box {
-        background-color: #f4f1ea; /* Light beige */
-        padding: 30px;
-        border-radius: 12px;
-        margin-bottom: 30px;
-        margin-top: 30px; /* Space from simplified hero bottom */
-    }
-    
-    .features-title {
-        font-family: var(--font-heading-family);
-        font-size: 1.3rem;
-        font-weight: 800;
-        color: #333;
-        margin-bottom: 20px;
-        text-transform: uppercase;
+    .barbezorgd-product__title h1 {
+      margin: 0 0 0.4rem;
+      font-size: clamp(3rem, 4vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-dark);
     }
 
-    .usp-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    
-    .usp-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 15px;
-        margin-bottom: 12px;
-        color: #333;
-        font-weight: 500;
-        font-size: 1rem;
-        line-height: 1.4;
-    }
-    
-    .check-circle {
-        background: #4CAF50; /* Green check */
-        color: white;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        flex-shrink: 0;
-        margin-top: 3px;
+    .barbezorgd-product__subtitle {
+      margin: 0;
+      font-size: 1.6rem;
+      color: var(--text-light);
     }
 
-    /* RIGHT COL: Sticky Calculation Card */
-    .product__info-sticky {
-        position: sticky;
-        top: 30px;
-        z-index: 10;
-        margin-top: -150px; /* Overlap the hero image significantly */
+    .barbezorgd-product__price {
+      text-align: right;
     }
 
-    .calculation-card {
-        background: #dcfce7; /* Light green background */
-        padding: 35px;
-        border-radius: 16px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.15); /* Stronger shadow for lift effect */
-        border: 2px solid white; /* White border to separate from background */
-        position: relative;
+    .bp-price {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--text-dark);
     }
 
-    .calc-header {
-        margin-bottom: 20px;
+    .bp-price-note {
+      font-size: 1.4rem;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+    .bp-price-min {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      margin-top: 0.2rem;
     }
 
-    .calc-title {
-        font-family: var(--font-heading-family);
-        color: #15803d; /* Darker green text */
-        font-size: 1.4rem;
-        text-transform: uppercase;
-        font-weight: 800;
-        margin-bottom: 5px;
-    }
-    
-    .calc-label {
-        font-family: var(--font-heading-family);
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: 0.9rem;
-        color: #15803d;
-        display: block;
-        margin-bottom: 10px;
+    .barbezorgd-product__layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 4rem;
+      align-items: flex-start;
     }
 
-    /* Quantity Control */
+    .bp-section {
+      background: #ffffff;
+      border-radius: 1.6rem;
+      padding: 2.4rem 2.8rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+      margin-bottom: 2.4rem;
+    }
+
+    .bp-section__heading {
+      margin: 0 0 1.6rem;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-transform: none;
+    }
+
+    .bp-section__heading span {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary-orange);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .bp-copy {
+      font-size: 1.4rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    .bp-features-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem 1.6rem;
+    }
+
+    .bp-feature {
+      background: #fefaf3;
+      border-radius: 9999px;
+      padding: 0.8rem 1.4rem;
+      font-size: 1.3rem;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .bp-feature-icon {
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 9999px;
+      background: var(--primary-orange);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .bp-extras-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .bp-extra-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 1.6rem;
+      border-radius: 9999px;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      font-size: 1.4rem;
+      color: var(--text-dark);
+    }
+
+    .bp-extra-row--with-action .bp-extra-row__right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+
+    .bp-extra-row__title {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .bp-extra-add-btn {
+      flex-shrink: 0;
+      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 9999px;
+      border: 2px solid var(--primary-orange);
+      background: transparent;
+      color: var(--primary-orange);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .bp-extra-add-btn:hover {
+      background: var(--primary-orange);
+      color: #1f130b;
+    }
+
+    .bp-extra-add-btn .loading__spinner {
+      display: none;
+    }
+
+    .bp-extra-add-btn.loading .loading__spinner {
+      display: inline-block;
+      width: 1.6rem;
+      height: 1.6rem;
+      vertical-align: middle;
+      margin-left: 0.4rem;
+    }
+
+    .bp-extra-add-btn.loading .loading__spinner.hidden {
+      display: inline-block;
+    }
+
+    .bp-extra-price {
+      font-weight: 700;
+    }
+
+    .bp-extra-note {
+      margin-top: 0.6rem;
+      font-size: 1.3rem;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+    .bp-extra-note a {
+      color: var(--primary-orange);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .bp-extra-note a:hover {
+      text-decoration: underline;
+    }
+
+    .bp-order-card {
+      background: #ffffff;
+      border-radius: 1.8rem;
+      padding: 2.8rem 2.4rem 2.6rem;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .bp-order-title {
+      margin: 0 0 0.4rem;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .bp-order-meta {
+      margin: 0 0 0.4rem;
+      font-size: 1.3rem;
+      color: var(--text-light);
+    }
+
+    .bp-order-instruction {
+      margin: 0 0 1rem;
+      font-size: 1.2rem;
+      color: var(--text-light);
+    }
+    .bp-order-delivery {
+      margin: 0 0 1.6rem;
+      font-size: 1.2rem;
+      color: var(--text-light);
+    }
+
+    .bp-order-usps {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.8rem;
+      font-size: 1.3rem;
+      color: var(--text-dark);
+    }
+
+    .bp-order-usps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .bp-order-usps svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-top: 0.1rem;
+      color: var(--primary-orange);
+      flex-shrink: 0;
+    }
+
     .quantity-control {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .bp-order-card__qty-label {
+      display: block;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.8rem;
+    }
+
+    .bp-order-card__quantity {
+      margin-bottom: 0.4rem;
+    }
+
+    .bp-order-card__date {
+      margin-bottom: 1.6rem;
+    }
+
+    .bp-order-card__date-wrapper {
+      position: relative;
+      display: block;
+      max-width: 100%;
+    }
+
+    .bp-order-card__date-wrapper .bp-order-card__date-icon {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.8rem;
+      height: 1.8rem;
+      pointer-events: none;
+      color: var(--text-light);
+    }
+
+    .bp-order-card__date input[type="date"] {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 1rem 1.2rem 1rem 3.6rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 0.8rem;
+      background: #ffffff;
+      color: var(--text-dark);
+      font-family: inherit;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .bp-order-card__date input[type="date"]:hover {
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .bp-order-card__date input[type="date"]:focus {
+      outline: none;
+      border-color: var(--primary-orange);
+      box-shadow: 0 0 0 2px rgba(214, 108, 27, 0.2);
+    }
+
+    .bp-order-card__date input[type="date"]:invalid {
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+
+    .bp-order-card__date input[type="date"].bp-order-card__date--error {
+      border-color: #b91c1c;
+      box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.15);
+    }
+
+    .bp-order-card__date-hint {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+      color: var(--text-light);
+    }
+
+    /* Kalenderpijltje rechts netjes binnen het plaatje */
+    .bp-order-card__date input[type="date"]::-webkit-calendar-picker-indicator {
+      opacity: 0.6;
+      cursor: pointer;
+      margin-left: 0;
+    }
+
+    .bp-order-card__per-person {
+      margin: 0 0 1.6rem;
+      font-size: 1.3rem;
+      color: var(--text-light);
+    }
+
+    .qty-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .qty-btn:disabled:hover {
+      background: #f3f4f6;
+    }
+
+    .qty-btn:focus-visible,
+    .qty-input-display:focus-visible,
+    .bp-order-card__date input:focus-visible {
+      outline: 2px solid var(--primary-orange);
+      outline-offset: 2px;
+    }
+
+    .product-form__error-message-wrapper {
+      margin-bottom: 1.2rem;
+      padding: 1rem 1.2rem;
+      background: #fef2f2;
+      border-radius: 0.8rem;
+      font-size: 1.3rem;
+      color: #b91c1c;
+    }
+
+    .product-form__error-message-wrapper[hidden] {
+      display: none !important;
     }
 
     .qty-btn {
-        background: #15803d; /* Dark green button */
-        color: white;
-        border: none;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        font-size: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: background 0.2s;
-        padding: 0;
-        line-height: 1;
+      background: #f3f4f6;
+      color: var(--text-dark);
+      border: none;
+      width: 3.2rem;
+      height: 3.2rem;
+      border-radius: 9999px;
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
     }
-    
+
     .qty-btn:hover {
-        background: #166534;
+      background: #e5e7eb;
     }
-    
+
     .qty-input-display {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #333;
-        width: 60px;
-        text-align: center;
-        border: 2px solid #333;
-        border-radius: 50px;
-        padding: 5px 0;
-        background: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      width: 6rem;
+      text-align: center;
+      border-radius: 9999px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      padding: 0.4rem 0.8rem;
+      background: #ffffff;
+      /* Alleen de − / + knoppen links en rechts bedienen het aantal.
+         De ingebouwde op/neer-pijltjes van de browser worden verborgen,
+         zodat er maar één manier is om het aantal personen te wijzigen. */
+      -moz-appearance: textfield;
+      -webkit-appearance: none;
+      appearance: textfield;
     }
 
-    /* Price Display */
+    .qty-input-display::-webkit-outer-spin-button,
+    .qty-input-display::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
     .total-price-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        font-weight: 700;
-        color: #333;
-        border-top: 1px solid rgba(0,0,0,0.05); /* Subtle separator */
-        padding-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.6rem;
+      font-size: 1.4rem;
+      color: var(--text-dark);
     }
-    
+
     .total-price-amount {
-        font-size: 1.8rem;
-        font-weight: 900;
-        color: #15803d;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-dark);
     }
 
-    /* Action Button */
+    .bp-order-card__trust-cta {
+      margin: 0 0 1.2rem;
+      font-size: 1.25rem;
+      color: var(--text-light);
+      text-align: center;
+    }
+
     .button--barbezorgd {
-        background-color: #15803d; /* Green CTA */
-        color: #FFFFFF;
-        font-family: var(--font-heading-family);
-        font-weight: 800;
-        font-size: 1.1rem;
-        text-transform: uppercase;
-        border: none;
-        width: 100%;
-        padding: 18px;
-        border-radius: 50px;
-        letter-spacing: 0.05em;
-        transition: all 0.2s ease;
-        box-shadow: 0 4px 0px #14532d; /* Hard shadow */
+      background-color: var(--primary-orange);
+      color: #1f130b;
+      font-family: var(--font-heading-family);
+      font-weight: 800;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      border: none;
+      width: 100%;
+      padding: 1.4rem 1.6rem;
+      border-radius: 9999px;
+      letter-spacing: 0.08em;
+      transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
+      box-shadow: 0 6px 0 #b45309;
+      cursor: pointer;
     }
-    
+
     .button--barbezorgd:hover {
-        background-color: #166534;
-        transform: translateY(2px);
-        box-shadow: 0 2px 0px #14532d;
+      background-color: var(--primary-orange-hover);
+      transform: translateY(1px);
+      box-shadow: 0 4px 0 #b45309;
+    }
+    .button--barbezorgd:focus-visible {
+      outline: 3px solid var(--primary-orange);
+      outline-offset: 2px;
     }
 
-    .stock-indicator {
-        font-size: 0.8rem;
-        text-align: center;
-        margin-top: 15px;
-        color: #166534;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-        font-weight: 600;
+    .bp-order-contact {
+      margin-top: 1.4rem;
+      font-size: 1.2rem;
+      color: var(--text-light);
+      text-align: center;
     }
 
+    .bp-order-contact__link {
+      color: var(--primary-orange);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .bp-order-contact__link:hover {
+      text-decoration: underline;
+    }
+
+    .bp-sidebar-product-image {
+      margin-top: 2rem;
+      border-radius: 1.2rem;
+      overflow: hidden;
+      background: #f5f0ea;
+      aspect-ratio: 1 / 1;
+      max-width: 100%;
+    }
+    .bp-sidebar-product-image__img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+    .bp-sidebar-product-image__placeholder {
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bp-sidebar-product-image__placeholder .placeholder-svg {
+      opacity: 0.4;
+      width: 60%;
+      height: auto;
+    }
+
+    @media screen and (max-width: 990px) {
+      .barbezorgd-product {
+        padding: 2.4rem 1.6rem 4rem;
+      }
+
+      .barbezorgd-product__header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .barbezorgd-product__price {
+        text-align: left;
+      }
+
+      .barbezorgd-product__layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .bp-order-card {
+        position: static;
+        margin-top: 0.4rem;
+        border-top: 2px solid rgba(0, 0, 0, 0.06);
+        padding-top: 2.4rem;
+      }
+
+      .bp-features-list {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* --- Specificaties -------------------------------------------------- */
+    .bp-specs-list {
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.6rem 2.4rem;
+    }
+
+    .bp-spec {
+      background: #fefaf3;
+      border: 1px solid rgba(245, 158, 11, 0.18);
+      border-radius: 1.2rem;
+      padding: 1.4rem 1.6rem;
+    }
+
+    .bp-spec__title {
+      margin: 0 0 0.4rem;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary-orange);
+    }
+
+    .bp-spec__text {
+      margin: 0;
+      font-size: 1.35rem;
+      line-height: 1.55;
+      color: var(--text-dark);
+    }
+
+    .bp-specs__note {
+      margin: 1.6rem 0 0;
+      font-size: 1.25rem;
+      color: var(--text-light);
+    }
+
+    /* --- Optionele extra's (ingeklapt) ---------------------------------- */
+    .bp-section--extras {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .bp-extras > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.6rem;
+      padding: 2.4rem 2.8rem;
+    }
+
+    .bp-extras > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .bp-extras > summary:focus-visible {
+      outline: 2px solid var(--primary-orange);
+      outline-offset: -2px;
+      border-radius: 1.6rem;
+    }
+
+    .bp-extras__eyebrow {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary-orange);
+      margin-bottom: 0.4rem;
+    }
+
+    .bp-extras__title {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .bp-extras__chevron {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3.2rem;
+      height: 3.2rem;
+      border-radius: 50%;
+      background: #f3f4f6;
+      color: var(--text-dark);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .bp-extras[open] .bp-extras__chevron {
+      transform: rotate(180deg);
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--primary-orange);
+    }
+
+    .bp-extras__note {
+      margin: 0 2.8rem 1.6rem;
+      font-size: 1.25rem;
+      color: var(--text-light);
+    }
+
+    .bp-extras .bp-extras-list {
+      padding: 0 2.8rem 2.4rem;
+    }
+
+    @media screen and (max-width: 749px) {
+      .bp-specs-list {
+        grid-template-columns: 1fr;
+      }
+
+      .bp-extras > summary {
+        padding: 2rem;
+      }
+
+      .bp-extras__note {
+        margin: 0 2rem 1.2rem;
+      }
+
+      .bp-extras .bp-extras-list {
+        padding: 0 2rem 2rem;
+      }
+    }
   {%- endstyle -%}
 
-  <!-- Hero Section -->
-  <div class="product-hero-container">
-    {% if product.featured_image %}
-        <img src="{{ product.featured_image | image_url: width: 2000 }}" 
-             alt="{{ product.title | escape }}"
-             class="product-hero-image"
-             loading="eager"
-             width="2000"
-             height="{{ 2000 | divided_by: product.featured_image.aspect_ratio | round }}">
-    {% endif %}
-    <div class="product-hero-overlay"></div>
-    
-    <div class="hero-content-layer">
-        <div class="page-width hero-inner-grid">
-            <!-- Hero Text Content (Left Side of Hero) -->
-            <div class="hero-text-content">
-                <h1 class="product-title--hero">{{ product.title }}</h1>
-                <div class="product-subtitle--hero">
-                    {% if product.metafields.descriptors.subtitle %}
-                       {{ product.metafields.descriptors.subtitle }}
-                    {% else %}
-                       <!-- Fallback description excerpt if no subtitle -->
-                       {{ product.description | strip_html | truncatewords: 25 }}
-                    {% endif %}
-                </div>
-                <div style="margin-top: 15px; color: #FFC107; font-weight: 700; font-size: 1.2rem;">
-                     {{ product.price | money }} p.p.
-                </div>
-            </div>
-            <!-- Right side is empty in hero layer to let sticky card overlap from below, OR we can use grid spacing -->
-        </div>
+  <div class="barbezorgd-product">
+    {%- comment -%} Min/max personen: per product via metafield custom.min_persons en custom.max_persons (type Geheel getal), anders sectie-instelling {%- endcomment -%}
+    {%- assign effective_min_persons = product.metafields.custom.min_persons.value | default: section.settings.min_persons -%}
+    {%- assign effective_max_persons = product.metafields.custom.max_persons.value | default: section.settings.max_persons -%}
+
+    <div class="barbezorgd-product__header">
+      <div class="barbezorgd-product__title">
+        <a href="{{ routes.collections_url }}/all" class="bp-back-link">← Alle pakketten</a>
+        <h1>{{ product.title }}</h1>
+        {%- if section.settings.metafield_namespace == 'descriptors' and product.metafields.descriptors.subtitle != blank -%}
+          <p class="barbezorgd-product__subtitle">{{ product.metafields.descriptors.subtitle }}</p>
+        {%- elsif section.settings.metafield_namespace == 'custom' and product.metafields.custom.subtitle != blank -%}
+          <p class="barbezorgd-product__subtitle">{{ product.metafields.custom.subtitle }}</p>
+        {%- endif -%}
+      </div>
+      <div class="barbezorgd-product__price">
+        <div class="bp-price">{{ product.price | money }}</div>
+        <div class="bp-price-note">per persoon</div>
+        <div class="bp-price-min">Min. {{ effective_min_persons | default: 10 }} personen</div>
+      </div>
     </div>
-  </div>
 
-  <div class="barbezorgd-product-container page-width">
-    <!-- Left Column: Altijd Inclusief & Details -->
-    <div class="product__left-col">
-        
-        <!-- Info Section -->
-        <div class="product-info-block">
-            <!-- Title moved to hero, removing from here -->
+    <div class="barbezorgd-product__layout">
+      <div class="barbezorgd-product__left">
+        <section class="bp-section">
+          <h2 class="bp-section__heading">
+            <span>OVER DIT PAKKET</span>
+            {{ product.title }}
+          </h2>
+          <div class="bp-copy rte">
+            {{ product.description }}
+          </div>
+        </section>
 
-            <!-- Altijd Inclusief Column -->
-            <div class="features-box">
-                <h3 class="features-title">ALTIJD INCLUSIEF</h3>
-                <ul class="usp-list">
-                    {% for block in section.blocks %}
-                        {% if block.type == 'usp' %}
-                        <li class="usp-item">
-                            <span class="check-circle">✓</span>
-                            {{ block.settings.text }}
-                        </li>
+        <section class="bp-section">
+          <h2 class="bp-section__heading">
+            <span>WAT ZIT ER IN?</span>
+            Altijd inbegrepen
+          </h2>
+          <ul class="bp-features-list">
+            {% if section.settings.metafield_namespace == 'descriptors' %}
+              {% assign usps_metafield = product.metafields.descriptors.usps %}
+            {% else %}
+              {% assign usps_metafield = product.metafields.custom.usps %}
+            {% endif %}
+            {% if usps_metafield != blank and usps_metafield.value != blank %}
+              {% if usps_metafield.list? %}
+                {% for item in usps_metafield.value %}
+                  <li class="bp-feature">
+                    <span class="bp-feature-icon">✓</span>
+                    {{ item }}
+                  </li>
+                {% endfor %}
+              {% else %}
+                {% assign usps_text = usps_metafield.value | strip %}
+                {% comment %} Splitsen op newline of op <br> (Shopify kan beide gebruiken) {% endcomment %}
+                {% assign usps_raw = usps_text | newline_to_br | split: '<br />' %}
+                {% for line in usps_raw %}
+                  {% assign line_stripped = line | strip | strip_html %}
+                  {% if line_stripped != blank %}
+                    <li class="bp-feature">
+                      <span class="bp-feature-icon">✓</span>
+                      {{ line_stripped }}
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% else %}
+              {% assign has_usps = false %}
+              {% for block in section.blocks %}
+                {% if block.type == 'usp' %}
+                  {% assign has_usps = true %}
+                  <li class="bp-feature">
+                    <span class="bp-feature-icon">✓</span>
+                    {{ block.settings.text }}
+                  </li>
+                {% endif %}
+              {% endfor %}
+
+              {% unless has_usps %}
+                <li class="bp-feature">
+                  <span class="bp-feature-icon">✓</span>
+                  Koeling inbegrepen
+                </li>
+                <li class="bp-feature">
+                  <span class="bp-feature-icon">✓</span>
+                  Glaswerk inbegrepen
+                </li>
+                <li class="bp-feature">
+                  <span class="bp-feature-icon">✓</span>
+                  Gratis bezorgd en opgehaald in vrijwel heel NL
+                </li>
+                <li class="bp-feature">
+                  <span class="bp-feature-icon">✓</span>
+                  Persoonlijk advies
+                </li>
+              {% endunless %}
+            {% endif %}
+          </ul>
+        </section>
+
+        {%- comment -%}
+          Specificaties: per product te overschrijven met metafield custom.specs
+          (tekst, meerdere regels, formaat "Titel | Omschrijving" per regel).
+          Anders de 'spec'-blokken van deze sectie, anders de standaardwaarden hieronder.
+        {%- endcomment -%}
+        {%- assign specs_metafield = product.metafields.custom.specs | default: product.metafields.descriptors.specs -%}
+        {%- assign spec_blocks = section.blocks | where: 'type', 'spec' -%}
+
+        <section class="bp-section bp-specs">
+          <h2 class="bp-section__heading">
+            <span>SPECIFICATIES</span>
+            {{ section.settings.specs_heading | default: 'Dit staat er straks bij je' }}
+          </h2>
+
+          <dl class="bp-specs-list">
+            {%- if specs_metafield != blank and specs_metafield.value != blank and specs_metafield.list? == false -%}
+              {%- assign spec_lines = specs_metafield.value | strip | newline_to_br | split: '<br />' -%}
+              {%- for line in spec_lines -%}
+                {%- assign line_stripped = line | strip | strip_html -%}
+                {%- if line_stripped != blank -%}
+                  {%- assign spec_parts = line_stripped | split: '|' -%}
+                  <div class="bp-spec">
+                    <dt class="bp-spec__title">{{ spec_parts[0] | strip }}</dt>
+                    <dd class="bp-spec__text">{{ spec_parts[1] | strip }}</dd>
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            {%- elsif spec_blocks.size > 0 -%}
+              {%- for block in spec_blocks -%}
+                <div class="bp-spec" {{ block.shopify_attributes }}>
+                  <dt class="bp-spec__title">{{ block.settings.title }}</dt>
+                  <dd class="bp-spec__text">{{ block.settings.text }}</dd>
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+              <div class="bp-spec">
+                <dt class="bp-spec__title">{{ section.settings.spec_table_title }}</dt>
+                <dd class="bp-spec__text">{{ section.settings.spec_table_text }}</dd>
+              </div>
+              <div class="bp-spec">
+                <dt class="bp-spec__title">{{ section.settings.spec_bar_title }}</dt>
+                <dd class="bp-spec__text">{{ section.settings.spec_bar_text }}</dd>
+              </div>
+              <div class="bp-spec">
+                <dt class="bp-spec__title">{{ section.settings.spec_drinks_title }}</dt>
+                <dd class="bp-spec__text">{{ section.settings.spec_drinks_text }}</dd>
+              </div>
+              <div class="bp-spec">
+                <dt class="bp-spec__title">{{ section.settings.spec_glasses_title }}</dt>
+                <dd class="bp-spec__text">{{ section.settings.spec_glasses_text }}</dd>
+              </div>
+            {%- endif -%}
+          </dl>
+
+          {%- if section.settings.specs_note != blank -%}
+            <p class="bp-specs__note">{{ section.settings.specs_note }}</p>
+          {%- endif -%}
+        </section>
+
+        {%- unless section.settings.extras_display == 'hidden' -%}
+        <section class="bp-section bp-section--extras">
+          <details class="bp-extras"{% if section.settings.extras_display == 'open' %} open{% endif %}>
+            <summary class="bp-extras__summary">
+              <span class="bp-extras__summary-text">
+                <span class="bp-extras__eyebrow">OPTIONELE EXTRA'S</span>
+                <span class="bp-extras__title">
+                  {{ section.settings.extras_heading | default: 'Iets extra’s nodig?' }}
+                </span>
+              </span>
+              <span class="bp-extras__chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </summary>
+
+            {%- if section.settings.extras_note != blank -%}
+              <p class="bp-extras__note">{{ section.settings.extras_note }}</p>
+            {%- endif -%}
+
+          <div class="bp-extras-list">
+            {% if section.settings.metafield_namespace == 'descriptors' %}
+              {% assign extras_metafield = product.metafields.descriptors.extras %}
+            {% else %}
+              {% assign extras_metafield = product.metafields.custom.extras %}
+            {% endif %}
+            {% assign extra_titles = product.metafields.custom.extra_titles.value %}
+            {% assign extra_prices = product.metafields.custom.extra_prices.value %}
+            {% if extras_metafield != blank and extras_metafield.value != blank and extras_metafield.list? == false %}
+              {% assign extras_text = extras_metafield.value | strip %}
+              {% assign extras_lines = extras_text | newline_to_br | split: '<br />' %}
+              {% for line in extras_lines %}
+                {% assign line_stripped = line | strip | strip_html %}
+                {% if line_stripped != blank %}
+                  {% assign parts = line_stripped | split: '|' %}
+                  {% assign extra_title = parts[0] | strip %}
+                  {% assign extra_price = parts[1] | strip %}
+                  {% assign extra_handle = parts[2] | strip %}
+                  {% assign extra_product = null %}
+                  {% if extra_handle != blank %}{% assign extra_product = all_products[extra_handle] %}{% endif %}
+                  {% if extra_title != blank %}
+                    <div class="bp-extra-row bp-extra-row--with-action">
+                      <span class="bp-extra-row__title">{{ extra_title }}</span>
+                      <div class="bp-extra-row__right">
+                        <span class="bp-extra-price">{% if extra_product != blank %}{{ extra_product.selected_or_first_available_variant.price | money }}{% else %}{{ extra_price }}{% endif %}</span>
+                        {% if extra_product != blank and extra_product.available %}
+                        <product-form class="product-form product-form--extra" data-hide-errors="true">
+                          <form method="post" action="{{ routes.cart_add_url }}" class="bp-extra-add-form">
+                            <input type="hidden" name="id" value="{{ extra_product.selected_or_first_available_variant.id }}">
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="bp-extra-add-btn" aria-label="{{ extra_title | escape }} toevoegen">
+                              <span>Toevoegen</span>
+                              {% render 'loading-spinner' %}
+                            </button>
+                          </form>
+                        </product-form>
                         {% endif %}
-                    {% endfor %}
-                    {% if section.blocks.size == 0 %}
-                        <li class="usp-item"><span class="check-circle">✓</span> Gratis breng- en haalservice</li>
-                        <li class="usp-item"><span class="check-circle">✓</span> Borden, bestek en servetten</li>
-                        <li class="usp-item"><span class="check-circle">✓</span> Gratis wijzigen van jouw bestelling</li>
-                        <li class="usp-item"><span class="check-circle">✓</span> Tangen en opscheplepels</li>
-                        <li class="usp-item"><span class="check-circle">✓</span> Geleverd in thermoboxen</li>
-                    {% endif %}
-                </ul>
-            </div>
-            
-            <div class="product-description rte">
-                {{ product.description }}
-            </div>
-        </div>
-    </div>
-
-    <!-- Right Column: Sticky Calculation Card (Overlapping Hero) -->
-    <div class="product__info-wrapper">
-      <div class="product__info-sticky">
-        
-        <div class="calculation-card">
-            
-            {%- assign product_form_id = 'product-form-' | append: section.id -%}
-            {%- form 'product', product, id: product_form_id, class: 'product-form' -%}
-                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                
-                <div class="calc-section">
-                    <div class="calc-header">
-                        <div class="calc-title">AANTAL PERSONEN</div>
+                      </div>
                     </div>
-                    
-                    <div class="quantity-control">
-                        <button class="qty-btn" name="minus" type="button" onclick="this.nextElementSibling.stepDown()">-</button>
-                        <input class="qty-input-display"
-                            type="number"
-                            name="quantity"
-                            id="Quantity-{{ section.id }}"
-                            min="1"
-                            value="5"
-                            form="{{ product_form_id }}"
-                        >
-                        <button class="qty-btn" name="plus" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            {% elsif extra_titles != blank and extra_prices != blank and extra_titles.size == extra_prices.size and extra_titles.size > 0 %}
+              {% for title in extra_titles %}
+                {% assign idx = forloop.index0 %}
+                <div class="bp-extra-row">
+                  <span>{{ title }}</span>
+                  <span class="bp-extra-price">{{ extra_prices[idx] }}</span>
+                </div>
+              {% endfor %}
+              {% comment %} List-type extras: geen Toevoegen-knop (gebruik multi-line met handle voor koppeling) {% endcomment %}
+            {% else %}
+              {% assign has_extras = false %}
+              {% for block in section.blocks %}
+                {% if block.type == 'extra' %}
+                  {% assign has_extras = true %}
+                  <div class="bp-extra-row {% if block.settings.product != blank %}bp-extra-row--with-action{% endif %}">
+                    <span class="bp-extra-row__title">{{ block.settings.title }}</span>
+                    <div class="bp-extra-row__right">
+                      <span class="bp-extra-price">{% if block.settings.product != blank %}{{ block.settings.product.selected_or_first_available_variant.price | money }}{% else %}{{ block.settings.price }}{% endif %}</span>
+                      {% if block.settings.product != blank %}
+                        {% assign block_extra_product = block.settings.product %}
+                        {% if block_extra_product.available %}
+                          <product-form class="product-form product-form--extra" data-hide-errors="true">
+                            <form method="post" action="{{ routes.cart_add_url }}" class="bp-extra-add-form">
+                              <input type="hidden" name="id" value="{{ block_extra_product.selected_or_first_available_variant.id }}">
+                              <input type="hidden" name="quantity" value="1">
+                              <button type="submit" class="bp-extra-add-btn" aria-label="{{ block.settings.title | escape }} toevoegen">
+                                <span>Toevoegen</span>
+                                {% render 'loading-spinner' %}
+                              </button>
+                            </form>
+                          </product-form>
+                        {% endif %}
+                      {% endif %}
                     </div>
-                </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
 
-                <div class="total-price-row">
-                    <span>Totaalprijs <span style="font-weight:400; font-size:0.9rem;">(5 personen)</span></span>
-                    <span class="total-price-amount">{{ product.price | times: 5 | money }}</span>
+              {% unless has_extras %}
+                <div class="bp-extra-row">
+                  <span>Extra krat pils (24 stuks)</span>
+                  <span class="bp-extra-price">€22,50</span>
                 </div>
-
-                <button
-                    type="submit"
-                    name="add"
-                    class="product-form__submit button button--barbezorgd"
-                    {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
-                >
-                    <span>
-                        {%- if product.selected_or_first_available_variant.available -%}
-                           Voeg toe aan je bestelling
-                        {%- else -%}
-                            UITVERKOCHT
-                        {%- endif -%}
-                    </span>
-                </button>
-                
-                <div class="stock-indicator">
-                    <span class="svg-wrapper" style="width:12px;">{{ 'icon-success.svg' | inline_asset_content }}</span>
-                    <span>Bekijk beschikbaarheid</span>
-                    <div style="font-size: 0.75rem; color: #666; margin-top: 5px;">Check onze beschikbare bezorgdatums</div>
+                <div class="bp-extra-row">
+                  <span>Extra wijn (wit of rood)</span>
+                  <span class="bp-extra-price">€8,50</span>
                 </div>
+                <div class="bp-extra-row">
+                  <span>Statafel incl. rok</span>
+                  <span class="bp-extra-price">€19,95</span>
+                </div>
+              {% endunless %}
+            {% endif %}
 
+          </div>
+          </details>
+        </section>
+        {%- endunless -%}
+      </div>
+
+      <div class="barbezorgd-product__right">
+        <aside class="bp-order-card" aria-label="Bestelformulier">
+          <h2 class="bp-order-title">Direct bestellen</h2>
+          <p class="bp-order-meta">Gratis bezorging in vrijwel heel NL · Alles inbegrepen</p>
+          <p class="bp-order-instruction">Vul aantal personen en feestdatum in → daarna naar winkelwagen.</p>
+          <p class="bp-order-delivery">Bezorging: 1 werkdag vóór het feest. Ophalen: 1 werkdag ná het feest.</p>
+
+          <ul class="bp-order-usps">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Gratis bezorging in vrijwel heel Nederland</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Alles inbegrepen, geen verborgen kosten</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Afwaskosten inbegrepen</span>
+            </li>
+          </ul>
+
+          {%- assign product_form_id = 'product-form-' | append: section.id -%}
+          {%- assign variant = product.selected_or_first_available_variant -%}
+          {%- assign min_qty = effective_min_persons | default: 10 -%}
+          {%- assign max_qty = effective_max_persons | default: 100 -%}
+
+          <product-form
+            class="product-form"
+            data-section-id="{{ section.id }}"
+            data-hide-errors="false"
+          >
+            <div class="product-form__error-message-wrapper" role="alert" hidden>
+              <span class="svg-wrapper">{{ 'icon-error.svg' | inline_asset_content }}</span>
+              <span class="product-form__error-message"></span>
+            </div>
+
+            {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form', data-barbezorgd-date-required: 'true' -%}
+              <input type="hidden" name="id" value="{{ variant.id }}" class="product-variant-id" {% if variant.available == false %}disabled{% endif %}>
+              <input type="hidden" name="properties[Aantal personen]" value="{{ min_qty }}" data-property-personen>
+
+              <div
+                class="bp-order-card__quantity"
+                data-unit-price-cents="{{ variant.price }}"
+                data-currency-code="{{ cart.currency.iso_code | default: 'EUR' }}"
+                data-min="{{ min_qty }}"
+                data-max="{{ max_qty }}"
+              >
+                <label for="Quantity-{{ section.id }}" class="bp-order-card__qty-label">Aantal personen</label>
+                <div class="quantity-control">
+                  <button
+                    type="button"
+                    class="qty-btn qty-btn--minus"
+                    aria-label="Minder personen"
+                    data-qty-minus
+                  >−</button>
+                  <input
+                    class="qty-input-display"
+                    type="number"
+                    name="quantity"
+                    id="Quantity-{{ section.id }}"
+                    min="{{ min_qty }}"
+                    max="{{ max_qty }}"
+                    value="{{ min_qty }}"
+                    data-qty-input
+                    inputmode="numeric"
+                    autocomplete="off"
+                  >
+                  <button
+                    type="button"
+                    class="qty-btn qty-btn--plus"
+                    aria-label="Meer personen"
+                    data-qty-plus
+                  >+</button>
+                </div>
+              </div>
+
+              <div class="bp-order-card__date">
+                <label for="Datum-feest-{{ section.id }}" class="bp-order-card__qty-label">Datum van het feest <span aria-hidden="true">*</span></label>
+                <span class="bp-order-card__date-wrapper">
+                  <svg class="bp-order-card__date-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <input
+                    type="date"
+                    id="Datum-feest-{{ section.id }}"
+                    name="properties[Datum feest]"
+                    class="bp-order-card__date-input"
+                    min="{{ 'now' | date: '%Y-%m-%d' }}"
+                    data-datum-feest
+                    required
+                    aria-required="true"
+                    aria-describedby="datum-feest-hint-{{ section.id }}"
+                  >
+                </span>
+                <span id="datum-feest-hint-{{ section.id }}" class="bp-order-card__date-hint">Kies de dag waarop het feest plaatsvindt</span>
+              </div>
+
+              <div class="total-price-row" data-total-row>
+                <span class="total-price-label" data-total-label>Totaalprijs ({{ min_qty }} personen)</span>
+                <span class="total-price-amount" data-total-amount>{{ product.price | times: min_qty | money }}</span>
+              </div>
+
+              <p class="bp-order-card__per-person" data-per-person-note>
+                {{ product.price | money }} per persoon
+              </p>
+
+              <p class="bp-order-card__trust-cta">Geen borg · Wij doen de afwas</p>
+
+              <button
+                type="submit"
+                name="add"
+                class="product-form__submit button button--barbezorgd"
+                {% if variant.available == false %}disabled{% endif %}
+              >
+                <span>
+                  {%- if variant.available -%}
+                    Bestel dit pakket
+                  {%- else -%}
+                    UITVERKOCHT
+                  {%- endif -%}
+                </span>
+                {% render 'loading-spinner' %}
+              </button>
             {%- endform -%}
+          </product-form>
 
+          <p class="bp-order-contact">
+            Vragen? <a href="tel:+31341700260" class="bp-order-contact__link">Bel 0341 700 260</a>
+          </p>
+        </aside>
+
+        <div class="bp-sidebar-product-image">
+          {%- if product.featured_image != blank -%}
+            {{
+              product.featured_image
+              | image_url: width: 600
+              | image_tag: class: 'bp-sidebar-product-image__img', loading: 'lazy', widths: '300,400,500,600', sizes: '(min-width: 990px) 28vw, 100vw', alt: product.featured_image.alt | default: product.title
+            }}
+          {%- else -%}
+            <div class="bp-sidebar-product-image__placeholder">
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {%- endif -%}
         </div>
-
       </div>
     </div>
   </div>
 </section>
+
+<script>
+(function() {
+  function initBarbezorgdProductPrice() {
+    var container = document.querySelector('.bp-order-card__quantity[data-unit-price-cents]');
+    if (!container) return;
+
+    var unitPriceCents = parseInt(container.dataset.unitPriceCents, 10) || 0;
+    var currencyCode = (container.dataset.currencyCode || 'EUR').trim();
+    var min = parseInt(container.dataset.min, 10) || 10;
+    var max = parseInt(container.dataset.max, 10) || 100;
+
+    var input = container.querySelector('[data-qty-input]');
+    var btnMinus = container.querySelector('[data-qty-minus]');
+    var btnPlus = container.querySelector('[data-qty-plus]');
+    var totalRow = document.querySelector('[data-total-row]');
+    var totalLabel = totalRow && totalRow.querySelector('[data-total-label]');
+    var totalAmount = totalRow && totalRow.querySelector('[data-total-amount]');
+
+    if (!input || !totalLabel || !totalAmount) return;
+
+    function formatMoney(cents) {
+      var value = cents / 100;
+      try {
+        return new Intl.NumberFormat('nl-NL', { style: 'currency', currency: currencyCode }).format(value);
+      } catch (e) {
+        return '€ ' + value.toFixed(2).replace('.', ',');
+      }
+    }
+
+    function clamp(val) {
+      var n = parseInt(val, 10);
+      if (isNaN(n)) return min;
+      if (n < min) return min;
+      if (n > max) return max;
+      return n;
+    }
+
+    function updateUI() {
+      var qty = clamp(input.value);
+      input.value = qty;
+
+      totalLabel.textContent = 'Totaalprijs (' + qty + ' personen)';
+      totalAmount.textContent = formatMoney(unitPriceCents * qty);
+
+      var propPersonen = container.closest('form').querySelector('input[name="properties[Aantal personen]"]');
+      if (propPersonen) propPersonen.value = qty;
+
+      if (btnMinus) {
+        btnMinus.disabled = qty <= min;
+      }
+      if (btnPlus) {
+        btnPlus.disabled = qty >= max;
+      }
+    }
+
+    function changeQty(delta) {
+      var qty = clamp(parseInt(input.value, 10) + delta);
+      input.value = qty;
+      updateUI();
+    }
+
+    if (btnMinus) {
+      btnMinus.addEventListener('click', function() { changeQty(-1); });
+    }
+    if (btnPlus) {
+      btnPlus.addEventListener('click', function() { changeQty(1); });
+    }
+    input.addEventListener('input', updateUI);
+    input.addEventListener('change', updateUI);
+
+    updateUI();
+  }
+
+  function initBarbezorgdDatumValidation() {
+    var form = document.querySelector('form[data-barbezorgd-date-required]');
+    if (!form) return;
+    var dateInput = form.querySelector('[data-datum-feest]');
+    if (!dateInput) return;
+
+    form.addEventListener('submit', function(evt) {
+      var val = (dateInput.value || '').trim();
+      if (!val) {
+        evt.preventDefault();
+        evt.stopImmediatePropagation();
+        dateInput.classList.add('bp-order-card__date--error');
+        dateInput.focus();
+        var productForm = form.closest('product-form');
+        if (productForm) {
+          var wrapper = productForm.querySelector('.product-form__error-message-wrapper');
+          var msg = productForm.querySelector('.product-form__error-message');
+          if (wrapper && msg) {
+            wrapper.hidden = false;
+            msg.textContent = 'Kies de datum van het feest.';
+          }
+        }
+        return false;
+      }
+      dateInput.classList.remove('bp-order-card__date--error');
+    }, true);
+
+    dateInput.addEventListener('change', function() {
+      if ((dateInput.value || '').trim()) dateInput.classList.remove('bp-order-card__date--error');
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      initBarbezorgdProductPrice();
+      initBarbezorgdDatumValidation();
+    });
+  } else {
+    initBarbezorgdProductPrice();
+    initBarbezorgdDatumValidation();
+  }
+})();
+</script>
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -479,9 +1301,150 @@
       "unit": "px",
       "label": "Bottom Padding",
       "default": 36
+    },
+    {
+      "type": "range",
+      "id": "min_persons",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "label": "Minimum aantal personen",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "max_persons",
+      "min": 10,
+      "max": 200,
+      "step": 5,
+      "label": "Maximum aantal personen",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Specificaties"
+    },
+    {
+      "type": "text",
+      "id": "specs_heading",
+      "label": "Kop specificatieblok",
+      "default": "Dit staat er straks bij je"
+    },
+    {
+      "type": "text",
+      "id": "spec_table_title",
+      "label": "1. Titel",
+      "default": "Bartafel"
+    },
+    {
+      "type": "textarea",
+      "id": "spec_table_text",
+      "label": "1. Tekst",
+      "default": "Je krijgt een stevige bartafel van 180 × 80 cm, inclusief afrok. Klaar om als bar te gebruiken."
+    },
+    {
+      "type": "text",
+      "id": "spec_bar_title",
+      "label": "2. Titel",
+      "default": "Bar & tap"
+    },
+    {
+      "type": "textarea",
+      "id": "spec_bar_text",
+      "label": "2. Tekst",
+      "info": "Zet hier per pakket het juiste type bar/tap. Per product te overschrijven met metafield custom.specs.",
+      "default": "Professionele tapinstallatie, door ons aangesloten en klaargezet voor gebruik."
+    },
+    {
+      "type": "text",
+      "id": "spec_drinks_title",
+      "label": "3. Titel",
+      "default": "Hoeveel drank"
+    },
+    {
+      "type": "textarea",
+      "id": "spec_drinks_text",
+      "label": "3. Tekst",
+      "info": "Vul hier het aantal consumpties per persoon in dat jullie hanteren.",
+      "default": "Je bestelt per persoon en wij leveren ruim. Drank die ongeopend overblijft nemen wij retour en betalen we terug."
+    },
+    {
+      "type": "text",
+      "id": "spec_glasses_title",
+      "label": "4. Titel",
+      "default": "Glaswerk & koeling"
+    },
+    {
+      "type": "textarea",
+      "id": "spec_glasses_text",
+      "label": "4. Tekst",
+      "default": "Glazen en koeling zitten bij de prijs in. Vuile glazen mogen ongewassen terug in de krat."
+    },
+    {
+      "type": "text",
+      "id": "specs_note",
+      "label": "Notitie onder de specificaties",
+      "default": "Wijkt jouw locatie of gezelschap af? Bel 0341 700 260, we denken graag mee."
+    },
+    {
+      "type": "header",
+      "content": "Optionele extra's"
+    },
+    {
+      "type": "select",
+      "id": "extras_display",
+      "label": "Extra's op de productpagina",
+      "info": "Extra's kunnen ook altijd in de winkelwagen worden toegevoegd.",
+      "options": [
+        { "value": "collapsed", "label": "Ingeklapt tonen (rustig)" },
+        { "value": "open", "label": "Uitgeklapt tonen" },
+        { "value": "hidden", "label": "Verbergen — alleen in de winkelwagen" }
+      ],
+      "default": "collapsed"
+    },
+    {
+      "type": "text",
+      "id": "extras_heading",
+      "label": "Titel extra's",
+      "default": "Iets extra’s nodig?"
+    },
+    {
+      "type": "text",
+      "id": "extras_note",
+      "label": "Tekst onder de titel",
+      "default": "Hoeft nu niet: je kunt extra’s ook later in je winkelwagen toevoegen."
+    },
+    {
+      "type": "select",
+      "id": "metafield_namespace",
+      "label": "Metafield namespace (USPs & extra's)",
+      "info": "Staat gelijk aan de namespace van je metafield-definities (vaak 'custom'). Als de inhoud niet verschijnt, probeer 'descriptors'.",
+      "options": [
+        { "value": "custom", "label": "custom" },
+        { "value": "descriptors", "label": "descriptors" }
+      ],
+      "default": "custom"
     }
   ],
   "blocks": [
+    {
+      "type": "spec",
+      "name": "Specificatie",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel",
+          "default": "Bartafel"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Tekst",
+          "default": "Stevige bartafel van 180 × 80 cm, inclusief afrok."
+        }
+      ]
+    },
     {
       "type": "usp",
       "name": "USP Item",
@@ -491,6 +1454,30 @@
           "id": "text",
           "label": "USP Text",
           "default": "Inclusief Mobiele Bar & Tap"
+        }
+      ]
+    },
+    {
+      "type": "extra",
+      "name": "Optioneel extra",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel",
+          "default": "Extra fust pils (20L)"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Prijs",
+          "default": "€85"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product (voor Toevoegen-knop)",
+          "info": "Kies het Shopify-product dat bij dit extra hoort. Dan kan de klant het direct toevoegen."
         }
       ]
     }

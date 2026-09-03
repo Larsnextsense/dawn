@@ -4,34 +4,55 @@ if (!customElements.get('product-form')) {
     class ProductForm extends HTMLElement {
       constructor() {
         super();
+        this._submitHandler = this.onSubmitHandler.bind(this);
+      }
 
+      connectedCallback() {
+        if (this._initialized) return;
         this.form = this.querySelector('form');
-        this.variantIdInput.disabled = false;
-        this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
+        if (!this.form) return;
+        const variantInput = this.form.querySelector('[name="id"]');
+        if (variantInput) variantInput.disabled = false;
+        this.form.addEventListener('submit', this._submitHandler);
         this.cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
         this.submitButton = this.querySelector('[type="submit"]');
-        this.submitButtonText = this.submitButton.querySelector('span');
+        this.submitButtonText = this.submitButton && this.submitButton.querySelector('span');
 
-        if (document.querySelector('cart-drawer')) this.submitButton.setAttribute('aria-haspopup', 'dialog');
+        if (this.submitButton && document.querySelector('cart-drawer')) this.submitButton.setAttribute('aria-haspopup', 'dialog');
 
         this.hideErrors = this.dataset.hideErrors === 'true';
+        this._initialized = true;
       }
 
       onSubmitHandler(evt) {
         evt.preventDefault();
+        if (!this.form || !this.submitButton) return;
         if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
 
         this.handleErrorMessage();
 
         this.submitButton.setAttribute('aria-disabled', true);
         this.submitButton.classList.add('loading');
-        this.querySelector('.loading__spinner').classList.remove('hidden');
+        const spinner = this.querySelector('.loading__spinner');
+        if (spinner) spinner.classList.remove('hidden');
 
         const config = fetchConfig('javascript');
         config.headers['X-Requested-With'] = 'XMLHttpRequest';
         delete config.headers['Content-Type'];
 
-        const formData = new FormData(this.form);
+        const isExtraForm =
+          this.form.classList.contains('bp-extra-add-form') ||
+          this.classList.contains('product-form--extra');
+
+        let formData;
+        if (isExtraForm) {
+          formData = new FormData();
+          formData.append('id', this.form.querySelector('[name="id"]').value);
+          formData.append('quantity', 1);
+        } else {
+          formData = new FormData(this.form);
+        }
+
         if (this.cart) {
           formData.append(
             'sections',
@@ -57,7 +78,7 @@ if (!customElements.get('product-form')) {
               const soldOutMessage = this.submitButton.querySelector('.sold-out-message');
               if (!soldOutMessage) return;
               this.submitButton.setAttribute('aria-disabled', true);
-              this.submitButtonText.classList.add('hidden');
+              if (this.submitButtonText) this.submitButtonText.classList.add('hidden');
               soldOutMessage.classList.remove('hidden');
               this.error = true;
               return;
@@ -100,10 +121,11 @@ if (!customElements.get('product-form')) {
             console.error(e);
           })
           .finally(() => {
-            this.submitButton.classList.remove('loading');
+            if (this.submitButton) this.submitButton.classList.remove('loading');
             if (this.cart && this.cart.classList.contains('is-empty')) this.cart.classList.remove('is-empty');
-            if (!this.error) this.submitButton.removeAttribute('aria-disabled');
-            this.querySelector('.loading__spinner').classList.add('hidden');
+            if (!this.error && this.submitButton) this.submitButton.removeAttribute('aria-disabled');
+            const spinner = this.querySelector('.loading__spinner');
+            if (spinner) spinner.classList.add('hidden');
 
             CartPerformance.measureFromEvent("add:user-action", evt);
           });

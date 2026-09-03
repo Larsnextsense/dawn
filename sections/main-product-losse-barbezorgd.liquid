@@ -1,0 +1,128 @@
+{% comment %}
+  Barbezorgd – Losse producten (fusten, kratten, etc.)
+  Geen "aantal personen" of "datum feest". Standaard quantity + add to cart.
+{% endcomment %}
+<section id="MainProductLosse-{{ section.id }}" class="product-losse section-{{ section.id }}-padding" data-section="{{ section.id }}">
+  {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+  {{ 'custom-homepage.css' | asset_url | stylesheet_tag }}
+
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  {%- endstyle -%}
+
+  <div class="product-losse__inner page-width">
+    <a href="{{ routes.collections_url }}/all" class="product-losse__back">← Alle pakketten</a>
+
+    <div class="product-losse__layout">
+      <div class="product-losse__main">
+        <div class="product-losse__gallery">
+          {%- if product.featured_image != blank -%}
+            <div class="product-losse__media">
+              {{
+                product.featured_image
+                | image_url: width: 900
+                | image_tag: class: 'product-losse__img', loading: 'eager', widths: '400,600,800,900', sizes: '(min-width: 990px) 55vw, 100vw', alt: product.featured_image.alt | default: product.title
+              }}
+            </div>
+            {%- if product.images.size > 1 -%}
+              <div class="product-losse__thumbs">
+                {%- for image in product.images limit: 5 -%}
+                  <div class="product-losse__thumb{% if image == product.featured_image %} product-losse__thumb--active{% endif %}">
+                    {{
+                      image
+                      | image_url: width: 120
+                      | image_tag: loading: 'lazy', widths: '80,120', sizes: '80px', alt: image.alt | default: product.title
+                    }}
+                  </div>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          {%- else -%}
+            <div class="product-losse__placeholder">
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- if product.description != blank and section.settings.show_description -%}
+          <div class="product-losse__description rte">
+            {{ product.description }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <aside class="product-losse__sidebar">
+        <div class="product-losse__card">
+          <h1 class="product-losse__title">{{ product.title }}</h1>
+
+          <div class="product-losse__price-wrap">
+            <span class="product-losse__price">{{ product.selected_or_first_available_variant.price | money }}</span>
+            {%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}
+              <span class="product-losse__compare">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
+            {%- endif -%}
+          </div>
+
+          <div class="product-losse__info-box">
+            <p class="product-losse__info-text">Dit product bestel je als <strong>extra bij een pakket</strong>. Kies eerst een pakket en voeg daarna dit product toe op de pakketpagina.</p>
+            <a href="{{ routes.collections_url }}/all" class="product-losse__cta">Bekijk pakketten</a>
+          </div>
+
+          <p class="product-losse__contact">
+            Vragen? Bel <a href="tel:+31341700260">0341 700 260</a>.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product (losse producten)",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Beschrijving tonen",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Ruimte boven",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Ruimte onder",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product (losse producten)"
+    }
+  ]
+}
+{% endschema %}
