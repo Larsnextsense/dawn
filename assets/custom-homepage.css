@@ -3773,3 +3773,20 @@ cart-items .cart-item__name:hover {
   background: var(--primary-orange-hover);
   color: var(--dark-bg);
 }
+
+/* ==========================================================================
+   Winkelwagen: melding over het minimum aantal personen
+   ========================================================================== */
+
+#cart-errors:not(:empty),
+#CartDrawer-CartErrors:not(:empty) {
+  display: block;
+  margin: 1.2rem 0;
+  padding: 1rem 1.4rem;
+  border-radius: 0.8rem;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--text-dark);
+}
