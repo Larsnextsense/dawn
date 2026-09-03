@@ -1,0 +1,280 @@
+{%- comment -%} Toon alleen op de pagina met handle over-ons {%- endcomment -%}
+{%- if page.handle == 'over-ons' -%}
+<section class="about-us-page">
+  <div class="page-hero">
+    <div class="page-width">
+      {%- if section.settings.pretitle != blank -%}
+        <p class="page-hero__pretitle">{{ section.settings.pretitle }}</p>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h1 class="page-hero__title">{{ section.settings.title }}</h1>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <div class="page-hero__subtitle rte">{{ section.settings.subtitle }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="about-us-page__body">
+  <div class="page-width">
+    <div class="about-us-page__story">
+      <div class="about-us-page__story-content">
+        {%- if section.settings.story_heading != blank -%}
+          <h2 class="about-us-page__story-title">{{ section.settings.story_heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.story_text != blank -%}
+          <div class="about-us-page__story-text rte">{{ section.settings.story_text }}</div>
+        {%- endif -%}
+      </div>
+      <div class="about-us-page__story-image-wrap">
+        {%- if section.settings.story_image != blank -%}
+          {{
+            section.settings.story_image
+            | image_url: width: 800
+            | image_tag: class: 'about-us-page__story-image', loading: 'lazy', widths: '400,600,800', sizes: '(min-width: 990px) 45vw, 100vw'
+          }}
+        {%- else -%}
+          <div class="about-us-page__story-image about-us-page__story-image--placeholder">
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="about-us-page__stats">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'stat' -%}
+          <div class="about-us-page__stat" {{ block.shopify_attributes }}>
+            <span class="about-us-page__stat-value">{{ block.settings.value }}</span>
+            <span class="about-us-page__stat-label">{{ block.settings.label }}</span>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="about-us-page__values">
+      <h2 class="about-us-page__values-title">{{ section.settings.values_heading }}</h2>
+      <p class="about-us-page__values-subtitle">{{ section.settings.values_subtitle }}</p>
+      <div class="about-us-page__values-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'value' -%}
+            <div class="about-us-page__value-card" {{ block.shopify_attributes }}>
+              <span class="about-us-page__value-icon" aria-hidden="true">
+                {%- case block.settings.icon -%}
+                  {%- when 'kwaliteit' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/><path d="M12 8v8M8 12h8"/></svg>
+                  {%- when 'passie' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  {%- when 'service' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  {%- when 'gemak' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  {%- else -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28"><circle cx="12" cy="12" r="10"/></svg>
+                {%- endcase -%}
+              </span>
+              <h3 class="about-us-page__value-title">{{ block.settings.title }}</h3>
+              <p class="about-us-page__value-text">{{ block.settings.text }}</p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- if section.settings.team_image != blank or section.settings.team_text != blank -%}
+      <div class="about-us-page__team">
+        <div class="about-us-page__team-image-wrap">
+          {%- if section.settings.team_image != blank -%}
+            {{
+              section.settings.team_image
+              | image_url: width: 1200
+              | image_tag:
+                class: 'about-us-page__team-image',
+                loading: 'lazy',
+                widths: '400,600,800,1200',
+                sizes: '(min-width: 990px) 50vw, 100vw',
+                alt: section.settings.team_heading
+            }}
+          {%- else -%}
+            <div class="about-us-page__team-image about-us-page__team-image--placeholder">
+              {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+              <span class="about-us-page__team-placeholder-label">Teamfoto volgt</span>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.team_caption != blank -%}
+            <p class="about-us-page__team-caption">{{ section.settings.team_caption }}</p>
+          {%- endif -%}
+        </div>
+
+        <div class="about-us-page__team-content">
+          {%- if section.settings.team_heading != blank -%}
+            <h2 class="about-us-page__team-title">{{ section.settings.team_heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.team_text != blank -%}
+            <div class="about-us-page__team-text rte">{{ section.settings.team_text }}</div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Over ons (pagina)",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pretitle",
+      "label": "Pretitle",
+      "default": "OVER ONS"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel",
+      "default": "Wij zijn Barbezorgd"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Ondertitel",
+      "default": "<p>De #1 mobiele bar service van Nederland. Wij maken van elk feest een onvergetelijk moment.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Ons verhaal"
+    },
+    {
+      "type": "text",
+      "id": "story_heading",
+      "label": "Kop",
+      "default": "Ons verhaal"
+    },
+    {
+      "type": "richtext",
+      "id": "story_text",
+      "label": "Tekst",
+      "default": "<p>Barbezorgd is ontstaan uit een simpel idee: waarom zou je zelf sjouwen met kratjes als wij dat voor je kunnen doen? Met een professionele tapinstallatie, ijskoud bier en een zorgeloze service brengen wij de kroeg naar jouw feest.</p><p>Wat begon als een hobby is uitgegroeid tot de meest populaire mobiele bar service van Nederland. Met meer dan 500 tevreden klanten en een 4.9 Google rating zijn we trots op wat we doen.</p><p>Of het nu gaat om een bruiloft, verjaardag, bedrijfsfeest of gewoon een gezellige borrel in de tuin — wij staan voor je klaar. Van bezorging tot ophalen, inclusief de vuile glazen! Wij bezorgen gratis in vrijwel heel Nederland.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_image",
+      "label": "Afbeelding"
+    },
+    {
+      "type": "header",
+      "content": "Waar wij voor staan"
+    },
+    {
+      "type": "text",
+      "id": "values_heading",
+      "label": "Titel",
+      "default": "Waar wij voor staan"
+    },
+    {
+      "type": "text",
+      "id": "values_subtitle",
+      "label": "Ondertitel",
+      "default": "Vier kernwaarden die alles wat wij doen bepalen."
+    },
+    {
+      "type": "header",
+      "content": "Het team"
+    },
+    {
+      "type": "text",
+      "id": "team_heading",
+      "label": "Titel",
+      "default": "De mensen achter Barbezorgd"
+    },
+    {
+      "type": "richtext",
+      "id": "team_text",
+      "label": "Tekst",
+      "info": "Laat leeg om dit blok te verbergen."
+    },
+    {
+      "type": "image_picker",
+      "id": "team_image",
+      "label": "Teamfoto"
+    },
+    {
+      "type": "text",
+      "id": "team_caption",
+      "label": "Bijschrift bij de foto"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistiek",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Waarde",
+          "default": "500+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Tevreden klanten"
+        }
+      ]
+    },
+    {
+      "type": "value",
+      "name": "Kernwaarde",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icoon",
+          "options": [
+            { "value": "kwaliteit", "label": "Kwaliteit (vat)" },
+            { "value": "passie", "label": "Passie (hart)" },
+            { "value": "service", "label": "Service (chat)" },
+            { "value": "gemak", "label": "Gemak (vrachtwagen)" }
+          ],
+          "default": "kwaliteit"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel",
+          "default": "Kwaliteit"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Tekst",
+          "default": "Alleen de beste bieren, wijnen en cocktails. Altijd vers, altijd koud."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Over ons (pagina)",
+      "blocks": [
+        { "type": "stat", "settings": { "value": "500+", "label": "Tevreden klanten" } },
+        { "type": "stat", "settings": { "value": "1000+", "label": "Feesten verzorgd" } },
+        { "type": "stat", "settings": { "value": "4.9", "label": "Google rating" } },
+        { "type": "stat", "settings": { "value": "24u", "label": "Snelle levering" } },
+        { "type": "value", "settings": { "icon": "kwaliteit", "title": "Kwaliteit", "text": "Alleen de beste bieren, wijnen en cocktails. Altijd vers, altijd koud." } },
+        { "type": "value", "settings": { "icon": "passie", "title": "Passie", "text": "Wij houden van feestjes net zoveel als jij. Dat merk je aan alles wat we doen." } },
+        { "type": "value", "settings": { "icon": "service", "title": "Service", "text": "Persoonlijk contact, snelle reactie en altijd meedenkend. Jouw feest is ons feest." } },
+        { "type": "value", "settings": { "icon": "gemak", "title": "Gemak", "text": "Gratis bezorgd, opgesteld en opgehaald in vrijwel heel Nederland. Jij hoeft niks te doen behalve genieten." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

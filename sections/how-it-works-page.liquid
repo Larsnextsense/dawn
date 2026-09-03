@@ -1,0 +1,268 @@
+{%- comment -%} Toon alleen op de pagina met handle hoe-werkt-het {%- endcomment -%}
+{%- if page.handle == 'hoe-werkt-het' -%}
+<section class="how-it-works-page">
+  <div class="page-hero">
+    <div class="page-width">
+      {%- if section.settings.pretitle != blank -%}
+        <p class="page-hero__pretitle">{{ section.settings.pretitle }}</p>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h1 class="page-hero__title">{{ section.settings.title }}</h1>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <div class="page-hero__subtitle rte">{{ section.settings.subtitle }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="how-it-works-page__body">
+    <div class="page-width">
+    {%- for block in section.blocks -%}
+      {%- assign is_even = forloop.index | modulo: 2 | round -%}
+      <div class="how-it-works-page__step how-it-works-page__step--{% if is_even == 0 %}right{% else %}left{% endif %}" {{ block.shopify_attributes }}>
+        <div class="how-it-works-page__step-inner">
+          <div class="how-it-works-page__icon-wrap{% if block.settings.photo != blank %} how-it-works-page__icon-wrap--photo{% endif %}">
+            <span class="how-it-works-page__step-num">{{ block.settings.step_number }}</span>
+            {%- if block.settings.photo != blank -%}
+              <div class="how-it-works-page__photo">
+                {{
+                  block.settings.photo
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'how-it-works-page__photo-img',
+                    widths: '400,600,800,1200',
+                    sizes: '(min-width: 990px) 42vw, 100vw',
+                    alt: block.settings.heading
+                }}
+              </div>
+            {%- else -%}
+            <div class="how-it-works-page__icon">
+              {%- if block.settings.icon_image != blank -%}
+                {{
+                  block.settings.icon_image
+                  | image_url: width: 400
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'how-it-works-page__icon-img',
+                    widths: '200,300,400',
+                    sizes: '(min-width: 990px) 200px, 100vw',
+                    alt: block.settings.heading
+                }}
+              {%- else -%}
+                <span class="how-it-works-page__icon--emoji">
+                  {%- case forloop.index -%}
+                    {%- when 1 -%}📦
+                    {%- when 2 -%}🚚
+                    {%- when 3 -%}🥂
+                    {%- when 4 -%}✨
+                    {%- else -%}<span class="how-it-works-page__icon-placeholder">{{ forloop.index }}</span>
+                  {%- endcase -%}
+                </span>
+              {%- endif -%}
+            </div>
+            {%- endif -%}
+          </div>
+          <div class="how-it-works-page__content">
+            {%- if block.settings.heading != blank -%}
+              <h2 class="how-it-works-page__step-title">{{ block.settings.heading }}</h2>
+            {%- endif -%}
+            {%- if block.settings.description != blank -%}
+              <div class="how-it-works-page__step-desc rte">{{ block.settings.description }}</div>
+            {%- endif -%}
+            {%- if section.settings.show_checklists -%}
+            <ul class="how-it-works-page__checklist">
+              {%- if block.settings.item_1 != blank -%}<li><span class="how-it-works-page__check" aria-hidden="true">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>{{ block.settings.item_1 }}</li>{%- endif -%}
+              {%- if block.settings.item_2 != blank -%}<li><span class="how-it-works-page__check" aria-hidden="true">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>{{ block.settings.item_2 }}</li>{%- endif -%}
+              {%- if block.settings.item_3 != blank -%}<li><span class="how-it-works-page__check" aria-hidden="true">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>{{ block.settings.item_3 }}</li>{%- endif -%}
+            </ul>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+
+    <div class="how-it-works-page__cta">
+      {%- if section.settings.cta_heading != blank -%}
+        <h2 class="how-it-works-page__cta-title">{{ section.settings.cta_heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.cta_subtitle != blank -%}
+        <p class="how-it-works-page__cta-subtitle">{{ section.settings.cta_subtitle }}</p>
+      {%- endif -%}
+      {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+        <a href="{{ section.settings.cta_link }}" class="how-it-works-page__cta-btn">
+          {{ section.settings.cta_label }}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      {%- endif -%}
+    </div>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Hoe werkt het (pagina)",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pretitle",
+      "label": "Pretitle",
+      "default": "HOE WERKT HET"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel",
+      "default": "In 4 simpele stappen"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Introtekst",
+      "default": "<p>Van bestelling tot opruimen — wij maken het zo makkelijk mogelijk zodat jij alleen maar hoeft te genieten.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_checklists",
+      "label": "Toon de checklistjes per stap",
+      "info": "Uitzetten geeft een rustigere pagina: alleen titel, foto en korte tekst.",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "CTA onderaan"
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA titel",
+      "default": "Klaar om te bestellen?"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_subtitle",
+      "label": "CTA ondertitel",
+      "default": "Bekijk onze pakketten en maak van jouw feest een onvergetelijk moment."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA knoptekst",
+      "default": "Bekijk pakketten"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link",
+      "default": "/collections/all"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Stap",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Stapnummer (bijv. 01)",
+          "default": "01"
+        },
+        {
+          "type": "image_picker",
+          "id": "photo",
+          "label": "Foto (vervangt het icoon)",
+          "info": "Een echte sfeerfoto werkt hier sterker dan een icoon. Laat leeg om het icoon te gebruiken."
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icoon (zelfde als bij Zo werkt het op de homepage)"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Titel",
+          "default": "Kies je pakket"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Beschrijving"
+        },
+        {
+          "type": "text",
+          "id": "item_1",
+          "label": "Checklist item 1"
+        },
+        {
+          "type": "text",
+          "id": "item_2",
+          "label": "Checklist item 2"
+        },
+        {
+          "type": "text",
+          "id": "item_3",
+          "label": "Checklist item 3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hoe werkt het (pagina)",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "01",
+            "heading": "Kies je pakket",
+            "description": "<p>Bekijk ons aanbod en kies het pakket dat perfect past bij jouw feest. Van een gezellige borrel tot een groot bedrijfsevenement — wij hebben voor ieder wat wils.</p>",
+            "item_1": "Kies uit diverse bier-, wijn- en cocktailpakketten",
+            "item_2": "Selecteer het aantal personen",
+            "item_3": "Voeg optionele extra's toe zoals glazen of extra fusten"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "02",
+            "heading": "Gratis bezorgd in vrijwel heel Nederland",
+            "description": "<p>Wij bezorgen alles op jouw locatie en stellen de tap professioneel op. Je hoeft zelf niks te doen — wij regelen het van A tot Z.</p>",
+            "item_1": "Gratis bezorging in vrijwel heel Nederland, op de afgesproken datum",
+            "item_2": "Professionele installatie van de tapinstallatie",
+            "item_3": "Duidelijke instructies voor gebruik"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "03",
+            "heading": "Tijd om te feesten!",
+            "description": "<p>Geniet van ijskoude drankjes uit de tap terwijl jij en je gasten het naar je zin hebben. Geen gedoe, alleen maar plezier.</p>",
+            "item_1": "Ijskoud bier, altijd de perfecte temperatuur",
+            "item_2": "Professionele tapkwaliteit bij jou thuis",
+            "item_3": "Onbeperkt genieten tijdens je feest"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "04",
+            "heading": "Wij halen alles op",
+            "description": "<p>Na het feest halen wij alles weer op. Inclusief de vuile glazen! Jij hoeft alleen maar na te genieten.</p>",
+            "item_1": "Ophalen op een afgesproken moment",
+            "item_2": "Vuile glazen? Geen probleem, gewoon terug in de krat",
+            "item_3": "Geen schoonmaakstress na je feest"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

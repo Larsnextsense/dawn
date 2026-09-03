@@ -1,0 +1,64 @@
+{
+  "sections": {
+    "how-it-works": {
+      "type": "how-it-works-page",
+      "settings": {
+        "pretitle": "HOE WERKT HET",
+        "title": "In 4 simpele stappen",
+        "subtitle": "<p>Van bestelling tot opruimen — wij maken het zo makkelijk mogelijk zodat jij alleen maar hoeft te genieten.</p>",
+        "cta_heading": "Klaar om te bestellen?",
+        "cta_subtitle": "Bekijk onze pakketten en maak van jouw feest een onvergetelijk moment.",
+        "cta_label": "Bekijk pakketten",
+        "cta_link": "/collections/all"
+      },
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "step_number": "01",
+            "heading": "Kies je pakket",
+            "description": "<p>Bekijk ons aanbod en kies het pakket dat perfect past bij jouw feest. Van een gezellige borrel tot een groot bedrijfsevenement — wij hebben voor ieder wat wils.</p>",
+            "item_1": "Kies uit diverse bier-, wijn- en cocktailpakketten",
+            "item_2": "Selecteer het aantal personen",
+            "item_3": "Voeg optionele extra's toe zoals glazen of extra fusten"
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "step_number": "02",
+            "heading": "Gratis bezorgd in vrijwel heel Nederland",
+            "description": "<p>Wij bezorgen alles op jouw locatie en stellen de tap professioneel op. Je hoeft zelf niks te doen — wij regelen het van A tot Z.</p>",
+            "item_1": "Bezorging op de afgesproken datum en tijd",
+            "item_2": "Professionele installatie van de tapinstallatie",
+            "item_3": "Duidelijke instructies voor gebruik"
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "step_number": "03",
+            "heading": "Tijd om te feesten!",
+            "description": "<p>Geniet van ijskoude drankjes uit de tap terwijl jij en je gasten het naar je zin hebben. Geen gedoe, alleen maar plezier.</p>",
+            "item_1": "Ijskoud bier, altijd de perfecte temperatuur",
+            "item_2": "Professionele tapkwaliteit bij jou thuis",
+            "item_3": "Onbeperkt genieten tijdens je feest"
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "step_number": "04",
+            "heading": "Wij halen alles op",
+            "description": "<p>Na het feest halen wij alles weer op. Inclusief de vuile glazen! Jij hoeft alleen maar na te genieten.</p>",
+            "item_1": "Ophalen op een afgesproken moment",
+            "item_2": "Vuile glazen? Geen probleem, gewoon terug in de krat",
+            "item_3": "Geen schoonmaakstress na je feest"
+          }
+        }
+      },
+      "block_order": ["step_1", "step_2", "step_3", "step_4"]
+    }
+  },
+  "order": ["how-it-works"]
+}

@@ -1,0 +1,46 @@
+<section class="page-hero contact-hero">
+  <div class="page-width">
+    {%- if section.settings.pretitle != blank -%}
+      <p class="page-hero__pretitle">{{ section.settings.pretitle }}</p>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h1 class="page-hero__title">{{ section.settings.title }}</h1>
+    {%- endif -%}
+    {%- if section.settings.subtitle != blank -%}
+      <p class="page-hero__subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pretitle",
+      "label": "Tag (klein label)",
+      "default": "Contact"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel",
+      "default": "Neem contact met ons op"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Ondertitel",
+      "default": "Heb je een vraag of wil je bestellen? Vul het formulier in of neem direct contact op."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Hero"
+    }
+  ]
+}
+{% endschema %}

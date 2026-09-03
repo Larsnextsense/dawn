@@ -1,0 +1,170 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="contact-barbezorgd section-{{ section.id }}-padding">
+  <div class="page-width contact-barbezorgd__layout">
+    <div class="contact-barbezorgd__form-card">
+      <h2 class="contact-barbezorgd__form-title">{{ section.settings.form_heading | default: 'Stuur ons een bericht' }}</h2>
+      <p class="contact-barbezorgd__form-desc">{{ section.settings.form_subtitle | default: 'Vertel ons over je feest en we reageren binnen 24 uur.' }}</p>
+
+      {%- comment -%} return_to zorgt dat bezoeker na verzenden teruggaat naar deze pagina en de succesmelding ziet {%- endcomment -%}
+      {%- form 'contact', id: 'ContactForm', class: 'contact-barbezorgd__form', return_to: request.path -%}
+        {%- if form.posted_successfully? -%}
+          <p class="contact-barbezorgd__success" id="contact-form-success" tabindex="-1" autofocus>
+            {{ 'templates.contact.form.post_success' | t }}
+          </p>
+        {%- elsif form.errors -%}
+          <div class="contact-barbezorgd__error" id="contact-form-errors" role="alert">
+            {{ 'templates.contact.form.error_heading' | t }}
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div class="contact-barbezorgd__row">
+          <div class="contact-barbezorgd__field">
+            <label class="contact-barbezorgd__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }} *</label>
+            <input type="text" id="ContactForm-name" name="contact[name]" class="contact-barbezorgd__input" autocomplete="name" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="Je volledige naam" required>
+          </div>
+          <div class="contact-barbezorgd__field">
+            <label class="contact-barbezorgd__label" for="ContactForm-email">{{ 'templates.contact.form.email' | t }} *</label>
+            <input type="email" id="ContactForm-email" name="contact[email]" class="contact-barbezorgd__input" autocomplete="email" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" placeholder="je@email.nl" required>
+          </div>
+        </div>
+
+        <div class="contact-barbezorgd__row">
+          <div class="contact-barbezorgd__field">
+            <label class="contact-barbezorgd__label" for="ContactForm-phone">Telefoonnummer</label>
+            <input type="tel" id="ContactForm-phone" name="contact[phone]" class="contact-barbezorgd__input" autocomplete="tel" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="0341 700 260">
+          </div>
+          <div class="contact-barbezorgd__field">
+            <label class="contact-barbezorgd__label" for="ContactForm-date">Datum evenement</label>
+            <input type="text" id="ContactForm-date" name="contact[Datum evenement]" class="contact-barbezorgd__input" placeholder="dd-mm-jjjj" inputmode="numeric">
+          </div>
+        </div>
+
+        <div class="contact-barbezorgd__field">
+          <label class="contact-barbezorgd__label" for="ContactForm-guests">Aantal gasten</label>
+          <input type="text" id="ContactForm-guests" name="contact[Aantal gasten]" class="contact-barbezorgd__input" placeholder="Bijv. 50">
+        </div>
+
+        <div class="contact-barbezorgd__field">
+          <label class="contact-barbezorgd__label" for="ContactForm-body">Bericht *</label>
+          <textarea id="ContactForm-body" name="contact[body]" class="contact-barbezorgd__textarea" rows="5" placeholder="Vertel ons over je feest, wensen en eventuele vragen..." required>{{ form.body }}</textarea>
+        </div>
+
+        <button type="submit" class="contact-barbezorgd__submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Verstuur bericht
+        </button>
+      {%- endform -%}
+    </div>
+
+    <div class="contact-barbezorgd__sidebar">
+      <div class="contact-barbezorgd__card">
+        <h3 class="contact-barbezorgd__card-title">Contactgegevens</h3>
+        <ul class="contact-barbezorgd__list">
+          <li>
+            <span class="contact-barbezorgd__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <div>
+              <strong>Telefoon</strong><br>
+              <a href="tel:+31341700260">0341 700 260</a>
+            </div>
+          </li>
+          <li>
+            <span class="contact-barbezorgd__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+            <div>
+              <strong>E-mail</strong><br>
+              <a href="mailto:info@barbezorgd.nl">Info@barbezorgd.nl</a>
+            </div>
+          </li>
+          <li>
+            <span class="contact-barbezorgd__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div>
+              <strong>Locatie</strong><br>
+              Gratis bezorging in vrijwel heel Nederland
+            </div>
+          </li>
+          <li>
+            <span class="contact-barbezorgd__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+            <div>
+              <strong>Openingstijden klantenservice</strong><br>
+              Maandag – Vrijdag: 09:00 – 22:00<br>
+              Zaterdag – Zondag: 09:00 – 17:00<br>
+              Spoed: 24/7 bereikbaar
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="contact-barbezorgd__card contact-barbezorgd__card--dark">
+        <h3 class="contact-barbezorgd__card-title">Liever bellen?</h3>
+        <p class="contact-barbezorgd__card-desc">Bel ons direct voor een persoonlijk adviesgesprek over jouw feest.</p>
+        <a href="tel:+31341700260" class="contact-barbezorgd__call-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Bel 0341 700 260
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Barbezorgd",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Zorg dat je contactpagina het template 'contact' gebruikt (bij het bewerken van de pagina). Berichten ontvang je in Shopify Admin onder Instellingen → Notificaties → Contactformulier, of in de app."
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Formulier titel",
+      "default": "Stuur ons een bericht"
+    },
+    {
+      "type": "textarea",
+      "id": "form_subtitle",
+      "label": "Formulier ondertitel",
+      "default": "Vertel ons over je feest en we reageren binnen 24 uur."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Barbezorgd"
+    }
+  ]
+}
+{% endschema %}

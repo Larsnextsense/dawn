@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -6,9 +15,301 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "how-it-works": {
+      "type": "how-it-works-page",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "step_number": "01",
+            "icon_image": "shopify://shop_images/Barbezorgd_icons_Stap_1.png",
+            "heading": "Kies je pakket",
+            "description": "<p>Bekijk ons aanbod en kies het pakket dat perfect past bij jouw feest. Van een gezellige borrel tot een groot bedrijfsevenement — wij hebben voor ieder wat wils.</p>",
+            "item_1": "Kies uit een van onze pakketten",
+            "item_2": "Selecteer het aantal personen",
+            "item_3": "Voeg optionele extra's toe zoals extra dranken of een statafel"
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "step_number": "02",
+            "icon_image": "shopify://shop_images/Barbezorgd_icons_Stap_2.png",
+            "heading": "Gratis bezorgd in vrijwel heel Nederland",
+            "description": "<p>Wij leveren alles 1 werkdag vóór je feest en zorgen dat je precies weet wat je krijgt. Alles overzichtelijk, inclusief koeling, glaswerk en (bij tap-pakketten) de tapinstallatie.</p>",
+            "item_1": "Gratis bezorgd in vrijwel heel Nederland, 1 werkdag vóór het feest",
+            "item_2": "Alles compleet: drank, koeling, glaswerk en opstelling",
+            "item_3": "Biertap in je pakket? Die wordt geïnstalleerd en klaargezet voor gebruik."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "step_number": "03",
+            "icon_image": "shopify://shop_images/Barbezorgd_icons_Stap_3.png",
+            "heading": "Tijd om te genieten!",
+            "description": "<p>Geniet van koude drankjes, lekker bier en fijne wijnen terwijl jij en je gasten het naar je zin hebben. Geen gedoe, alleen maar plezier.</p>",
+            "item_1": "Koud, klaar en compleet",
+            "item_2": "Proost op het moment",
+            "item_3": "Relax en geniet, alles is geregeld!"
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "step_number": "04",
+            "icon_image": "shopify://shop_images/Barbezorgd_icons_Stap_4.png",
+            "heading": "Wij halen alles weer op",
+            "description": "<p>Na je feest komen we één werkdag later alles ophalen. Het glaswerk mag gewoon vuil terug in de kratten. Jij kunt lekker nagenieten.</p>",
+            "item_1": "Ophalen: één werkdag na je feest",
+            "item_2": "Vuile glazen? Geen probleem, gewoon terug in de kratten",
+            "item_3": "Tijd om na te genieten"
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4"
+      ],
+      "settings": {
+        "pretitle": "HOE WERKT HET",
+        "title": "In 4 simpele stappen",
+        "subtitle": "<p>Van bestelling tot opruimen — wij maken het zo makkelijk mogelijk zodat jij alleen maar hoeft te genieten.</p>",
+        "cta_heading": "Klaar om te bestellen?",
+        "cta_subtitle": "Bekijk onze pakketten en maak van jouw feest een onvergetelijk moment.",
+        "cta_label": "Bekijk pakketten",
+        "cta_link": "/collections/all"
+      }
+    },
+    "about-us": {
+      "type": "about-us-page",
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "value": "500+",
+            "label": "Tevreden klanten"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "value": "1000+",
+            "label": "Feesten verzorgd"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "value": "4.9",
+            "label": "Google rating"
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "value": "24/7",
+            "label": "Service"
+          }
+        },
+        "value_1": {
+          "type": "value",
+          "settings": {
+            "icon": "kwaliteit",
+            "title": "Kwaliteit",
+            "text": "Alleen A-merk dranken en betrouwbare apparatuur. Alles netjes geleverd en klaar voor gebruik."
+          }
+        },
+        "value_2": {
+          "type": "value",
+          "settings": {
+            "icon": "passie",
+            "title": "Passie",
+            "text": "We houden van feestjes en van alles wat erbij komt kijken. Daarom willen we het jou zo makkelijk mogelijk maken."
+          }
+        },
+        "value_3": {
+          "type": "value",
+          "settings": {
+            "icon": "service",
+            "title": "Service",
+            "text": "Persoonlijk contact, snel schakelen en meedenken. Jij viert, wij regelen het."
+          }
+        },
+        "value_4": {
+          "type": "value",
+          "settings": {
+            "icon": "gemak",
+            "title": "Gemak",
+            "text": "Gratis bezorgd en opgehaald in vrijwel heel Nederland, inclusief glaswerk en afwas. Geen gedoe, alleen genieten."
+          }
+        }
+      },
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4",
+        "value_1",
+        "value_2",
+        "value_3",
+        "value_4"
+      ],
+      "settings": {
+        "pretitle": "OVER ONS",
+        "title": "Wij zijn Barbezorgd",
+        "subtitle": "<p>De #1 mobiele bar service van Nederland. Wij maken van elk feest een onvergetelijk moment.</p>",
+        "story_heading": "Ons verhaal",
+        "story_text": "<p>Barbezorgd is ontstaan op een moment dat we zelf dachten: dit kan toch makkelijker? Een feest organiseren is al druk genoeg. Je maakt honderd keuzes, je regelt van alles, en dan moet je óók nog nadenken over hoeveel drank je nodig hebt, waar je het laat en hoe je alles koel houdt.<br/><br/>Wij zagen dat het vaak juist daar misgaat: te weinig, te veel, lauwe drank, ontbrekend glaswerk, last-minute stress. Met meer dan vijf jaar ervaring in de eventwereld wisten we precies wat werkt en wat je nodig hebt voor een goed feestje. Dus besloten we het anders te doen: één plek waar alles klopt. Jij kiest een pakket, wij regelen de rest.<br/><br/>Van borrel tot bedrijfsfeest: we brengen de bar naar jouw locatie, met de juiste hoeveelheid drank, koeling en glaswerk. Alles wordt netjes geleverd en na afloop weer opgehaald. Zo kun jij doen waar het om draait: samen proosten en genieten van het moment.</p>",
+        "story_image": "shopify://shop_images/partyhuren_lars_cas_achter_de_bar_1.jpg",
+        "values_heading": "Waar wij voor staan",
+        "values_subtitle": "Vier kernwaarden die alles wat wij doen bepalen."
+      }
+    },
+    "faq": {
+      "type": "faq-page",
+      "blocks": {
+        "h_bestellen": {
+          "type": "heading",
+          "settings": {
+            "heading": "Bestellen"
+          }
+        },
+        "i1": {
+          "type": "item",
+          "settings": {
+            "question": "Hoe bestel ik een pakket?",
+            "answer": "<p>Kies op de website het pakket dat bij jouw feest past (Instap, Goed geregeld, All-in of Zero). Vul het aantal personen in, kies eventuele extra’s en rond je aanvraag af. </p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "question": "Hoe ver van tevoren moet ik bestellen?",
+            "answer": "<p>Hoe eerder, hoe beter. Vooral in drukke periodes (weekenden, zomer, feestdagen) is het slim om op tijd te reserveren. Last-minute? Dien je aanvraag gerust in, dan kijken we meteen wat er nog mogelijk is</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "question": "Kan ik mijn bestelling nog wijzigen of annuleren?",
+            "answer": "<p>Wijzigen kan meestal, zolang planning en voorraad het toelaten. Neem hiervoor zo snel mogelijk contact met ons op.<br/><br/>Annuleren kan ook, maar annulering moet schriftelijk gebeuren. Bij annulering zijn de volgende kosten verschuldigd (percentage van de overeengekomen prijs):<br/>\t•\tTot 14 dagen voor uitvoeringsdatum: 25%<br/>\t•\t6–10 dagen voor uitvoeringsdatum: 50%<br/>\t•\t2–5 dagen voor uitvoeringsdatum: 75%<br/>\t•\t0–1 dag(en) voor uitvoeringsdatum: 100%</p>"
+          }
+        },
+        "h_bezorging": {
+          "type": "heading",
+          "settings": {
+            "heading": "Bezorging & Ophalen"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "question": "Is de bezorging echt gratis?",
+            "answer": "<p>Ja, in bijna alle gevallen wel: we bezorgen én halen gratis op, in bijna heel Nederland (de Waddeneilanden niet). Alleen voor enkele postcodegebieden rekenen we een toeslag van €50:<br/>\t•\tZeeland: 4300 t/m 4589<br/>\t•\tLimburg: 6100 t/m 6471<br/></p>"
+          }
+        },
+        "i5": {
+          "type": "item",
+          "settings": {
+            "question": "Wat is jullie bezorggebied?",
+            "answer": "<p>We bezorgen in bijna heel Nederland. De Waddeneilanden bezorgen we helaas niet.<br/>Voor de volgende postcodegebieden rekenen we €50 bezorgkosten:<br/>\t•\tZeeland: 4300 t/m 4589<br/>\t•\tLimburg: 6100 t/m 6471</p>"
+          }
+        },
+        "i6": {
+          "type": "item",
+          "settings": {
+            "question": "Hoe werkt bezorgen en ophalen?",
+            "answer": "<p>We leveren <strong>1 werkdag vóór</strong> het feest en halen alles <strong>1 werkdag na</strong> het feest weer op. Het glaswerk mag gewoon <strong>vuil terug in de kraten</strong>. Jij hoeft alleen maar na te genieten.</p>"
+          }
+        },
+        "h_producten": {
+          "type": "heading",
+          "settings": {
+            "heading": "Producten & Pakketten"
+          }
+        },
+        "i7": {
+          "type": "item",
+          "settings": {
+            "question": "Welke bieren hebben jullie?",
+            "answer": "<p>Wij leveren bier van het merk <strong>Heineken</strong>. (Ook het 0.0 bier is van Heineken.)</p>"
+          }
+        },
+        "i8": {
+          "type": "item",
+          "settings": {
+            "question": "Kan ik een pakket op maat samenstellen?",
+            "answer": "<p>Onze pakketten zijn bewust samengesteld zodat je snel klaar bent. Wel kun je makkelijk uitbreiden met extra’s (zoals extra bier, extra wijn of statafels). Heb je een specifieke wens of een groter event? Neem contact op, dan kijken we wat past.</p>"
+          }
+        },
+        "i9": {
+          "type": "item",
+          "settings": {
+            "question": "Welke wijnen hebben jullie?",
+            "answer": "<p>Wij leveren wijnen van het merk Paparuda: rosé, Pinot Grigio en Merlot.</p><p>Onze 0.0 wijn is Appalina Chardonnay.</p>"
+          }
+        },
+        "h_praktisch": {
+          "type": "heading",
+          "settings": {
+            "heading": "Praktisch"
+          }
+        },
+        "i10": {
+          "type": "item",
+          "settings": {
+            "question": "Heb ik stroom nodig?",
+            "answer": "<p>Ja. De tap en koelkasten werken op een normaal stopcontact (230V). Zorg dus voor een stopcontact in de buurt van de plek waar de tap komt te staan.</p>"
+          }
+        },
+        "i11": {
+          "type": "item",
+          "settings": {
+            "question": "Hoeveel ruimte heb ik nodig?",
+            "answer": "<p>De tap met fust neemt ongeveer <strong>2 m²</strong> in beslag. Is er een compacte opstelling nodig? Dan denken we graag met je mee en kijken we samen naar de mogelijkheden.</p>"
+          }
+        },
+        "i12": {
+          "type": "item",
+          "settings": {
+            "question": "Wat als er dranken overblijven?",
+            "answer": "<p>Na afloop van het feest halen we alles weer op en nemen we de overgebleven dranken  mee.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "h_bestellen",
+        "i1",
+        "i2",
+        "i3",
+        "h_bezorging",
+        "i4",
+        "i5",
+        "i6",
+        "h_producten",
+        "i7",
+        "i8",
+        "i9",
+        "h_praktisch",
+        "i10",
+        "i11",
+        "i12"
+      ],
+      "settings": {
+        "pretitle": "FAQ",
+        "title": "Veelgestelde vragen",
+        "subtitle": "<p>Alles wat je wilt weten over onze service, pakketten en bezorging.</p>"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "how-it-works",
+    "about-us",
+    "faq"
   ]
 }
