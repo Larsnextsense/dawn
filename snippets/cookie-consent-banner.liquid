@@ -1,0 +1,54 @@
+{% comment %}
+  Cookie / consent banner – Barbezorgd styling.
+  Toont tot de bezoeker "Akkoord" kiest; keuze wordt in localStorage bewaard.
+{% endcomment %}
+
+<div id="consent-banner" class="consent-banner" role="dialog" aria-label="Cookievoorkeur" aria-live="polite" hidden>
+  <div class="consent-banner__inner page-width">
+    <div class="consent-banner__content">
+      <p class="consent-banner__text">
+        Wij gebruiken cookies om de website te laten werken en je bezoek te verbeteren.
+        <a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}" class="consent-banner__link">Meer informatie</a>
+      </p>
+    </div>
+    <div class="consent-banner__actions">
+      <button type="button" class="consent-banner__btn consent-banner__btn--primary" data-consent="accept" aria-label="Cookies accepteren">
+        Akkoord
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var STORAGE_KEY = 'barbezorgd_consent';
+    var banner = document.getElementById('consent-banner');
+    if (!banner) return;
+
+    function hide() {
+      banner.setAttribute('hidden', '');
+      banner.classList.remove('consent-banner--visible');
+    }
+
+    function show() {
+      banner.removeAttribute('hidden');
+      requestAnimationFrame(function() {
+        banner.classList.add('consent-banner--visible');
+      });
+    }
+
+    function accept() {
+      try { localStorage.setItem(STORAGE_KEY, 'accepted'); } catch (e) {}
+      hide();
+    }
+
+    if (localStorage.getItem(STORAGE_KEY) === 'accepted') {
+      hide();
+      return;
+    }
+
+    show();
+
+    banner.querySelector('[data-consent="accept"]').addEventListener('click', accept);
+  })();
+</script>
