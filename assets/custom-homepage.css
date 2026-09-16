@@ -519,7 +519,10 @@
   color: rgba(255,255,255,0.7);
 }
 
-.custom-pricing__card-min {
+.custom-pricing__card-min,
+/* Twee klassen, dus specifieker dan de algemene span-regel van dit blok.
+   Zo blijft het oranje accent staan zonder !important. */
+.custom-pricing__card-price-desc .custom-pricing__card-min {
   color: var(--primary-orange-text);
   font-weight: 600;
   margin-top: 0.4rem;
