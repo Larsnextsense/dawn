@@ -520,9 +520,16 @@
 }
 
 .custom-pricing__card-min {
-  color: var(--primary-orange-text) !important;
+  color: var(--primary-orange-text);
   font-weight: 600;
   margin-top: 0.4rem;
+}
+
+/* Op de donkere populaire kaart is juist het felle oranje leesbaar. Deze
+   selector is specifiek genoeg om zowel de regel hierboven als de witte
+   span-kleur van de donkere kaart te overrulen, zonder !important. */
+.custom-pricing__card--popular .custom-pricing__card-price-desc .custom-pricing__card-min {
+  color: var(--primary-orange);
 }
 
 .custom-pricing__features {
@@ -4138,7 +4145,6 @@ cart-items .cart-item__name:hover {
 /* Uitzonderingen: op de donkere kaart en kolomkop blijft het felle oranje,
    daar is het contrast juist hoog. */
 .custom-pricing__card--popular .custom-pricing__card-note,
-.custom-pricing__card--popular .custom-pricing__card-min,
 .custom-pricing__popular-note,
 .package-comparison__col-head--popular .package-comparison__col-price {
   color: var(--primary-orange);
