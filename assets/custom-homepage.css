@@ -4,6 +4,10 @@
 :root {
   --primary-orange: #f59e0b;
   --primary-orange-hover: #d97706;
+  /* Leesbare variant voor oranje TEKST op lichte vlakken. Het merkoranje
+     haalt op wit maar 2,15:1; dit haalt 4,95:1 en voldoet daarmee aan
+     WCAG AA. Het felle oranje blijft voor knoppen, vlakken en iconen. */
+  --primary-orange-text: #b45309;
   --dark-bg: #403020;
   --text-dark: #1f2937;
   --text-light: #6b7280;
@@ -4105,4 +4109,54 @@ cart-items .cart-item__name:hover {
 .search__input.field__input:focus-visible {
   outline: 3px solid var(--primary-orange);
   outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Leesbaarheid: oranje tekst op lichte vlakken
+   Het merkoranje haalde op wit 2,15:1 waar 4,5:1 nodig is. Deze teksten
+   krijgen de donkerdere tekstvariant; knoppen en donkere vlakken houden het
+   felle oranje.
+   ========================================================================== */
+
+.custom-steps__pretitle,
+.custom-steps__trust-line,
+.custom-pricing__pretitle,
+.custom-pricing__trust-line,
+.custom-pricing__card-note,
+.custom-pricing__card-min,
+.package-comparison__pretitle,
+.package-comparison__col-price,
+.reviews-feed__pretitle,
+.reviews-feed__trust-line,
+.sfeerbeelden__pretitle,
+.bp-spec__title,
+.bp-extras__eyebrow,
+.error-404__help a,
+.custom-pricing__assurance-title + .custom-pricing__assurance-text {
+  color: var(--primary-orange-text);
+}
+
+/* Uitzonderingen: op de donkere kaart en kolomkop blijft het felle oranje,
+   daar is het contrast juist hoog. */
+.custom-pricing__card--popular .custom-pricing__card-note,
+.custom-pricing__card--popular .custom-pricing__card-min,
+.custom-pricing__popular-note,
+.package-comparison__col-head--popular .package-comparison__col-price {
+  color: var(--primary-orange);
+}
+
+.custom-pricing__assurance-title + .custom-pricing__assurance-text {
+  color: var(--text-light);
+}
+
+/* Witte tekst op oranje haalde 2,15:1. Donkere tekst op oranje haalt ruim
+   9:1 en sluit aan op de knop in de hero, die dat al deed. */
+.header__btn-cta,
+.header__btn-cta:hover {
+  color: #1b130b;
+}
+
+.shopify-pc__banner__btn-accept,
+.shopify-pc__banner__btn-decline {
+  color: #1b130b !important;
 }
