@@ -50,8 +50,8 @@
       "settings": {
         "image": "shopify://shop_images/Banner-hero-barbezorgd.jpg",
         "badge_text": "#1 Mobiele Bar Service van Nederland",
-        "title": "Jouw feest,<br><span style=\"color: #F59E0B;\">koud geleverd.</span>",
-        "subtitle": "<p>Premium mobiele bar service voor elk moment. Van intieme borrels tot grote feesten. Wij regelen alles. Jij geniet.</p>",
+        "title": "Voor jouw feest,<br><span style=\"color: #F59E0B;\"> de bar bezorgd.</span>",
+        "subtitle": "<p>Een complete bar op locatie, zonder voorbereidingsstress. Wij bezorgen jouw drankenpakket, koeling en glaswerk. Jij hoeft alleen nog te genieten.</p><p></p>",
         "trust_line": "Gratis bezorging in vrijwel heel NL · Geen verborgen kosten · Bestel makkelijk online",
         "cta_label": "Bekijk pakketten",
         "cta_link": "#home-pricing",
@@ -69,8 +69,8 @@
             "step_number": "01",
             "icon_image": "shopify://shop_images/Barbezorgd_icons_Stap_1.png",
             "icon_text": "📦",
-            "title": "Kies je pakket",
-            "text": "<p>Van intiem tot groots, wij hebben het perfecte pakket voor jouw feest.</p>"
+            "title": "Kies jouw ideale bar",
+            "text": "<p>Selecteer de bar die bij jouw feest past. Van gezellige borrel tot groots evenement, wij hebben het perfecte pakket.</p>"
           }
         },
         "step2": {
@@ -79,8 +79,8 @@
             "step_number": "02",
             "icon_image": "shopify://shop_images/Barbezorgd_icons_Stap_2.png",
             "icon_text": "🚚",
-            "title": "Gratis bezorgd",
-            "text": "<p>Wij bezorgen gratis in vrijwel heel Nederland, inclusief opstellen en instructies.</p>"
+            "title": "Gratis en op tijd bezorgd",
+            "text": "<p>Geen stress op de dag zelf. Wij bezorgen gratis in vrijwel heel Nederland, inclusief opstellen en instructies.</p>"
           }
         },
         "step3": {
@@ -89,8 +89,8 @@
             "step_number": "03",
             "icon_image": "shopify://shop_images/Barbezorgd_icons-03.png",
             "icon_text": "🥂",
-            "title": "Tijd om te feesten",
-            "text": "<p>Geniet van ijskoude drankjes uit de tap. Wij regelen de rest!</p>"
+            "title": "Tijd om te genieten!",
+            "text": "<p>De bar is open! Geniet samen met je gasten van ijskoude drankjes zonder dat je ergens omkijken naar hebt.</p>"
           }
         },
         "step4": {
@@ -99,8 +99,8 @@
             "step_number": "04",
             "icon_image": "shopify://shop_images/Barbezorgd_icons_Stap_4.png",
             "icon_text": "✨",
-            "title": "Wij halen alles op",
-            "text": "<p>Na het feest halen wij alles op, inclusief de vuile glazen.</p>"
+            "title": "Wij doen de afwas",
+            "text": "<p>The day after... Wij halen de complete bar en alle lege kratten weer op. En de afwas? Die doen wij.</p>"
           }
         }
       },
@@ -127,7 +127,8 @@
           "settings": {
             "is_popular": false,
             "popular_text": "Populair",
-            "title": "Instap",
+            "popular_subtext": "",
+            "title": "De Bar basic",
             "description": "Laagdrempelig & gezellig",
             "short_description": "Alles wat je nodig hebt voor een goede borrel.",
             "price": "19,50",
@@ -140,8 +141,7 @@
             "feature_5": "Glazen & koeling inbegrepen",
             "feature_6": "",
             "button_label": "Dit pakket kiezen",
-            "button_link": "shopify://products/instap",
-            "popular_subtext": ""
+            "button_link": "shopify://products/instap"
           }
         },
         "pkg_2": {
@@ -149,7 +149,8 @@
           "settings": {
             "is_popular": true,
             "popular_text": "Populair",
-            "title": "Goed geregeld",
+            "popular_subtext": "Voor de meeste feesten is dit de beste keuze",
+            "title": "De Bar plus",
             "description": "Compleet & zorgeloos",
             "short_description": "Vol beleving, zonder gedoe.",
             "price": "24,50",
@@ -162,8 +163,7 @@
             "feature_5": "Glazen & koeling inbegrepen",
             "feature_6": "",
             "button_label": "Dit pakket kiezen",
-            "button_link": "shopify://products/goed-geregeld",
-            "popular_subtext": "Voor de meeste feesten is dit de beste keuze"
+            "button_link": "shopify://products/goed-geregeld"
           }
         },
         "pkg_3": {
@@ -171,7 +171,8 @@
           "settings": {
             "is_popular": false,
             "popular_text": "Populair",
-            "title": "All-in",
+            "popular_subtext": "",
+            "title": "De Bar compleet",
             "description": "Alles erop & eraan",
             "short_description": "Alles voor het perfecte feest.",
             "price": "29,50",
@@ -184,8 +185,7 @@
             "feature_5": "Diverse frisdranken",
             "feature_6": "Glazen & koeling inbegrepen",
             "button_label": "Dit pakket kiezen",
-            "button_link": "shopify://products/all-in",
-            "popular_subtext": ""
+            "button_link": "shopify://products/all-in"
           }
         },
         "pkg_4": {
@@ -193,7 +193,8 @@
           "settings": {
             "is_popular": false,
             "popular_text": "Populair",
-            "title": "Zero",
+            "popular_subtext": "",
+            "title": "De Bar 0.0",
             "description": "Fris & feestelijk",
             "short_description": "0.0, maar wél vol sfeer.",
             "price": "17,50",
@@ -206,8 +207,7 @@
             "feature_5": "Glazen & koeling inbegrepen",
             "feature_6": "",
             "button_label": "Dit pakket kiezen",
-            "button_link": "shopify://products/zero",
-            "popular_subtext": ""
+            "button_link": "shopify://products/zero"
           }
         },
         "assurance_bezorging": {
@@ -262,35 +262,9 @@
         "title": "Kies jouw perfecte pakket",
         "subtitle": "Van intieme borrel tot groots feest. Wij hebben voor elk moment de perfecte oplossing.",
         "trust_line": "Gratis bezorging in vrijwel heel NL · Afwaskosten inbegrepen · Geen borg",
-        "doubt_line": "Zijn er nog twijfels? Voor de meeste mensen is Goed geregeld perfect.",
+        "doubt_line": "Zijn er nog twijfels? Voor de meeste mensen is De Bar plus perfect.",
         "assurances_heading": "Bij elk pakket inbegrepen",
         "assurances_note": "Twijfel je of jouw locatie binnen ons bezorggebied valt? Bel even: 0341 700 260."
-      }
-    },
-    "reviews": {
-      "type": "reviews-feed",
-      "settings": {
-        "pretitle": "★ REVIEWS",
-        "title": "Wat onze klanten zeggen",
-        "subtitle": "<p>Meer dan 500 tevreden klanten gingen je voor</p>",
-        "trust_line": "500+ beoordelingen · 4,9 sterren op Google",
-        "show_rating_badge": true,
-        "rating_value": "4.9",
-        "rating_source": "Google Reviews",
-        "google_reviews_url": "",
-        "custom_liquid": ""
-      }
-    },
-    "cta": {
-      "type": "homepage-cta",
-      "settings": {
-        "title": "Klaar om te feesten?",
-        "subtitle": "<p>Kies je pakket en bestel direct online. Liever even overleggen? Bel ons gerust.</p>",
-        "trust_line": "Gratis bezorging in vrijwel heel NL · Geen borg · Afwas inbegrepen",
-        "button_label": "Bekijk pakketten",
-        "button_link": "#home-pricing",
-        "button_2_label": "Bel 0341 700 260",
-        "button_2_link": "tel:+31341700260"
       }
     },
     "comparison": {
@@ -299,7 +273,7 @@
         "col_instap": {
           "type": "column",
           "settings": {
-            "title": "Instap",
+            "title": "De Bar Basic",
             "price": "19,50",
             "is_popular": false,
             "popular_text": "Populair",
@@ -310,7 +284,7 @@
         "col_geregeld": {
           "type": "column",
           "settings": {
-            "title": "Goed geregeld",
+            "title": "De Bar plus",
             "price": "24,50",
             "is_popular": true,
             "popular_text": "Populair",
@@ -321,7 +295,7 @@
         "col_allin": {
           "type": "column",
           "settings": {
-            "title": "All-in",
+            "title": "De Bar compleet",
             "price": "29,50",
             "is_popular": false,
             "popular_text": "Populair",
@@ -332,7 +306,7 @@
         "col_zero": {
           "type": "column",
           "settings": {
-            "title": "Zero",
+            "title": "De Bar 0.0",
             "price": "17,50",
             "is_popular": false,
             "popular_text": "Populair",
@@ -473,6 +447,32 @@
         "subtitle": "Alle verschillen op een rij, zodat je in één oogopslag ziet wat bij jouw feest past.",
         "row_header": "Wat krijg je?",
         "note": "Bij elk pakket: gratis bezorging in vrijwel heel NL, glazen, koeling, afwas en geen borg."
+      }
+    },
+    "reviews": {
+      "type": "reviews-feed",
+      "settings": {
+        "pretitle": "★ REVIEWS",
+        "title": "Wat onze klanten zeggen",
+        "subtitle": "<p>Meer dan 500 tevreden klanten gingen je voor</p>",
+        "trust_line": "500+ beoordelingen · 4,9 sterren op Google",
+        "show_rating_badge": true,
+        "rating_value": "4.9",
+        "rating_source": "Google Reviews",
+        "google_reviews_url": "",
+        "custom_liquid": ""
+      }
+    },
+    "cta": {
+      "type": "homepage-cta",
+      "settings": {
+        "title": "Klaar om te feesten?",
+        "subtitle": "<p>Kies je pakket en bestel direct online. Liever even overleggen? Bel ons gerust.</p>",
+        "trust_line": "Gratis bezorging in vrijwel heel NL · Geen borg · Afwas inbegrepen",
+        "button_label": "Bekijk pakketten",
+        "button_link": "#home-pricing",
+        "button_2_label": "Bel 0341 700 260",
+        "button_2_link": "tel:+31341700260"
       }
     }
   },

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "contact-hero": {
@@ -13,8 +22,6 @@
       "settings": {
         "form_heading": "Stuur ons een bericht",
         "form_subtitle": "Vertel ons over je feest en we reageren binnen 24 uur.",
-        "instagram_url": "",
-        "facebook_url": "",
         "padding_top": 48,
         "padding_bottom": 48
       }

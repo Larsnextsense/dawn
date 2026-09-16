@@ -24,8 +24,8 @@
           "settings": {
             "step_number": "01",
             "icon_image": "shopify://shop_images/Barbezorgd_icons_Stap_1.png",
-            "heading": "Kies je pakket",
-            "description": "<p>Bekijk ons aanbod en kies het pakket dat perfect past bij jouw feest. Van een gezellige borrel tot een groot bedrijfsevenement — wij hebben voor ieder wat wils.</p>",
+            "heading": "Kies jou ideale bar",
+            "description": "<p>Bekijk ons aanbod en vind de bar die perfect aansluit bij jouw plannen. Of je nu een intieme borrel of een knallend bedrijfsfeest organiseert, je kiest eenvoudig de complete bar die bij jouw sfeer past.</p>",
             "item_1": "Kies uit een van onze pakketten",
             "item_2": "Selecteer het aantal personen",
             "item_3": "Voeg optionele extra's toe zoals extra dranken of een statafel"
@@ -36,8 +36,8 @@
           "settings": {
             "step_number": "02",
             "icon_image": "shopify://shop_images/Barbezorgd_icons_Stap_2.png",
-            "heading": "Gratis bezorgd in vrijwel heel Nederland",
-            "description": "<p>Wij leveren alles 1 werkdag vóór je feest en zorgen dat je precies weet wat je krijgt. Alles overzichtelijk, inclusief koeling, glaswerk en (bij tap-pakketten) de tapinstallatie.</p>",
+            "heading": "Gratis en op tijd bezorgd",
+            "description": "<p>Wij leveren alles 1 werkdag vóór je feest, zodat je niet hoeft te wachten op spullen als je gasten al bijna voor de deur staan. Alles overzichtelijk, inclusief koeling, glaswerk en (bij tap-pakketten) de tapinstallatie.</p>",
             "item_1": "Gratis bezorgd in vrijwel heel Nederland, 1 werkdag vóór het feest",
             "item_2": "Alles compleet: drank, koeling, glaswerk en opstelling",
             "item_3": "Biertap in je pakket? Die wordt geïnstalleerd en klaargezet voor gebruik."
@@ -49,7 +49,7 @@
             "step_number": "03",
             "icon_image": "shopify://shop_images/Barbezorgd_icons_Stap_3.png",
             "heading": "Tijd om te genieten!",
-            "description": "<p>Geniet van koude drankjes, lekker bier en fijne wijnen terwijl jij en je gasten het naar je zin hebben. Geen gedoe, alleen maar plezier.</p>",
+            "description": "<p>De bar is open! Geniet van koude drankjes, lekker bier en fijne wijnen terwijl jij en je gasten het naar je zin hebben. Geen gedoe, alleen maar plezier.</p>",
             "item_1": "Koud, klaar en compleet",
             "item_2": "Proost op het moment",
             "item_3": "Relax en geniet, alles is geregeld!"
@@ -60,11 +60,11 @@
           "settings": {
             "step_number": "04",
             "icon_image": "shopify://shop_images/Barbezorgd_icons_Stap_4.png",
-            "heading": "Wij halen alles weer op",
-            "description": "<p>Na je feest komen we één werkdag later alles ophalen. Het glaswerk mag gewoon vuil terug in de kratten. Jij kunt lekker nagenieten.</p>",
-            "item_1": "Ophalen: één werkdag na je feest",
+            "heading": "Wij doen de afwas",
+            "description": "<p>Het feest was een succes, nu is het tijd om na te genieten. Geen schoonmaakstress voor jou: wij komen een werkdag later langs om alles op te halen en nemen al het vuile glaswerk met ons mee.</p>",
+            "item_1": "Gratis ophaalservice, één werkdag na je feest",
             "item_2": "Vuile glazen? Geen probleem, gewoon terug in de kratten",
-            "item_3": "Tijd om na te genieten"
+            "item_3": "Drank over? Ongeopende flessen en fusten nemen we retour!"
           }
         }
       },
@@ -78,6 +78,7 @@
         "pretitle": "HOE WERKT HET",
         "title": "In 4 simpele stappen",
         "subtitle": "<p>Van bestelling tot opruimen — wij maken het zo makkelijk mogelijk zodat jij alleen maar hoeft te genieten.</p>",
+        "show_checklists": true,
         "cta_heading": "Klaar om te bestellen?",
         "cta_subtitle": "Bekijk onze pakketten en maak van jouw feest een onvergetelijk moment.",
         "cta_label": "Bekijk pakketten",
@@ -163,10 +164,17 @@
         "title": "Wij zijn Barbezorgd",
         "subtitle": "<p>De #1 mobiele bar service van Nederland. Wij maken van elk feest een onvergetelijk moment.</p>",
         "story_heading": "Ons verhaal",
-        "story_text": "<p>Barbezorgd is ontstaan op een moment dat we zelf dachten: dit kan toch makkelijker? Een feest organiseren is al druk genoeg. Je maakt honderd keuzes, je regelt van alles, en dan moet je óók nog nadenken over hoeveel drank je nodig hebt, waar je het laat en hoe je alles koel houdt.<br/><br/>Wij zagen dat het vaak juist daar misgaat: te weinig, te veel, lauwe drank, ontbrekend glaswerk, last-minute stress. Met meer dan vijf jaar ervaring in de eventwereld wisten we precies wat werkt en wat je nodig hebt voor een goed feestje. Dus besloten we het anders te doen: één plek waar alles klopt. Jij kiest een pakket, wij regelen de rest.<br/><br/>Van borrel tot bedrijfsfeest: we brengen de bar naar jouw locatie, met de juiste hoeveelheid drank, koeling en glaswerk. Alles wordt netjes geleverd en na afloop weer opgehaald. Zo kun jij doen waar het om draait: samen proosten en genieten van het moment.</p>",
+        "story_text": "<p>Barbezorgd is ontstaan uit één simpele gedachte: <em>dit kan toch makkelijker? </em>Een feest organiseren is al druk genoeg. Je maakt honderd keuzes, en op het laatste moment moet je óók nog nadenken over de inkoop, de koeling en de afwas. Met meer dan vijf jaar ervaring in de eventwereld zagen we het te vaak misgaan: lauwe drank, een tekort aan glazen of last-minute stress. Dat moest anders. Inmiddels zijn we een hecht team van drie, maar onze visie is nog precies hetzelfde als op dag één: één plek waar alles klopt. Wij nemen de stress weg, zodat jij écht kan feesten. Van intieme borrel tot groot bedrijfsfeest, wij brengen de bar naar jouw locatie. Jij kiest een pakket en wij regelen de juiste hoeveelheid drank, koeling en glaswerk. Alles wordt netjes bezorgd en na afloop – inclusief de vuile glazen – weer opgehaald. Jij kiest je pakket, wij regelen de rest. Zo kun jij doen waar het om draait: proosten en genieten van het moment.</p>",
         "story_image": "shopify://shop_images/partyhuren_lars_cas_achter_de_bar_1.jpg",
         "values_heading": "Waar wij voor staan",
-        "values_subtitle": "Vier kernwaarden die alles wat wij doen bepalen."
+        "values_subtitle": "Vier kernwaarden die alles wat wij doen bepalen.",
+        "cta_heading": "Klaar om te bestellen?",
+        "cta_subtitle": "Bekijk onze pakketten en maak van jouw feest een onvergetelijk moment.",
+        "cta_label": "Bekijk pakketten",
+        "cta_link": "shopify://collections/all",
+        "team_heading": "De mensen achter Barbezorgd",
+        "team_text": "",
+        "team_caption": ""
       }
     },
     "faq": {
@@ -182,7 +190,7 @@
           "type": "item",
           "settings": {
             "question": "Hoe bestel ik een pakket?",
-            "answer": "<p>Kies op de website het pakket dat bij jouw feest past (Instap, Goed geregeld, All-in of Zero). Vul het aantal personen in, kies eventuele extra’s en rond je aanvraag af. </p>"
+            "answer": "<p>Kies op de website het pakket dat bij jouw feest past (De Bar basis, De Bar plus, De Bar compleet of De Bar 0.0). Vul het aantal personen in, kies eventuele extra’s en rond je aanvraag af. </p>"
           }
         },
         "i2": {
@@ -300,13 +308,13 @@
         "i12"
       ],
       "settings": {
-        "pretitle": "FAQ",
-        "title": "Veelgestelde vragen",
-        "subtitle": "<p>Alles wat je wilt weten over onze service, pakketten en bezorging.</p>",
         "cta_heading": "Staat je vraag er niet bij?",
         "cta_subtitle": "Bel 0341 700 260 of stuur ons een bericht. We denken graag met je mee.",
         "cta_label": "Neem contact op",
-        "cta_link": "shopify://pages/contact"
+        "cta_link": "shopify://pages/contact",
+        "pretitle": "FAQ",
+        "title": "Veelgestelde vragen",
+        "subtitle": "<p>Alles wat je wilt weten over onze service, pakketten en bezorging.</p>"
       }
     }
   },

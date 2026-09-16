@@ -45,7 +45,24 @@
       ],
       "settings": {
         "padding_top": 36,
-        "padding_bottom": 12
+        "padding_bottom": 12,
+        "min_persons": 10,
+        "max_persons": 100,
+        "about_heading": "In het kort",
+        "specs_heading": "Dit staat er straks bij je",
+        "spec_table_title": "Bartafel",
+        "spec_table_text": "Je krijgt een stevige bartafel van 180 × 80 cm, inclusief afrok. Klaar om als bar te gebruiken.",
+        "spec_bar_title": "Bar & tap",
+        "spec_bar_text": "",
+        "spec_drinks_title": "Hoeveelheid drank",
+        "spec_drinks_text": "",
+        "spec_glasses_title": "Glaswerk & koeling",
+        "spec_glasses_text": "",
+        "specs_note": "Wijkt jouw locatie of gezelschap af? Bel 0341 700 260, we denken graag mee.",
+        "extras_display": "collapsed",
+        "extras_heading": "Iets extra’s nodig?",
+        "extras_note": "Hoeft nu niet: je kunt extra’s ook later in je winkelwagen toevoegen.",
+        "metafield_namespace": "custom"
       }
     }
   },
