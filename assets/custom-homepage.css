@@ -3942,3 +3942,167 @@ cart-items .cart-item__name:hover {
     font-size: 1.9rem;
   }
 }
+
+/* ==========================================================================
+   404 — routes terug in plaats van een doodlopende pagina
+   ========================================================================== */
+
+.error-404__body {
+  background-color: #fbf8f4;
+  padding: 6.4rem 0 7.2rem;
+}
+
+.error-404__links {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 82rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  gap: 1.6rem;
+}
+
+.error-404__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.6rem;
+  height: 100%;
+  padding: 2rem 2.4rem;
+  border-radius: 1.6rem;
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.error-404__link:hover {
+  transform: translateY(-3px);
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09);
+}
+
+.error-404__link:focus-visible {
+  outline: 3px solid var(--primary-orange);
+  outline-offset: 2px;
+}
+
+.error-404__link-title {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.error-404__link-desc {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--text-light);
+}
+
+.error-404__link-arrow {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.14);
+  color: var(--primary-orange);
+  transition: background-color 0.2s ease;
+}
+
+.error-404__link:hover .error-404__link-arrow {
+  background: var(--primary-orange);
+  color: var(--dark-bg);
+}
+
+.error-404__help {
+  margin: 3.2rem auto 0;
+  text-align: center;
+  font-size: 1.4rem;
+  color: var(--text-light);
+}
+
+.error-404__help a {
+  color: var(--primary-orange);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.error-404__help a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 749px) {
+  .error-404__body {
+    padding: 4.8rem 0 5.6rem;
+  }
+
+  .error-404__links {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Productkaarten in zoekresultaten en collectierasters
+   Deze volgden nog de standaard Dawn-opmaak en vielen uit de huisstijl.
+   ========================================================================== */
+
+.product-grid .card-wrapper,
+.search__results .card-wrapper {
+  transition: transform 0.2s ease;
+}
+
+.product-grid .card-wrapper:hover,
+.search__results .card-wrapper:hover {
+  transform: translateY(-4px);
+}
+
+.product-grid .card__media,
+.search__results .card__media {
+  border-radius: 1.4rem;
+  overflow: hidden;
+  background: #f5f0ea;
+}
+
+.product-grid .card__heading,
+.search__results .card__heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.product-grid .card__heading a,
+.search__results .card__heading a {
+  color: var(--text-dark);
+}
+
+.product-grid .price,
+.search__results .price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.product-grid .price__sale .price-item--regular,
+.search__results .price__sale .price-item--regular {
+  color: var(--text-light);
+}
+
+/* Zoekveld en filters in dezelfde ronde vormtaal als de rest van de site. */
+.search__input.field__input,
+.facets__button,
+.facets__disclosure .facets__summary {
+  border-radius: 9999px;
+}
+
+.template-search__search .search__button:focus-visible,
+.search__input.field__input:focus-visible {
+  outline: 3px solid var(--primary-orange);
+  outline-offset: 2px;
+}

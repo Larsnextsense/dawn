@@ -11,7 +11,53 @@
   "sections": {
     "main": {
       "type": "main-404",
-      "settings": {}
+      "settings": {
+        "pretitle": "404",
+        "title": "Deze pagina bestaat niet meer",
+        "subtitle": "<p>Misschien is de link verouderd of is er een typefout geslopen. Hieronder vind je de weg terug.</p>",
+        "help_text": "Kom je er niet uit? Bel ons even:",
+        "phone": "0341 700 260"
+      },
+      "blocks": {
+        "l_pakketten": {
+          "type": "link",
+          "settings": {
+            "title": "Bekijk de pakketten",
+            "text": "Van een gezellige borrel tot een groot feest",
+            "link": "shopify://collections/all"
+          }
+        },
+        "l_hoewerkt": {
+          "type": "link",
+          "settings": {
+            "title": "Hoe werkt het",
+            "text": "Van bestellen tot ophalen in vier stappen",
+            "link": "shopify://pages/hoe-werkt-het"
+          }
+        },
+        "l_faq": {
+          "type": "link",
+          "settings": {
+            "title": "Veelgestelde vragen",
+            "text": "Bezorging, borg, drank en afwas",
+            "link": "shopify://pages/faq"
+          }
+        },
+        "l_contact": {
+          "type": "link",
+          "settings": {
+            "title": "Neem contact op",
+            "text": "Even overleggen over jouw feest",
+            "link": "shopify://pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "l_pakketten",
+        "l_hoewerkt",
+        "l_faq",
+        "l_contact"
+      ]
     }
   },
   "order": [
