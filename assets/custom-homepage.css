@@ -519,9 +519,11 @@
   color: rgba(255,255,255,0.7);
 }
 
-.custom-pricing__card-min,
 /* Twee klassen, dus specifieker dan de algemene span-regel van dit blok.
-   Zo blijft het oranje accent staan zonder !important. */
+   Zo blijft het oranje accent staan zonder !important.
+   Let op: een comment TUSSEN twee selectors in een selectorlijst wordt door
+   de minifier van Shopify weggegooid, inclusief de selector erna. */
+.custom-pricing__card-min,
 .custom-pricing__card-price-desc .custom-pricing__card-min {
   color: var(--primary-orange-text);
   font-weight: 600;
