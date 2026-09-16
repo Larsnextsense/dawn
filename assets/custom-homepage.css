@@ -520,7 +520,7 @@
 }
 
 .custom-pricing__card-min {
-  color: var(--primary-orange) !important;
+  color: var(--primary-orange-text) !important;
   font-weight: 600;
   margin-top: 0.4rem;
 }
@@ -850,7 +850,7 @@ a.reviews-feed__rating-badge:hover {
 }
 
 .reviews-feed__stars {
-  color: var(--primary-orange);
+  color: var(--primary-orange-text);
   font-size: 1.6rem;
   letter-spacing: 0.1em;
   line-height: 1;
@@ -964,7 +964,7 @@ a.reviews-feed__rating-badge:hover {
 
 .reviews-feed__card-rating {
   font-size: 1.4rem;
-  color: #eab308;
+  color: var(--primary-orange-text);
   letter-spacing: 0.08em;
   line-height: 1.4;
 }
@@ -4123,7 +4123,6 @@ cart-items .cart-item__name:hover {
 .custom-pricing__pretitle,
 .custom-pricing__trust-line,
 .custom-pricing__card-note,
-.custom-pricing__card-min,
 .package-comparison__pretitle,
 .package-comparison__col-price,
 .reviews-feed__pretitle,
