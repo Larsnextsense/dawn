@@ -82,7 +82,7 @@
     </div>
 
     {%- if section.settings.team_image != blank or section.settings.team_text != blank -%}
-      <div class="about-us-page__team">
+      <div class="about-us-page__team{% if section.settings.team_text == blank %} about-us-page__team--zonder-tekst{% endif %}">
         <div class="about-us-page__team-image-wrap">
           {%- if section.settings.team_image != blank -%}
             {{

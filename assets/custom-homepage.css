@@ -4177,3 +4177,21 @@ cart-items .cart-item__name:hover {
 .shopify-pc__banner__btn-decline {
   color: #1b130b !important;
 }
+
+/* Zolang de teamtekst nog niet geschreven is, staat de kop als enige naast de
+   foto en blijft die kolom leeg. Dan oogt één gecentreerde kolom afgemaakt. */
+@media screen and (min-width: 990px) {
+  .about-us-page__team--zonder-tekst {
+    grid-template-columns: minmax(0, 68rem);
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.about-us-page__team--zonder-tekst .about-us-page__team-content {
+  order: -1;
+}
+
+.about-us-page__team--zonder-tekst .about-us-page__team-caption {
+  text-align: center;
+}
