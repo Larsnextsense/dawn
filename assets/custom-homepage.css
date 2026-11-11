@@ -46,6 +46,8 @@
      haalt op wit maar 2,15:1; dit haalt 4,95:1 en voldoet daarmee aan
      WCAG AA. Het felle oranje blijft voor knoppen, vlakken en iconen. */
   --primary-orange-text: #b45309;
+  /* Op de diepere crèmebaan haalt #b45309 maar 4,14:1; deze haalt 5,5:1. */
+  --primary-orange-text-diep: #96450A;
   --dark-bg: var(--espresso);
   --text-dark: var(--inkt);
   --text-light: var(--inkt-zacht);
@@ -4574,4 +4576,10 @@ cart-items .cart-item__name:hover {
 .package-comparison__table tbody tr:nth-child(even) .package-comparison__row-head,
 .package-comparison__table tbody tr:nth-child(even) .package-comparison__cell {
   background-color: var(--cream);
+}
+
+
+/* Op --cream-diep is het gewone tekstoranje net te licht. */
+.sfeerbeelden__pretitle {
+  color: var(--primary-orange-text-diep);
 }
