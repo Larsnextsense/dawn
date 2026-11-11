@@ -4696,3 +4696,34 @@ cart-drawer cart-remove-button svg {
   width: 1.6rem;
   height: 1.6rem;
 }
+
+/* Dawn's regel voor het prullenbak-icoon heeft dezelfde specificiteit als de
+   onze maar laadt later, dus die won. Met het element erbij (svg.icon-remove)
+   zijn we specifieker. De knop zelf kromp in de flex-kolom; vandaar flex-basis
+   en min-width. */
+cart-remove-button {
+  flex: 0 0 auto;
+  min-width: 4rem;
+}
+
+cart-remove-button svg.icon-remove,
+cart-remove-button span.svg-wrapper {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+cart-drawer cart-remove-button {
+  min-width: 3.4rem;
+}
+
+cart-drawer cart-remove-button svg.icon-remove,
+cart-drawer cart-remove-button span.svg-wrapper {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+@media screen and (max-width: 749px) {
+  cart-remove-button {
+    min-width: 4.4rem;
+  }
+}
