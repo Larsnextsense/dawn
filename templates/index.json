@@ -48,7 +48,7 @@
         "stat_4"
       ],
       "settings": {
-        "image": "shopify://shop_images/Banner-hero-barbezorgd.jpg",
+        "image": "shopify://shop_images/10_koelkast-blikjes_liggend-16x9.jpg",
         "badge_text": "#1 Mobiele Bar Service van Nederland",
         "title": "Voor jouw feest,<br><span style=\"color: #F59E0B;\"> de bar bezorgd.</span>",
         "subtitle": "<p>Een complete bar op locatie, zonder voorbereidingsstress. Wij bezorgen jouw drankenpakket, koeling en glaswerk. Jij hoeft alleen nog te genieten.</p><p></p>",
@@ -474,6 +474,75 @@
         "button_2_label": "Bel 0341 700 260",
         "button_2_link": "tel:+31341700260"
       }
+    },
+    "sfeer": {
+      "type": "sfeerbeelden",
+      "blocks": {
+        "sf_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11_setup-gras-breed_liggend-16x9.jpg",
+            "caption": "",
+            "wide": false
+          }
+        },
+        "sf_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/04_tap-close_liggend-16x9.jpg",
+            "caption": "",
+            "wide": false
+          }
+        },
+        "sf_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/06_ijsemmer-flessen_liggend-16x9.jpg",
+            "caption": "",
+            "wide": false
+          }
+        },
+        "sf_4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/13_voor-tent-barkarren_liggend-16x9.jpg",
+            "caption": "",
+            "wide": false
+          }
+        },
+        "sf_5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/07_onderzetters-glazen_liggend-16x9.jpg",
+            "caption": "",
+            "wide": false
+          }
+        },
+        "sf_6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/14_tent-lichtjes_liggend-16x9.jpg",
+            "caption": "",
+            "wide": false
+          }
+        }
+      },
+      "block_order": [
+        "sf_1",
+        "sf_2",
+        "sf_3",
+        "sf_4",
+        "sf_5",
+        "sf_6"
+      ],
+      "settings": {
+        "pretitle": "IN HET MOMENT",
+        "title": "Zo ziet het eruit bij jou op het feest",
+        "subtitle": "<p>Geen studiofoto's van kratten, maar onze eigen bar in gebruik.</p>",
+        "columns": "3",
+        "cta_label": "Bekijk pakketten",
+        "cta_link": "shopify://collections/all"
+      }
     }
   },
   "order": [
@@ -481,6 +550,7 @@
     "steps",
     "pricing",
     "comparison",
+    "sfeer",
     "reviews",
     "cta"
   ]

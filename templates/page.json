@@ -28,7 +28,8 @@
             "description": "<p>Bekijk ons aanbod en vind de bar die perfect aansluit bij jouw plannen. Of je nu een intieme borrel of een knallend bedrijfsfeest organiseert, je kiest eenvoudig de complete bar die bij jouw sfeer past.</p>",
             "item_1": "Kies uit een van onze pakketten",
             "item_2": "Selecteer het aantal personen",
-            "item_3": "Voeg optionele extra's toe zoals extra dranken of een statafel"
+            "item_3": "Voeg optionele extra's toe zoals extra dranken of een statafel",
+            "photo": "shopify://shop_images/15_bartafel-tent_liggend-16x9.jpg"
           }
         },
         "step_2": {
@@ -40,7 +41,8 @@
             "description": "<p>Wij leveren alles 1 werkdag vóór je feest, zodat je niet hoeft te wachten op spullen als je gasten al bijna voor de deur staan. Alles overzichtelijk, inclusief koeling, glaswerk en (bij tap-pakketten) de tapinstallatie.</p>",
             "item_1": "Gratis bezorgd in vrijwel heel Nederland, 1 werkdag vóór het feest",
             "item_2": "Alles compleet: drank, koeling, glaswerk en opstelling",
-            "item_3": "Biertap in je pakket? Die wordt geïnstalleerd en klaargezet voor gebruik."
+            "item_3": "Biertap in je pakket? Die wordt geïnstalleerd en klaargezet voor gebruik.",
+            "photo": "shopify://shop_images/13_voor-tent-barkarren_liggend-16x9.jpg"
           }
         },
         "step_3": {
@@ -52,7 +54,8 @@
             "description": "<p>De bar is open! Geniet van koude drankjes, lekker bier en fijne wijnen terwijl jij en je gasten het naar je zin hebben. Geen gedoe, alleen maar plezier.</p>",
             "item_1": "Koud, klaar en compleet",
             "item_2": "Proost op het moment",
-            "item_3": "Relax en geniet, alles is geregeld!"
+            "item_3": "Relax en geniet, alles is geregeld!",
+            "photo": "shopify://shop_images/01_bar-tent-avond_liggend-16x9.jpg"
           }
         },
         "step_4": {
@@ -64,7 +67,8 @@
             "description": "<p>Het feest was een succes, nu is het tijd om na te genieten. Geen schoonmaakstress voor jou: wij komen een werkdag later langs om alles op te halen en nemen al het vuile glaswerk met ons mee.</p>",
             "item_1": "Gratis ophaalservice, één werkdag na je feest",
             "item_2": "Vuile glazen? Geen probleem, gewoon terug in de kratten",
-            "item_3": "Drank over? Ongeopende flessen en fusten nemen we retour!"
+            "item_3": "Drank over? Ongeopende flessen en fusten nemen we retour!",
+            "photo": "shopify://shop_images/07_onderzetters-glazen_liggend-16x9.jpg"
           }
         }
       },
@@ -174,7 +178,8 @@
         "cta_link": "shopify://collections/all",
         "team_heading": "De mensen achter Barbezorgd",
         "team_text": "",
-        "team_caption": ""
+        "team_caption": "Het team van Barbezorgd",
+        "team_image": "shopify://shop_images/16_portret-gras_liggend-16x9.jpg"
       }
     },
     "faq": {
