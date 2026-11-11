@@ -2,6 +2,30 @@
 
 /* Global Colors & Fonts */
 :root {
+  /* ---- Ontwerpsysteem -------------------------------------------------
+     De site was gegroeid met per sectie eigen maten: acht verschillende
+     hoekafrondingen, acht sectie-paddings en tien koptitelformaten. Deze
+     tokens leggen daar een systeem onder, zodat alles hetzelfde ritme
+     krijgt zonder dat de huisstijl verandert. */
+
+  /* Verticale ruimte */
+  --ruimte-sectie: 8.8rem;
+  --ruimte-sectie-mobiel: 5.6rem;
+  --ruimte-kop: 4.8rem;
+
+  /* Vormen */
+  --radius-paneel: 2rem;
+  --radius-kaart: 1.6rem;
+  --radius-klein: 1.2rem;
+
+  /* Schaduw */
+  --schaduw-kaart: 0 10px 30px rgba(15, 23, 42, 0.05);
+  --schaduw-kaart-hover: 0 16px 40px rgba(15, 23, 42, 0.09);
+
+  /* Typografie */
+  --kop-sectie: clamp(2.8rem, 4vw, 4.2rem);
+  --kop-blok: clamp(2rem, 2.6vw, 2.6rem);
+
   --primary-orange: #f59e0b;
   --primary-orange-hover: #d97706;
   /* Leesbare variant voor oranje TEKST op lichte vlakken. Het merkoranje
@@ -269,7 +293,7 @@
   background: linear-gradient(135deg, rgba(30, 30, 30, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 1.6rem;
+  border-radius: var(--radius-kaart);
   display: flex;
   justify-content: space-between;
   padding: 3.2rem 4.8rem;
@@ -345,7 +369,7 @@
 
 /* Custom Pricing Section */
 .custom-pricing {
-  padding: 8rem 0;
+  padding: var(--ruimte-sectie) 0;
   text-align: center;
   background-color: #FAFAFA;
 }
@@ -360,7 +384,7 @@
 }
 
 .custom-pricing__title {
-  font-size: clamp(3rem, 5vw, 4.8rem);
+  font-size: var(--kop-sectie);
   font-weight: 800;
   color: var(--text-dark);
   margin: 0 0 1.6rem;
@@ -394,11 +418,11 @@
 
 .custom-pricing__card {
   background: var(--white);
-  border-radius: 2.4rem;
+  border-radius: var(--radius-paneel);
   padding: 3.2rem;
   text-align: left;
   position: relative;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  box-shadow: var(--schaduw-kaart);
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease;
@@ -625,7 +649,7 @@
 
 /* Custom Steps Section */
 .custom-steps {
-  padding: 7rem 0;
+  padding: var(--ruimte-sectie) 0;
   text-align: center;
   background-color: #ffffff;
 }
@@ -640,7 +664,7 @@
 }
 
 .custom-steps__title {
-  font-size: clamp(3rem, 4.5vw, 4.6rem);
+  font-size: var(--kop-sectie);
   font-weight: 800;
   color: var(--text-dark);
   margin: 0 0 1.2rem;
@@ -674,7 +698,7 @@
 .custom-steps__card {
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 1.6rem;
+  border-radius: var(--radius-kaart);
   padding: 2.8rem 2.6rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   text-align: center;
@@ -683,7 +707,7 @@
 
 .custom-steps__card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--schaduw-kaart-hover);
   border-color: rgba(245, 158, 11, 0.2);
 }
 
@@ -799,7 +823,7 @@
 
 /* Reviews Feed Section */
 .reviews-feed {
-  padding: 7rem 0;
+  padding: var(--ruimte-sectie) 0;
   text-align: center;
   background: #ffffff;
 }
@@ -814,7 +838,7 @@
 }
 
 .reviews-feed__title {
-  font-size: clamp(3rem, 4.5vw, 4.6rem);
+  font-size: var(--kop-sectie);
   font-weight: 800;
   color: var(--text-dark);
   margin: 0 0 1.2rem;
@@ -843,10 +867,10 @@
   align-items: center;
   gap: 1.2rem;
   padding: 1.4rem 2rem;
-  border-radius: 1.2rem;
+  border-radius: var(--radius-klein);
   background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
   border: 2px solid rgba(245, 158, 11, 0.25);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--schaduw-kaart);
   margin: 0 auto 3.2rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
@@ -904,7 +928,7 @@ a.reviews-feed__rating-badge:hover {
 
 .reviews-feed__placeholder-card {
   height: 18rem;
-  border-radius: 1.6rem;
+  border-radius: var(--radius-kaart);
   background: #f3f4f6;
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
@@ -931,7 +955,7 @@ a.reviews-feed__rating-badge:hover {
 
 .reviews-feed__card {
   background: #ffffff;
-  border-radius: 1.6rem;
+  border-radius: var(--radius-kaart);
   padding: 2rem 2.2rem;
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -943,7 +967,7 @@ a.reviews-feed__rating-badge:hover {
 
 .reviews-feed__card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--schaduw-kaart-hover);
   border-color: rgba(245, 158, 11, 0.15);
 }
 
@@ -999,7 +1023,7 @@ a.reviews-feed__rating-badge:hover {
 
 /* Instagram Feed Section */
 .instagram-feed {
-  padding: 6rem 0;
+  padding: var(--ruimte-sectie) 0;
   background: var(--dark-bg);
   color: rgba(255, 255, 255, 0.9);
 }
@@ -1023,7 +1047,7 @@ a.reviews-feed__rating-badge:hover {
 
 .instagram-feed__title {
   margin: 0;
-  font-size: clamp(2.8rem, 4vw, 4rem);
+  font-size: var(--kop-sectie);
   font-weight: 900;
   color: #ffffff;
   letter-spacing: -0.02em;
@@ -1064,7 +1088,7 @@ a.reviews-feed__rating-badge:hover {
 
 .instagram-feed__placeholder-item {
   aspect-ratio: 4 / 3;
-  border-radius: 1.2rem;
+  border-radius: var(--radius-klein);
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -1090,14 +1114,14 @@ a.reviews-feed__rating-badge:hover {
 
 /* Homepage CTA Section */
 .homepage-cta {
-  padding: 6rem 0 7rem;
+  padding: var(--ruimte-sectie) 0;
   background: var(--dark-bg);
 }
 
 .homepage-cta__inner {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 2rem;
+  border-radius: var(--radius-paneel);
   padding: 4rem 4rem;
   display: flex;
   align-items: center;
@@ -1109,7 +1133,7 @@ a.reviews-feed__rating-badge:hover {
 .homepage-cta__title {
   margin: 0 0 0.6rem;
   color: #ffffff;
-  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-size: var(--kop-blok);
   font-weight: 900;
   letter-spacing: -0.02em;
 }
@@ -1209,7 +1233,7 @@ a.reviews-feed__rating-badge:hover {
 
 /* ========== Gedeelde page hero (pakketen, hoe werkt het, over ons, faq, contact) ========== */
 .page-hero {
-  padding: 7rem 0 8rem;
+  padding: 7.2rem 0 8rem;
   background-color: var(--dark-bg);
   text-align: center;
   color: #fff;
@@ -1226,7 +1250,7 @@ a.reviews-feed__rating-badge:hover {
 
 .page-hero__title {
   margin: 0 0 1rem;
-  font-size: clamp(3.2rem, 5vw, 4.8rem);
+  font-size: var(--kop-sectie);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #fff;
@@ -1266,7 +1290,7 @@ a.reviews-feed__rating-badge:hover {
 
 /* Collections hero (pakketten pagina) – gebruikt gedeelde page-hero stijl */
 .collections-hero {
-  padding: 7rem 0 8rem;
+  padding: 7.2rem 0 8rem;
   background: var(--dark-bg);
   text-align: center;
   color: #fff;
@@ -1283,7 +1307,7 @@ a.reviews-feed__rating-badge:hover {
 
 .collections-hero .collections-hero__title {
   margin: 0 0 1rem;
-  font-size: clamp(3.2rem, 5vw, 4.8rem);
+  font-size: var(--kop-sectie);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #fff;
@@ -1306,8 +1330,8 @@ a.reviews-feed__rating-badge:hover {
   max-width: 900px;
   margin: 0 auto;
   background: #ffffff;
-  border-radius: 1.6rem;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  border-radius: var(--radius-kaart);
+  box-shadow: var(--schaduw-kaart);
   padding: 2.4rem 3rem;
   display: flex;
   align-items: center;
@@ -1477,7 +1501,7 @@ cart-items .title-wrapper-with-link {
 
 cart-items .title.title--primary {
   margin: 0;
-  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-size: var(--kop-blok);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-dark);
@@ -1687,7 +1711,7 @@ cart-items .cart-item__name:hover {
 
 .cart-item__extras {
   background: rgba(245, 158, 11, 0.06);
-  border-radius: 1rem;
+  border-radius: var(--radius-klein);
   padding: 1.2rem 1.4rem;
   margin-top: 0.8rem;
 }
@@ -1866,8 +1890,8 @@ cart-items .cart-item__name:hover {
 .contact-barbezorgd__form-card,
 .contact-barbezorgd__card {
   background: #fff;
-  border-radius: 1.6rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-kaart);
+  box-shadow: var(--schaduw-kaart);
   padding: 2.4rem 2.8rem;
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -2096,7 +2120,7 @@ cart-items .cart-item__name:hover {
 /* ========== Over ons (pagina) ========== */
 .about-us-page__body {
   background-color: #fbf8f4;
-  padding: 5rem 0 6rem;
+  padding: var(--ruimte-sectie) 0;
 }
 
 .about-us-page__story {
@@ -2151,7 +2175,7 @@ cart-items .cart-item__name:hover {
 .about-us-page__story-image {
   width: 100%;
   height: auto;
-  border-radius: 1.2rem;
+  border-radius: var(--radius-klein);
   display: block;
   object-fit: cover;
 }
@@ -2159,7 +2183,7 @@ cart-items .cart-item__name:hover {
 .about-us-page__story-image--placeholder {
   aspect-ratio: 4/3;
   background: rgba(0, 0, 0, 0.06);
-  border-radius: 1.2rem;
+  border-radius: var(--radius-klein);
 }
 
 .about-us-page__story-image--placeholder .placeholder-svg {
@@ -2191,7 +2215,7 @@ cart-items .cart-item__name:hover {
 
 .about-us-page__stat-value {
   display: block;
-  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-size: var(--kop-blok);
   font-weight: 800;
   color: var(--primary-orange);
   line-height: 1.2;
@@ -2211,7 +2235,7 @@ cart-items .cart-item__name:hover {
 
 .about-us-page__values-title {
   margin: 0 0 0.6rem;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-size: var(--kop-blok);
   font-weight: 800;
   color: var(--text-dark);
 }
@@ -2246,10 +2270,10 @@ cart-items .cart-item__name:hover {
 
 .about-us-page__value-card {
   background: #fff;
-  border-radius: 1.6rem;
+  border-radius: var(--radius-kaart);
   padding: 2.4rem 2rem;
   text-align: left;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--schaduw-kaart);
   border: 1px solid rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -2286,7 +2310,7 @@ cart-items .cart-item__name:hover {
 /* ========== Hoe werkt het (pagina) — tijdlijn ========== */
 .how-it-works-page__body {
   background-color: #fbf8f4;
-  padding: 6.4rem 0 7.2rem;
+  padding: var(--ruimte-sectie) 0;
 }
 
 .hiw-timeline {
@@ -2350,9 +2374,9 @@ cart-items .cart-item__name:hover {
   align-items: center;
   background: var(--white);
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 1.6rem;
+  border-radius: var(--radius-kaart);
   padding: 2.8rem 3.2rem;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  box-shadow: var(--schaduw-kaart);
 }
 
 @media screen and (min-width: 750px) {
@@ -2367,7 +2391,7 @@ cart-items .cart-item__name:hover {
 
 .hiw-step__title {
   margin: 0 0 0.8rem;
-  font-size: clamp(1.9rem, 2.4vw, 2.4rem);
+  font-size: var(--kop-blok);
   font-weight: 800;
   letter-spacing: -0.01em;
   color: var(--text-dark);
@@ -2425,13 +2449,13 @@ cart-items .cart-item__name:hover {
   height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  border-radius: 1.2rem;
+  border-radius: var(--radius-klein);
 }
 
 .hiw-step__media--icon {
   background: #fdf6e7;
   border: 1px solid rgba(245, 158, 11, 0.25);
-  border-radius: 1.2rem;
+  border-radius: var(--radius-klein);
   padding: 1.6rem;
 }
 
@@ -2478,7 +2502,7 @@ cart-items .cart-item__name:hover {
 .bb-page-cta {
   margin-top: 5.6rem;
   padding: 4rem 3.2rem;
-  border-radius: 2.4rem;
+  border-radius: var(--radius-paneel);
   background: var(--dark-bg);
   color: var(--white);
   text-align: center;
@@ -2486,7 +2510,7 @@ cart-items .cart-item__name:hover {
 
 .bb-page-cta__title {
   margin: 0 0 1.2rem;
-  font-size: clamp(2.2rem, 3vw, 3rem);
+  font-size: var(--kop-blok);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--white);
@@ -2522,7 +2546,7 @@ cart-items .cart-item__name:hover {
 /* ========== FAQ-pagina ========== */
 .faq-page__body {
   background-color: #fbf8f4;
-  padding: 5rem 0 6rem;
+  padding: var(--ruimte-sectie) 0;
 }
 
 .faq-page__container {
@@ -2555,7 +2579,7 @@ cart-items .cart-item__name:hover {
 .faq-page__item {
   margin-top: 0;
   border: none;
-  border-radius: 1.2rem;
+  border-radius: var(--radius-klein);
   background: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   border: 1px solid rgba(0, 0, 0, 0.06);
@@ -2865,7 +2889,7 @@ cart-items .cart-item__name:hover {
 }
 
 .product-losse__media {
-  border-radius: 1.2rem;
+  border-radius: var(--radius-klein);
   overflow: hidden;
   background: #f0ebe5;
   aspect-ratio: 1;
@@ -2879,7 +2903,7 @@ cart-items .cart-item__name:hover {
 }
 
 .product-losse__placeholder {
-  border-radius: 1.2rem;
+  border-radius: var(--radius-klein);
   aspect-ratio: 1;
   background: #ebe6e0;
   display: flex;
@@ -2943,7 +2967,7 @@ cart-items .cart-item__name:hover {
 
 .product-losse__card {
   background: #fff;
-  border-radius: 1.8rem;
+  border-radius: var(--radius-kaart);
   padding: 2.4rem 2rem;
   box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
   border: 1px solid rgba(0, 0, 0, 0.04);
@@ -2951,7 +2975,7 @@ cart-items .cart-item__name:hover {
 
 .product-losse__title {
   margin: 0 0 1rem;
-  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-size: var(--kop-blok);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-dark);
@@ -3071,7 +3095,7 @@ cart-items .cart-item__name:hover {
 .product-losse__info-box {
   background: #fefaf3;
   border: 1px solid rgba(245, 158, 11, 0.25);
-  border-radius: 1rem;
+  border-radius: var(--radius-klein);
   padding: 1.4rem 1.6rem;
   margin-bottom: 1.2rem;
 }
@@ -3111,10 +3135,10 @@ cart-items .cart-item__name:hover {
 
 .how-it-works-page__photo {
   width: 100%;
-  border-radius: 1.6rem;
+  border-radius: var(--radius-kaart);
   overflow: hidden;
   background: #f5ecd6;
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+  box-shadow: var(--schaduw-kaart);
 }
 
 .how-it-works-page__photo-img {
@@ -3163,8 +3187,8 @@ cart-items .cart-item__name:hover {
   height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  border-radius: 1.6rem;
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+  border-radius: var(--radius-kaart);
+  box-shadow: var(--schaduw-kaart);
 }
 
 .about-us-page__team-image--placeholder {
@@ -3204,7 +3228,7 @@ cart-items .cart-item__name:hover {
 }
 
 .about-us-page__team-title {
-  font-size: clamp(2.4rem, 3.5vw, 3.4rem);
+  font-size: var(--kop-blok);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-dark);
@@ -3251,7 +3275,7 @@ cart-items .cart-item__name:hover {
    ========================================================================== */
 
 .package-comparison {
-  padding: 8rem 0;
+  padding: var(--ruimte-sectie) 0;
   background-color: var(--white);
 }
 
@@ -3270,7 +3294,7 @@ cart-items .cart-item__name:hover {
 }
 
 .package-comparison__title {
-  font-size: clamp(2.6rem, 4vw, 4rem);
+  font-size: var(--kop-sectie);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-dark);
@@ -3289,9 +3313,9 @@ cart-items .cart-item__name:hover {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 1.6rem;
+  border-radius: var(--radius-kaart);
   background: var(--white);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--schaduw-kaart);
 }
 
 .package-comparison__scroller:focus-visible {
@@ -3506,7 +3530,7 @@ cart-items .cart-item__name:hover {
    ========================================================================== */
 
 .sfeerbeelden {
-  padding: 8rem 0;
+  padding: var(--ruimte-sectie) 0;
   background-color: #faf7f2;
 }
 
@@ -3525,7 +3549,7 @@ cart-items .cart-item__name:hover {
 }
 
 .sfeerbeelden__title {
-  font-size: clamp(2.6rem, 4vw, 4rem);
+  font-size: var(--kop-sectie);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-dark);
@@ -3554,7 +3578,7 @@ cart-items .cart-item__name:hover {
 
 .sfeerbeelden__item {
   margin: 0;
-  border-radius: 1.6rem;
+  border-radius: var(--radius-kaart);
   overflow: hidden;
   background: var(--white);
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
@@ -3682,9 +3706,9 @@ cart-items .cart-item__name:hover {
   max-width: 96rem;
   background: var(--white);
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 2.4rem;
+  border-radius: var(--radius-paneel);
   padding: 3.2rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--schaduw-kaart);
   text-align: left;
 }
 
@@ -3763,7 +3787,7 @@ cart-items .cart-item__name:hover {
   }
 
   .custom-pricing__doubt {
-    border-radius: 1.6rem;
+    border-radius: var(--radius-kaart);
     font-size: 1.4rem;
   }
 }
@@ -3872,7 +3896,7 @@ cart-items .cart-item__name:hover {
    de hero op de homepage. */
 .about-us-page__stats {
   background: linear-gradient(135deg, rgba(30, 30, 30, 0.96) 0%, rgba(10, 10, 10, 0.98) 100%);
-  border-radius: 2rem;
+  border-radius: var(--radius-paneel);
   padding: 3.2rem 4rem;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
   gap: 2.4rem;
@@ -3901,13 +3925,13 @@ cart-items .cart-item__name:hover {
 
 .about-us-page__value-card {
   border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  box-shadow: var(--schaduw-kaart);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .about-us-page__value-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09);
+  box-shadow: var(--schaduw-kaart-hover);
 }
 
 .about-us-page__team,
@@ -3972,7 +3996,7 @@ cart-items .cart-item__name:hover {
 
 .error-404__body {
   background-color: #fbf8f4;
-  padding: 6.4rem 0 7.2rem;
+  padding: var(--ruimte-sectie) 0;
 }
 
 .error-404__links {
@@ -3992,10 +4016,10 @@ cart-items .cart-item__name:hover {
   gap: 1.6rem;
   height: 100%;
   padding: 2rem 2.4rem;
-  border-radius: 1.6rem;
+  border-radius: var(--radius-kaart);
   background: var(--white);
   border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  box-shadow: var(--schaduw-kaart);
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
@@ -4003,7 +4027,7 @@ cart-items .cart-item__name:hover {
 .error-404__link:hover {
   transform: translateY(-3px);
   border-color: rgba(245, 158, 11, 0.4);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09);
+  box-shadow: var(--schaduw-kaart-hover);
 }
 
 .error-404__link:focus-visible {
@@ -4088,7 +4112,7 @@ cart-items .cart-item__name:hover {
 
 .product-grid .card__media,
 .search__results .card__media {
-  border-radius: 1.4rem;
+  border-radius: var(--radius-kaart);
   overflow: hidden;
   background: #f5f0ea;
 }
@@ -4194,4 +4218,65 @@ cart-items .cart-item__name:hover {
 
 .about-us-page__team--zonder-tekst .about-us-page__team-caption {
   text-align: center;
+}
+
+
+/* ==========================================================================
+   Ritme op kleine schermen: alle secties dezelfde verticale maat
+   ========================================================================== */
+
+@media screen and (max-width: 749px) {
+  .custom-pricing,
+  .custom-steps,
+  .reviews-feed,
+  .instagram-feed,
+  .homepage-cta,
+  .package-comparison,
+  .sfeerbeelden,
+  .about-us-page__body,
+  .how-it-works-page__body,
+  .faq-page__body,
+  .error-404__body {
+    padding: var(--ruimte-sectie-mobiel) 0;
+  }
+
+  .page-hero,
+  .collections-hero {
+    padding: 4.8rem 0 5.6rem;
+  }
+}
+
+
+/* ==========================================================================
+   Eén afstand tussen sectiekop en inhoud
+   Dit liep uiteen van 1,6rem tot 4rem, waardoor de ene sectie strak aanvoelde
+   en de volgende los. Nu overal hetzelfde, met meer lucht dan voorheen.
+   ========================================================================== */
+
+.custom-pricing__trust-line,
+.custom-steps__trust-line {
+  margin-bottom: var(--ruimte-kop);
+}
+
+.reviews-feed__trust-line {
+  margin-bottom: 2.4rem;
+}
+
+.package-comparison__header,
+.sfeerbeelden__header {
+  margin-bottom: var(--ruimte-kop);
+}
+
+.about-us-page__values-subtitle {
+  margin-bottom: var(--ruimte-kop);
+}
+
+@media screen and (max-width: 749px) {
+  .custom-pricing__trust-line,
+  .custom-steps__trust-line,
+  .package-comparison__header,
+  .sfeerbeelden__header,
+  .about-us-page__values-subtitle {
+    margin-bottom: 3.2rem;
+  }
 }
