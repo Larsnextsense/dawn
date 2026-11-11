@@ -16,7 +16,23 @@
         {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
       </div>
     {%- endif -%}
-    <div class="custom-hero__overlay"></div>
+    {%- liquid
+      case section.settings.overlay_strength
+        when 'licht'
+          assign overlay_top = '0.10'
+          assign overlay_bottom = '0.45'
+        when 'donker'
+          assign overlay_top = '0.45'
+          assign overlay_bottom = '0.85'
+        else
+          assign overlay_top = '0.25'
+          assign overlay_bottom = '0.65'
+      endcase
+    -%}
+    <div
+      class="custom-hero__overlay"
+      style="background: linear-gradient(to bottom, rgba(0,0,0,{{ overlay_top }}) 0%, rgba(0,0,0,{{ overlay_bottom }}) 100%);"
+    ></div>
   </div>
 
   <div class="custom-hero__content page-width">
@@ -82,6 +98,18 @@
       "type": "image_picker",
       "id": "image",
       "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "overlay_strength",
+      "label": "Donkerte over de foto",
+      "info": "Een lichte foto kan een donkerder waas hebben; bij een donkere foto zet je dit lichter, anders wordt hij bijna zwart.",
+      "options": [
+        { "value": "licht", "label": "Licht" },
+        { "value": "gemiddeld", "label": "Gemiddeld" },
+        { "value": "donker", "label": "Donker" }
+      ],
+      "default": "gemiddeld"
     },
     {
       "type": "text",

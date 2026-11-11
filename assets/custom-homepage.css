@@ -75,9 +75,6 @@
 /* Custom Hero Section */
 .custom-hero {
   position: relative;
-  /* Vaste donkere ondergrond: de titel is wit, dus zonder deze kleur is de tekst
-     onleesbaar zolang de achtergrondfoto nog niet geladen is. */
-  background-color: #2a2118;
   min-height: 80vh;
   display: flex;
   flex-direction: column;
@@ -96,6 +93,11 @@
   width: 100%;
   height: 100%;
   z-index: -1;
+  /* Donkere ondergrond zodat de witte titel leesbaar is zolang de foto nog
+     niet geladen is. Deze kleur hoort op DEZE laag en niet op .custom-hero:
+     die laag staat op z-index -1 en verdwijnt dan achter de achtergrondkleur
+     van de sectie, waardoor de foto onzichtbaar wordt. */
+  background-color: #2a2118;
 }
 
 .custom-hero__image,
@@ -2420,7 +2422,7 @@ cart-items .cart-item__name:hover {
 .hiw-step__photo {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 1.2rem;
 }
@@ -3157,7 +3159,7 @@ cart-items .cart-item__name:hover {
 .about-us-page__team-image--placeholder {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
   border-radius: 1.6rem;
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
@@ -3565,8 +3567,13 @@ cart-items .cart-item__name:hover {
 .sfeerbeelden__img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
+}
+
+/* Dubbelbrede cellen krijgen de liggende versie van de foto. */
+.sfeerbeelden__item--wide .sfeerbeelden__img {
+  aspect-ratio: 16 / 9;
 }
 
 .sfeerbeelden__placeholder {
@@ -3574,7 +3581,7 @@ cart-items .cart-item__name:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   background: #f1ebe1;
   color: rgba(31, 41, 55, 0.25);
 }
