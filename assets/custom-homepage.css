@@ -4680,3 +4680,19 @@ cart-drawer cart-remove-button {
     height: 4.4rem;
   }
 }
+
+/* Dawn geeft het prullenbak-icoon een eigen maat via .icon; die moet hier
+   overruled worden, anders blijft het 15px in een knop van 40px. */
+cart-remove-button .svg-wrapper,
+cart-remove-button .icon,
+cart-remove-button svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+cart-drawer cart-remove-button .svg-wrapper,
+cart-drawer cart-remove-button .icon,
+cart-drawer cart-remove-button svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
