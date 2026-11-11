@@ -3863,8 +3863,7 @@ cart-items .cart-item__name:hover {
   margin-top: 0.2rem;
   font-size: 1.1rem;
   font-weight: 500;
-  color: var(--primary-orange);
-  white-space: nowrap;
+  color: var(--primary-orange-text);
 }
 
 #cart-errors:not(:empty),
@@ -4582,4 +4581,102 @@ cart-items .cart-item__name:hover {
 /* Op --cream-diep is het gewone tekstoranje net te licht. */
 .sfeerbeelden__pretitle {
   color: var(--primary-orange-text-diep);
+}
+
+/* ==========================================================================
+   Winkelwagen-drawer: compacter dan de winkelwagenpagina
+   De drawer is maar 369px breed. Met "Aantal personen" en "Minimaal 20"
+   allebei op nowrap werd de tabel 408px en kreeg het paneel een
+   horizontale schuifbalk.
+   ========================================================================== */
+
+.cart-item__quantity-label {
+  white-space: normal;
+}
+
+cart-drawer .cart-item__quantity-label {
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+cart-drawer .cart-item__quantity-min {
+  display: inline;
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+cart-drawer .cart-item__quantity-label .cart-item__quantity-min::before {
+  content: '· ';
+}
+
+/* De drawer volgt het kleurenschema van de theme; forceer daar geen eigen
+   tekstkleuren, anders staat donkere tekst op een donker paneel als het
+   schema ooit weer naar donker gaat. */
+cart-drawer .cart-item__name,
+cart-drawer .cart-items thead th {
+  color: inherit;
+}
+
+cart-drawer .cart-item__name:hover {
+  color: var(--primary-orange-text);
+}
+
+/* ==========================================================================
+   Verwijderknop in de winkelwagen
+   Het prullenbakje was 15x15 op 75% dekking in een vak van 36x49: nauwelijks
+   te zien en te klein om goed te raken. Nu een herkenbare ronde knop met een
+   volwaardig aanraakvlak, die rood kleurt zodra je eroverheen gaat.
+   ========================================================================== */
+
+cart-remove-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--cream-diep);
+  color: var(--inkt);
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+cart-remove-button a,
+cart-remove-button button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  color: inherit;
+}
+
+cart-remove-button svg,
+cart-remove-button .icon-remove {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+cart-remove-button:hover {
+  background: #FDECEC;
+  color: #B42318;
+}
+
+cart-remove-button:focus-within {
+  outline: 3px solid var(--primary-orange);
+  outline-offset: 2px;
+}
+
+/* In de smalle drawer iets compacter, maar nog steeds goed te raken. */
+cart-drawer cart-remove-button {
+  width: 3.4rem;
+  height: 3.4rem;
+}
+
+@media screen and (max-width: 749px) {
+  cart-remove-button {
+    width: 4.4rem;
+    height: 4.4rem;
+  }
 }
