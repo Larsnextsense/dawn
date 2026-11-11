@@ -23,8 +23,22 @@
   --schaduw-kaart-hover: 0 16px 40px rgba(15, 23, 42, 0.09);
 
   /* Typografie */
-  --kop-sectie: clamp(2.8rem, 4vw, 4.2rem);
-  --kop-blok: clamp(2rem, 2.6vw, 2.6rem);
+  --kop-sectie: clamp(3.2rem, 5vw, 5.2rem);
+  --kop-blok: clamp(2.2rem, 2.8vw, 2.9rem);
+
+  /* ---- Palet ----------------------------------------------------------
+     De neutralen waren koel (#1f2937 blauwgrijs, #6b7280) tegen een warm
+     bruin/oranje palet. Dat vloekt subtiel op elke pagina. Nu warme
+     neutralen, een diepere espressotint in plaats van het modderige bruin,
+     en twee duidelijke vlakken in plaats van zes gebroken-wittinten. */
+  --espresso: #17110D;
+  --espresso-zacht: #241B14;
+  --cream: #FAF6EF;
+  --cream-diep: #F1E8DA;
+  --inkt: #17110D;
+  --inkt-zacht: #6E5F52;
+  --lijn: rgba(23, 17, 13, 0.12);
+  --lijn-zacht: rgba(23, 17, 13, 0.07);
 
   --primary-orange: #f59e0b;
   --primary-orange-hover: #d97706;
@@ -32,9 +46,9 @@
      haalt op wit maar 2,15:1; dit haalt 4,95:1 en voldoet daarmee aan
      WCAG AA. Het felle oranje blijft voor knoppen, vlakken en iconen. */
   --primary-orange-text: #b45309;
-  --dark-bg: #403020;
-  --text-dark: #1f2937;
-  --text-light: #6b7280;
+  --dark-bg: var(--espresso);
+  --text-dark: var(--inkt);
+  --text-light: var(--inkt-zacht);
   --white: #ffffff;
 }
 
@@ -121,7 +135,7 @@
      niet geladen is. Deze kleur hoort op DEZE laag en niet op .custom-hero:
      die laag staat op z-index -1 en verdwijnt dan achter de achtergrondkleur
      van de sectie, waardoor de foto onzichtbaar wordt. */
-  background-color: #2a2118;
+  background-color: var(--espresso);
 }
 
 .custom-hero__image,
@@ -229,7 +243,6 @@
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  box-shadow: 0 6px 0 #b45309;
   transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -237,7 +250,6 @@
   background-color: var(--primary-orange-hover);
   color: #1b130b;
   transform: translateY(2px);
-  box-shadow: 0 4px 0 #b45309;
 }
 
 .custom-hero__cta:focus-visible {
@@ -371,7 +383,7 @@
 .custom-pricing {
   padding: var(--ruimte-sectie) 0;
   text-align: center;
-  background-color: #FAFAFA;
+  background-color: var(--cream);
 }
 
 .custom-pricing__pretitle {
@@ -607,14 +619,12 @@
   font-weight: 700;
   font-size: 1.5rem;
   transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .custom-pricing__btn:hover {
-  background-color: #2D2216;
+  background-color: var(--espresso);
   color: var(--white);
   transform: translateY(2px);
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .custom-pricing__btn:focus-visible {
@@ -625,14 +635,12 @@
 .custom-pricing__card--popular .custom-pricing__btn {
   background-color: var(--primary-orange);
   color: var(--dark-bg);
-  box-shadow: 0 6px 0 #b45309;
   font-weight: 800;
 }
 
 .custom-pricing__card--popular .custom-pricing__btn:hover {
   background-color: var(--primary-orange-hover);
   transform: translateY(2px);
-  box-shadow: 0 4px 0 #b45309;
 }
 
 @media screen and (max-width: 1200px) {
@@ -794,14 +802,12 @@
   font-size: 1.4rem;
   text-decoration: none;
   transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .custom-steps__cta:hover {
-  background-color: #2D2216;
+  background-color: var(--espresso);
   color: #fff;
   transform: translateY(2px);
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .custom-steps__cta:focus-visible {
@@ -929,7 +935,7 @@ a.reviews-feed__rating-badge:hover {
 .reviews-feed__placeholder-card {
   height: 18rem;
   border-radius: var(--radius-kaart);
-  background: #f3f4f6;
+  background: var(--cream-diep);
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
@@ -1181,14 +1187,12 @@ a.reviews-feed__rating-badge:hover {
 .homepage-cta__button--primary {
   background-color: var(--primary-orange);
   color: #1b130b;
-  box-shadow: 0 6px 0 #b45309;
 }
 
 .homepage-cta__button--primary:hover {
   background-color: var(--primary-orange-hover);
   color: #1b130b;
   transform: translateY(2px);
-  box-shadow: 0 4px 0 #b45309;
 }
 
 .homepage-cta__button--primary:focus-visible {
@@ -1323,7 +1327,7 @@ a.reviews-feed__rating-badge:hover {
 /* Pakketten maatwerk CTA (witte kaart) */
 .packages-custom-cta {
   padding: 4rem 0 5rem;
-  background: #fafafa;
+  background: var(--cream);
 }
 
 .packages-custom-cta__card {
@@ -1364,7 +1368,7 @@ a.reviews-feed__rating-badge:hover {
 }
 
 .packages-custom-cta__button:hover {
-  background: #f3f4f6;
+  background: var(--cream-diep);
 }
 
 @media screen and (max-width: 750px) {
@@ -1453,13 +1457,11 @@ a.reviews-feed__rating-badge:hover {
 .consent-banner__btn--primary {
   background-color: var(--primary-orange);
   color: #1b130b;
-  box-shadow: 0 4px 0 #b45309;
 }
 
 .consent-banner__btn--primary:hover {
   background-color: var(--primary-orange-hover);
   transform: translateY(1px);
-  box-shadow: 0 2px 0 #b45309;
 }
 
 .consent-banner__btn--primary:active {
@@ -1584,7 +1586,6 @@ cart-items .cart-item__name:hover {
   border: none;
   padding: 1.4rem 2rem;
   border-radius: 9999px;
-  box-shadow: 0 6px 0 #b45309;
   transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
 }
 
@@ -1592,7 +1593,6 @@ cart-items .cart-item__name:hover {
 .cart__footer .cart__checkout-button:hover:not(:disabled) {
   background-color: var(--primary-orange-hover) !important;
   transform: translateY(1px);
-  box-shadow: 0 4px 0 #b45309;
 }
 
 #main-cart-footer .cart__checkout-button:disabled,
@@ -1622,7 +1622,6 @@ cart-items .cart-item__name:hover {
   border: none;
   padding: 1.4rem 2rem;
   border-radius: 9999px;
-  box-shadow: 0 6px 0 #b45309;
   transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
 }
 
@@ -1630,7 +1629,6 @@ cart-items .cart-item__name:hover {
 .cart-drawer #CartDrawer-Checkout:hover:not(:disabled) {
   background-color: var(--primary-orange-hover) !important;
   transform: translateY(1px);
-  box-shadow: 0 4px 0 #b45309;
 }
 
 .cart-drawer .drawer__heading {
@@ -1841,14 +1839,12 @@ cart-items .cart-item__name:hover {
   letter-spacing: 0.06em;
   border: none;
   border-radius: 9999px;
-  box-shadow: 0 4px 0 #b45309;
 }
 
 #cart-notification.cart-notification .button--primary:hover,
 #cart-notification .cart-notification__links .button--primary:hover {
   background-color: var(--primary-orange-hover) !important;
   transform: translateY(1px);
-  box-shadow: 0 2px 0 #b45309;
 }
 
 #cart-notification .button--secondary {
@@ -1870,7 +1866,7 @@ cart-items .cart-item__name:hover {
 
 /* ========== Contactpagina (Barbezorgd) ========== */
 .contact-barbezorgd {
-  background-color: #fbf8f4;
+  background-color: var(--cream);
 }
 
 .contact-barbezorgd__layout {
@@ -1989,13 +1985,11 @@ cart-items .cart-item__name:hover {
   cursor: pointer;
   margin-top: 0.8rem;
   transition: background-color 0.2s ease, transform 0.1s ease;
-  box-shadow: 0 4px 0 #b45309;
 }
 
 .contact-barbezorgd__submit:hover {
   background-color: var(--primary-orange-hover);
   transform: translateY(1px);
-  box-shadow: 0 2px 0 #b45309;
 }
 
 .contact-barbezorgd__sidebar {
@@ -2102,14 +2096,12 @@ cart-items .cart-item__name:hover {
   font-size: 1.4rem;
   text-decoration: none;
   transition: background-color 0.2s ease, transform 0.1s ease;
-  box-shadow: 0 4px 0 #b45309;
 }
 
 .contact-barbezorgd__call-btn:hover {
   background-color: var(--primary-orange-hover);
   color: #1b130b;
   transform: translateY(1px);
-  box-shadow: 0 2px 0 #b45309;
 }
 
 .contact-barbezorgd__call-btn svg {
@@ -2119,7 +2111,7 @@ cart-items .cart-item__name:hover {
 
 /* ========== Over ons (pagina) ========== */
 .about-us-page__body {
-  background-color: #fbf8f4;
+  background-color: var(--cream);
   padding: var(--ruimte-sectie) 0;
 }
 
@@ -2309,7 +2301,7 @@ cart-items .cart-item__name:hover {
 
 /* ========== Hoe werkt het (pagina) — tijdlijn ========== */
 .how-it-works-page__body {
-  background-color: #fbf8f4;
+  background-color: var(--cream);
   padding: var(--ruimte-sectie) 0;
 }
 
@@ -2453,7 +2445,7 @@ cart-items .cart-item__name:hover {
 }
 
 .hiw-step__media--icon {
-  background: #fdf6e7;
+  background: var(--cream);
   border: 1px solid rgba(245, 158, 11, 0.25);
   border-radius: var(--radius-klein);
   padding: 1.6rem;
@@ -2545,7 +2537,7 @@ cart-items .cart-item__name:hover {
 
 /* ========== FAQ-pagina ========== */
 .faq-page__body {
-  background-color: #fbf8f4;
+  background-color: var(--cream);
   padding: var(--ruimte-sectie) 0;
 }
 
@@ -2849,7 +2841,7 @@ cart-items .cart-item__name:hover {
 
 /* ========== Losse producten (fusten, kratten, etc.) ========== */
 .product-losse {
-  background-color: #faf7f2;
+  background-color: var(--cream);
 }
 
 .product-losse__inner {
@@ -2891,7 +2883,7 @@ cart-items .cart-item__name:hover {
 .product-losse__media {
   border-radius: var(--radius-klein);
   overflow: hidden;
-  background: #f0ebe5;
+  background: var(--cream-diep);
   aspect-ratio: 1;
 }
 
@@ -2905,7 +2897,7 @@ cart-items .cart-item__name:hover {
 .product-losse__placeholder {
   border-radius: var(--radius-klein);
   aspect-ratio: 1;
-  background: #ebe6e0;
+  background: var(--cream-diep);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3024,7 +3016,7 @@ cart-items .cart-item__name:hover {
   height: 44px;
   padding: 0;
   border: none;
-  background: #f5f0ea;
+  background: var(--cream);
   color: var(--text-dark);
   font-size: 1.4rem;
   cursor: pointer;
@@ -3032,7 +3024,7 @@ cart-items .cart-item__name:hover {
 }
 
 .product-losse__qty-input .quantity__button:hover {
-  background: #ebe5dd;
+  background: var(--cream-diep);
 }
 
 .product-losse__qty-input .quantity__input {
@@ -3060,14 +3052,12 @@ cart-items .cart-item__name:hover {
   background: var(--primary-orange);
   color: #1b130b;
   cursor: pointer;
-  box-shadow: 0 4px 0 #b45309;
   transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .product-losse__submit:hover:not(:disabled) {
   background: var(--primary-orange-hover);
   transform: translateY(1px);
-  box-shadow: 0 3px 0 #b45309;
 }
 
 .product-losse__submit:disabled {
@@ -3093,7 +3083,7 @@ cart-items .cart-item__name:hover {
 }
 
 .product-losse__info-box {
-  background: #fefaf3;
+  background: var(--cream-diep);
   border: 1px solid rgba(245, 158, 11, 0.25);
   border-radius: var(--radius-klein);
   padding: 1.4rem 1.6rem;
@@ -3137,7 +3127,7 @@ cart-items .cart-item__name:hover {
   width: 100%;
   border-radius: var(--radius-kaart);
   overflow: hidden;
-  background: #f5ecd6;
+  background: var(--cream-diep);
   box-shadow: var(--schaduw-kaart);
 }
 
@@ -3196,7 +3186,7 @@ cart-items .cart-item__name:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f1ebe1;
+  background: var(--cream-diep);
   color: rgba(31, 41, 55, 0.25);
   overflow: hidden;
 }
@@ -3335,7 +3325,7 @@ cart-items .cart-item__name:hover {
   position: sticky;
   top: 0;
   z-index: 2;
-  background: #faf7f2;
+  background: var(--cream);
   padding: 2rem 1.6rem;
   border-bottom: 2px solid rgba(0, 0, 0, 0.08);
   vertical-align: bottom;
@@ -3420,7 +3410,7 @@ cart-items .cart-item__name:hover {
 
 .package-comparison__table tbody tr:nth-child(even) .package-comparison__row-head,
 .package-comparison__table tbody tr:nth-child(even) .package-comparison__cell {
-  background-color: #fcfbf9;
+  background-color: var(--cream);
 }
 
 .package-comparison__cell {
@@ -3531,7 +3521,7 @@ cart-items .cart-item__name:hover {
 
 .sfeerbeelden {
   padding: var(--ruimte-sectie) 0;
-  background-color: #faf7f2;
+  background-color: var(--cream);
 }
 
 .sfeerbeelden__header {
@@ -3606,7 +3596,7 @@ cart-items .cart-item__name:hover {
   align-items: center;
   justify-content: center;
   aspect-ratio: 16 / 9;
-  background: #f1ebe1;
+  background: var(--cream-diep);
   color: rgba(31, 41, 55, 0.25);
 }
 
@@ -3995,7 +3985,7 @@ cart-items .cart-item__name:hover {
    ========================================================================== */
 
 .error-404__body {
-  background-color: #fbf8f4;
+  background-color: var(--cream);
   padding: var(--ruimte-sectie) 0;
 }
 
@@ -4114,7 +4104,7 @@ cart-items .cart-item__name:hover {
 .search__results .card__media {
   border-radius: var(--radius-kaart);
   overflow: hidden;
-  background: #f5f0ea;
+  background: var(--cream);
 }
 
 .product-grid .card__heading,
@@ -4323,14 +4313,12 @@ cart-items .cart-item__name:hover {
   font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: 0.02em;
-  box-shadow: 0 4px 0 #b45309;
   transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .cart__checkout-button:hover:not([disabled]) {
   background: var(--primary-orange-hover);
   transform: translateY(2px);
-  box-shadow: 0 2px 0 #b45309;
 }
 
 .totals__total,
@@ -4364,4 +4352,188 @@ cart-items .cart-item__name:hover {
   flex-shrink: 0;
   margin-top: 0.2rem;
   color: var(--primary-orange);
+}
+
+/* ==========================================================================
+   HERONTWERP
+   Het beeld was: witte kaarten met zachte schaduw op gebroken wit, overal
+   dezelfde gecentreerde kop, en knoppen met een randje eronder. Alles leek
+   op elkaar en niets viel op. Hieronder een strakkere, meer redactionele
+   opzet: vlakken in plaats van zwevende kaarten, haarlijnen in plaats van
+   schaduwen, afwisselende banen en meer contrast in de typografie.
+   ========================================================================== */
+
+/* ---- Typografie: groter en strakker gespatieerd ------------------------- */
+
+.custom-pricing__title,
+.custom-steps__title,
+.package-comparison__title,
+.sfeerbeelden__title,
+.reviews-feed__title,
+.page-hero__title,
+.about-us-page__values-title,
+.bb-page-cta__title,
+.homepage-cta__title {
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+}
+
+.custom-hero__title {
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+}
+
+.custom-pricing__pretitle,
+.custom-steps__pretitle,
+.package-comparison__pretitle,
+.sfeerbeelden__pretitle,
+.reviews-feed__pretitle,
+.page-hero__pretitle {
+  font-size: 1.15rem;
+  letter-spacing: 0.16em;
+}
+
+/* ---- Vlakken in plaats van zwevende kaarten ---------------------------- */
+
+.custom-pricing__card,
+.package-comparison__scroller,
+.hiw-step__card,
+.error-404__link,
+.sfeerbeelden__item,
+.reviews-feed__card,
+.about-us-page__value-card,
+.custom-steps__card,
+.faq-page__item,
+.custom-pricing__assurances {
+  box-shadow: none;
+  border: 1px solid var(--lijn);
+}
+
+.sfeerbeelden__item {
+  border: 0;
+}
+
+.error-404__link:hover,
+.about-us-page__value-card:hover,
+.custom-pricing__card:hover {
+  box-shadow: none;
+  border-color: rgba(245, 158, 11, 0.55);
+  transform: none;
+}
+
+/* De bestelkaart mag wél zweven: dat is het element dat je moet opvallen. */
+.bp-order-card {
+  box-shadow: 0 24px 48px rgba(23, 17, 13, 0.12);
+  border: 1px solid var(--lijn);
+}
+
+/* ---- Afwisselende banen zodat secties uit elkaar vallen ----------------- */
+
+.custom-steps {
+  background-color: var(--white);
+}
+
+.custom-pricing {
+  background-color: var(--cream);
+}
+
+.package-comparison {
+  background-color: var(--white);
+}
+
+.sfeerbeelden {
+  background-color: var(--cream-diep);
+}
+
+.reviews-feed {
+  background-color: var(--cream);
+}
+
+/* ---- Knoppen: vlak en zelfverzekerd ------------------------------------ */
+
+.custom-hero__cta,
+.custom-steps__cta,
+.bb-page-cta__btn,
+.sfeerbeelden__cta,
+.custom-pricing__btn,
+.package-comparison__btn,
+.cart__checkout-button,
+.header__btn-cta {
+  box-shadow: none;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.custom-hero__cta:hover,
+.custom-steps__cta:hover,
+.bb-page-cta__btn:hover,
+.sfeerbeelden__cta:hover,
+.cart__checkout-button:hover:not([disabled]),
+.header__btn-cta:hover {
+  transform: translateY(-2px);
+}
+
+/* De pakketknop was bruin en zwaar; nu een rustige omlijning die oranje
+   wordt als je erover gaat. De populaire kaart houdt de volle knop. */
+.custom-pricing__btn {
+  background: transparent;
+  color: var(--inkt);
+  border: 1.5px solid var(--lijn);
+}
+
+.custom-pricing__btn:hover {
+  background: var(--primary-orange);
+  border-color: var(--primary-orange);
+  color: #1b130b;
+}
+
+.custom-pricing__card--popular .custom-pricing__btn {
+  background: var(--primary-orange);
+  border-color: var(--primary-orange);
+  color: #1b130b;
+}
+
+.custom-pricing__card--popular .custom-pricing__btn:hover {
+  background: var(--primary-orange-hover);
+  border-color: var(--primary-orange-hover);
+}
+
+/* ---- Stappen: grote cijfers in plaats van pastelvakjes ------------------ */
+
+.custom-steps__card {
+  text-align: left;
+  padding-top: 2.8rem;
+}
+
+.custom-steps__card-top {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.6rem;
+}
+
+.custom-steps__badge {
+  background: transparent;
+  border: 0;
+  width: auto;
+  height: auto;
+}
+
+.custom-steps__badge-number {
+  font-size: 3.6rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--primary-orange);
+}
+
+.custom-steps__icon {
+  width: 3.2rem;
+  height: 3.2rem;
+  margin: 0 0 0 auto;
+  opacity: 0.75;
+}
+
+.custom-steps__card-title,
+.custom-steps__card-text {
+  text-align: left;
 }
