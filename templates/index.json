@@ -481,7 +481,7 @@
         "sf_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/11_setup-gras-breed_liggend-16x9.jpg",
+            "image": "shopify://shop_images/04_tap-close_liggend-16x9.jpg",
             "caption": "",
             "wide": false
           }
@@ -489,7 +489,7 @@
         "sf_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/04_tap-close_liggend-16x9.jpg",
+            "image": "shopify://shop_images/05_tap-ijsemmer_liggend-16x9.jpg",
             "caption": "",
             "wide": false
           }
@@ -505,23 +505,7 @@
         "sf_4": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/12_setup-gras-2_liggend-16x9.jpg",
-            "caption": "",
-            "wide": false
-          }
-        },
-        "sf_5": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/17_bar-geel-tap_liggend-16x9.jpg",
-            "caption": "",
-            "wide": false
-          }
-        },
-        "sf_6": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/14_tent-lichtjes_liggend-16x9.jpg",
+            "image": "shopify://shop_images/07_onderzetters-glazen_liggend-16x9.jpg",
             "caption": "",
             "wide": false
           }
@@ -531,15 +515,13 @@
         "sf_1",
         "sf_2",
         "sf_3",
-        "sf_4",
-        "sf_5",
-        "sf_6"
+        "sf_4"
       ],
       "settings": {
-        "pretitle": "IN HET MOMENT",
-        "title": "Zo ziet het eruit bij jou op het feest",
-        "subtitle": "<p>Geen studiofoto's van kratten, maar onze eigen bar in gebruik.</p>",
-        "columns": "3",
+        "pretitle": "VAN DICHTBIJ",
+        "title": "Dit staat er straks bij je",
+        "subtitle": "<p>Tap, koeling, glaswerk en fris — alles komt gebruiksklaar aan.</p>",
+        "columns": "4",
         "cta_label": "Bekijk pakketten",
         "cta_link": "shopify://collections/all"
       }
