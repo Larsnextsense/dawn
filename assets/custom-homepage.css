@@ -2422,6 +2422,7 @@ cart-items .cart-item__name:hover {
 .hiw-step__photo {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 1.2rem;
@@ -3159,6 +3160,7 @@ cart-items .cart-item__name:hover {
 .about-us-page__team-image--placeholder {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 1.6rem;
@@ -3567,6 +3569,9 @@ cart-items .cart-item__name:hover {
 .sfeerbeelden__img {
   display: block;
   width: 100%;
+  /* image_tag zet height als HTML-attribuut; zonder height:auto wint die van
+     aspect-ratio en wordt de foto veel te hoog en zwaar bijgesneden. */
+  height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
 }
