@@ -4280,3 +4280,88 @@ cart-items .cart-item__name:hover {
     margin-bottom: 3.2rem;
   }
 }
+
+/* ==========================================================================
+   Winkelwagen in dezelfde vormtaal als de rest
+   De winkelwagenpagina volgde nog de standaardopmaak van Dawn: rechte
+   hoeken, dunne lijnen, een andere knopstijl. Dat voelt als een andere site
+   op precies het moment dat iemand gaat bestellen.
+   ========================================================================== */
+
+.cart__contents {
+  --cart-oppervlak: #ffffff;
+}
+
+.cart-items thead th {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  padding-bottom: 1.2rem;
+}
+
+.cart-item__image {
+  border-radius: var(--radius-klein);
+}
+
+.cart-item__name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-decoration: none;
+}
+
+.cart-item__name:hover {
+  color: var(--primary-orange-text);
+}
+
+.cart__checkout-button {
+  border-radius: 9999px;
+  background: var(--primary-orange);
+  color: #1b130b;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 0 #b45309;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cart__checkout-button:hover:not([disabled]) {
+  background: var(--primary-orange-hover);
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #b45309;
+}
+
+.totals__total,
+.totals__total-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+/* Geruststelling op het laatste moment voor de checkout. */
+.cart__blocks .cart-gerust,
+.cart-gerust {
+  list-style: none;
+  margin: 1.6rem 0 0;
+  padding: 1.6rem 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  display: grid;
+  gap: 0.8rem;
+}
+
+.cart-gerust li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--text-light);
+}
+
+.cart-gerust svg {
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  color: var(--primary-orange);
+}
