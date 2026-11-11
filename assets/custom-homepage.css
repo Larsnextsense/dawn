@@ -4537,3 +4537,41 @@ cart-items .cart-item__name:hover {
 .custom-steps__card-text {
   text-align: left;
 }
+
+/* Het icoon stond na het herontwerp als klein restant rechtsboven naast het
+   grote cijfer. Het cijfer draagt de kaart nu; het icoon voegde niets toe. */
+.custom-steps__icon {
+  display: none;
+}
+
+/* Donkere blokken: zelfde espressotint, hairline in plaats van schaduw. */
+.bb-page-cta,
+.homepage-cta__inner,
+.about-us-page__stats {
+  box-shadow: none;
+}
+
+.about-us-page__stats {
+  background: var(--espresso);
+}
+
+.custom-hero__stats-inner {
+  background: var(--espresso);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+}
+
+/* Vergelijkingstabel: kopbalk in dezelfde crèmetint als de baan eromheen. */
+.package-comparison__corner,
+.package-comparison__col-head {
+  background: var(--cream);
+}
+
+.package-comparison__col-head--popular {
+  background: var(--espresso);
+}
+
+.package-comparison__table tbody tr:nth-child(even) .package-comparison__row-head,
+.package-comparison__table tbody tr:nth-child(even) .package-comparison__cell {
+  background-color: var(--cream);
+}
