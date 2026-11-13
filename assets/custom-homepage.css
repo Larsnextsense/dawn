@@ -4727,3 +4727,24 @@ cart-drawer cart-remove-button span.svg-wrapper {
     min-width: 4.4rem;
   }
 }
+
+/* ==========================================================================
+   Horizontaal scrollen op mobiel voorkomen
+   De vergelijkingstabel is 908px breed in een scroll-kader van 345px. Dat
+   kader knipt hem visueel netjes af, maar de breedte lekte tóch naar het
+   document: scrollWidth werd 891 bij een scherm van 375, waardoor je op een
+   telefoon naar rechts kon vegen naar een lege strook. De cookiebanner van
+   Shopify staat op width:100% en rekte daardoor mee.
+   contain:paint sluit de tabel echt in. Intern scrollen en de plakkende
+   eerste kolom blijven gewoon werken.
+   ========================================================================== */
+
+.package-comparison__scroller {
+  contain: paint;
+}
+
+/* Vangnet: niets mag de pagina breder maken dan het scherm. */
+html,
+body {
+  overflow-x: clip;
+}
